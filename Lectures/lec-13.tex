@@ -1,0 +1,68 @@
+\begin{section}{Orbits and Orbits-Stablizer Theorem}
+  \begin{definition}
+    Write \( x\sim y \) for \( x,y \; \in \; X \), if \( \exists \; g \; \in G \), s.t. \( gx = y \).
+  \end{definition}
+  \begin{lemma}
+    Such gives us a equivalent relation, directly check by \textbf{reflexive, symmetric, transitive}.
+  \end{lemma}
+
+  \begin{conclusion}
+    We get a partition of \( X \) into equivalence classes, called \textbf{orbits}. If \( x \in X \), then the corresponding equivalence classes is given by:
+    \[
+      \{gx \; | \; g \in G\}
+    \] 
+
+    which is denoted by \( \mathbf{Gx} \) or \( \mathbf{O(x)} \).
+
+    \begin{notation}
+      \( X / G \) denotes the sets of the orbits of \( X \).
+    \end{notation}
+  \end{conclusion}
+
+  \begin{definition}
+    The action of \( G \) on \( X \) is \underline{transitive} if \( X \) has only one orbits, which is:
+    \[
+      \forall \; x,y \in X, \; \exists \; g \in G \; s.t. \; gx = y
+    \] 
+
+    \begin{eg}
+      The action given by the left multiplication of \( G \) on itself is \textbf{transitive}.
+    \end{eg}
+
+    \begin{eg}
+      Induced by above example, the action of \( G \) on the \textbf{set of left cosets} of \( H \) is also transitive.
+    \end{eg}
+  \end{definition}
+
+  \begin{definition}
+    For every \( x \in X \), the \underline{stablizer} of \( x \in G \) is given by:
+    \[
+      Stab_G(x) = \{g \in G \; | \; gx = x\}
+    \] 
+
+    namely those elements in \( G \) that doesn't move the position of \( x \).
+  \end{definition}
+
+  \begin{lemma}
+    \( Stab_G(x) \leq G \) being a subgroup.
+  \end{lemma}
+
+  \begin{eg}
+    Consider the action of \( G \) on itself by conjugation, the orbits of \( a \in G \) is called the \underline{conjugate class of \( a \)}. Two elements of \( G \) are conjugate of each other if they lie in the same conjugate class (\textbf{same orbit}).
+
+    What is the stablizer in this case?
+    \[
+      Stab_G(x) = \{y \in G \; | \; yxy^{-1} = x\} =: C_G(x)
+    \] 
+
+    which is the \underline{centralizer} of \( x \) in \( G \).
+
+    \begin{note}
+      \( C_G(x) = G \) iff \( x \in Z(G) \)
+    \end{note}
+  \end{eg}
+
+  \begin{remark}
+    Consider the conjugacy classes of \( S_n \), then \( \sigma, \tau \in S_n \) are conjugate of each other if and only if when they written as \textbf{product of disjoint cycles}, then \# of \( k \)-cycle for both of them is the \textbf{same} for all \( k \) (\textbf{they have same cycle type}).
+  \end{remark}
+\end{section}
