@@ -133,6 +133,16 @@
 	mdframed={
 			linewidth=2pt,
 			rightline=false, topline=false, bottomline=false,
+			linecolor=RawSienna, backgroundcolor=RawSienna!5,
+			nobreak=false
+		}
+]{conclredbox}
+
+\declaretheoremstyle[
+	headfont=\bfseries\sffamily\color{RawSienna!70!black}, bodyfont=\normalfont,
+	mdframed={
+			linewidth=2pt,
+			rightline=false, topline=false, bottomline=false,
 			linecolor=RawSienna, backgroundcolor=RawSienna!8,
 			nobreak=false
 		}
@@ -242,6 +252,7 @@
 \declaretheorem[style=thmpinkbox, name=Problem, numbered=no]{problem*}
 \declaretheorem[style=thmblue2box, name=Claim, numbered=no]{claim}
 \declaretheorem[style=conjpurplebox, name=Conjecture, numberwithin=section]{conjecture}
+\declaretheorem[style=conclredbox, name=Conclusion, numberwithin=section]{conclusion}
 
 \renewcommand\theHdefinition{\thesection.\arabic {definition}}
 \renewcommand\theHtheorem{\thesection.\arabic {theorem}}

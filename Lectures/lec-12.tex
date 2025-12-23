@@ -1,0 +1,55 @@
+\chapter{Group Actions}
+
+\begin{section}{Introduction}
+  We now lay our focus to group actions, group actions are useful because we can endowed the \textbf{symmetric structure} of a group into other mathematical objects through group actions, specifically:
+  \begin{itemize}
+    \item often groups acts on various mathematical structure, such as sets, topological spaces, manifolds, etc.
+    \item It will be of great significance for us to consider the actions of a group on itself via \textbf{conjugation}.
+  \end{itemize}
+  
+  \begin{definition}
+    Let's fix a group $G$ and a set $X$, an \textbf{action} (say also a left action of ) $G$ on $X$ is a map:
+    \[
+      \begin{aligned}
+        G \times X &\to X \\
+        (g,x) &\mapsto gx \\
+      \end{aligned}
+    \]
+
+    such that the following holds:
+    \[
+      ex = x \quad \forall \; x \in X 
+    \] 
+    \[
+      g(hx) = (gh) x \quad \forall \; g, h \in G, \; x \in X
+    \] 
+  \end{definition}
+
+  We now introduce an \textbf{equivalent formulation} for group action:
+
+  Recall that:
+  \[
+    S_X = (\{\text{bijections } X \to X\}, \circ)
+  \] 
+
+  is a group.
+  
+  \begin{definition}
+    Now suppose we have the action of $G$ on $X$ as above, we may define a map $\varphi: G \to S_X$ as follows:
+    for every $g \in G$, $\varphi(g)$ which written as $\varphi_g$ is the map:
+    \[
+      \varphi_g :X \to X, \varphi_g (x) = gx
+    \] 
+  \end{definition}
+  
+  It is easy to see that by inheritance of the existance of inverses in $G$, $\varphi_g$ is a bijection. In particular, one can see that it is actually a \textbf{group homomorphism}.
+  
+  And the following conclusion is easy to deduce:
+  \begin{conclusion}
+    \[
+      \text{\textbf{\{Actions of $G$ on $X$}\}} \leftrightarrow \text{\{\textbf{Group Homomorphism} $G \to S_X$\}}
+    \] 
+
+    forms a \textbf{bijection}.
+  \end{conclusion}
+\end{section}
