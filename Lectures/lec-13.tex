@@ -65,4 +65,122 @@
   \begin{remark}
     Consider the conjugacy classes of \( S_n \), then \( \sigma, \tau \in S_n \) are conjugate of each other if and only if when they written as \textbf{product of disjoint cycles}, then \# of \( k \)-cycle for both of them is the \textbf{same} for all \( k \) (\textbf{they have same cycle type}).
   \end{remark}
+
+  We now introduce Orbit-Stablizer theorem.
+  \begin{theorem}
+    If \( G \) acts on \( X \), then for every \( x \; \in \; X \):
+    \[
+      \# O(x) = (G : Stab_G(x))
+    \] 
+
+    In particular, if \( G \) is finite group, then
+    \[
+      \# O(x) \; \mid  \; | G | 
+    \] 
+  \end{theorem}
+
+  \begin{proof}
+    Define a map:
+    \[
+      \begin{aligned}
+        f: (G / Stab_G(x))_l & \longrightarrow O(x) \\ 
+        f(g Stab_G(x)) &= gx 
+      \end{aligned}
+    \] 
+
+    \begin{itemize}
+      \item Well-defineness + injectivity:
+        \[
+          \begin{aligned}
+            g_1 Stab_G(x) &= g_2 Stab_G (x) \\ 
+            \iff g_2^{-1} g_1 &\in Stab_G(x) \\ 
+            \iff (g_2^{-1} g_1) x &= x \\ 
+            \iff g_2^{-1} (g_1 x) &= x \\
+            \iff g_1 x &= g_2 x \\ 
+          \end{aligned}
+        \] 
+      \item Surjectivity:
+        \[
+          \begin{aligned}
+            y & \in O(x) \\ 
+            \implies y &= gx \\ 
+            \implies y &= f(g Stab_G(x))
+          \end{aligned}
+        \] 
+    \end{itemize}
+
+    So we see \( f \) is a bijection. The first isomorphism theorem direct yields the result.
+  \end{proof}
+
+  \begin{note}
+    When the action is transitive, with \( X \) being finite, we have:
+    \[
+      \# O(x) = (G : Stab_G(x)) = | X |
+    \] 
+
+    In particular, transitive means there is only one orbits.
+  \end{note}
+
+  \begin{proposition}
+    If \( G \) acts on \( X \), then:
+    \[
+      | X | = \sum_{i \in I} (G : Stab_G(x))
+    \] 
+
+    where \( x_i \) are a system of representative for the orbits of \( G \) in \( X \).
+  \end{proposition}
+
+  \begin{proof}
+    We have a partition:
+    \[
+      X = \bigsqcup_{i \in I} O(x) \implies \# X = \sum \# O(x_i)
+    \] 
+
+    with:
+    \[
+      \# O(x_i) = (G : Stab_G (x_i))
+    \] 
+  \end{proof}
+
+  \begin{eg}{(\textbf{Class Equation: A important special case})}
+    Consider the action of \( G \times G \to G \) by \textbf{conjugation}, with \( G \) be finite group:
+    \[
+      \begin{aligned}
+        | G | &= \sum_{i \in I} (G : C_G(x_i)) \\ 
+        \implies | G | &= | Z(G) | + \sum_{i \in I'} (G : C_G(x_i))  
+      \end{aligned}
+    \] 
+
+    where \( I' \) runs over indices such that \( (G : C_G(x_i)) > 1 \).
+
+    Such results direct yields from the fact that elements in \( Z(G) \) attains its centralizer (stablizer) to be the whole group.
+
+    \begin{note}
+      Such only works for actions by \textbf{conjugation!}
+    \end{note}
+  \end{eg}
+
+  We now give an application for orbits-stablizer theorem, which is important when we study the construction of groups.
+  \begin{definition}
+    If \( p \) be prime number, and \( G \) be group, if \( |G| = p^n \) for some \( n\geq 1 \), then we say \( G \) is a \underline{\( p \)-group}.
+  \end{definition}
+  
+  \begin{proposition}
+    If \( G \) is a \( p \)-group, then:
+    \[
+      Z(G) \neq \{e\}
+    \] 
+  \end{proposition}
+
+  \begin{proof}
+    Since \( p \mid | G | \) and \( (G : Stab_G(x)) \mid | G | = p^n\), then:
+    \[
+      p \mid (G : C_G(x_i))
+    \] 
+    
+    whenever this is \( >1 \), then class equation yields that:
+    \[
+      p \mid | Z (G) |
+    \] 
+  \end{proof}
 \end{section}
