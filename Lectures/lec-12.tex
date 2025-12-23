@@ -52,4 +52,112 @@
 
     forms a \textbf{bijection}.
   \end{conclusion}
+
+  We then give some examples of group actions:
+  \begin{eg}
+    Given any set $X$, we have the identity, \textbf{trivial} group action given by the group homomorphism:
+    \[
+      S_X \xrightarrow{Id} S_X
+    \] 
+    
+    which is equivalent to the action of $S_X$ on $X$ by:
+    \[
+      S_X \times X \to X \; , \; (f,x) \mapsto f(x)
+    \] 
+  \end{eg}
+
+  \begin{eg}
+    If $n > 3$ and $P_n$ be the regular $n$-gon, we then have a group homomorphism:
+    \[
+      D_{2n} \to S_{P_n}
+    \] 
+
+    which leads to an action of $D_{2n}$ on \( P_n \)
+
+    \begin{note}
+      See that in this case \( D_{2n} \) preserve the distance structure within the regular \( n \)-gon.
+    \end{note}
+  \end{eg}
+
+  \begin{eg}
+    The group \( GL_n(\mathbb C) \) acts on \( \mathbb C^n \) via:
+    \[
+      (A, u = \begin{pmatrix}
+        u_1 \\ 
+        \vdots \\ 
+        u_n
+      \end{pmatrix}) \mapsto Au
+    \] 
+
+    which represent the matrix as \textbf{linear transformation}. Such corresponds to the group homomorphism:
+    \[
+      \begin{aligned}
+        & GL_n(\mathbb C) \to S_{\mathbb C^n} \\ 
+        A & \mapsto \text{corresponds linear transformation on } \mathbb C^n
+      \end{aligned}
+    \] 
+  \end{eg}
+
+  \begin{eg}{(Cayley's Theorem)}
+    Define an action of \( G \) on itself by:
+    \[
+    \begin{aligned}
+      G\times G &\to G \\ 
+      (g,h) & \mapsto g \cdot h
+    \end{aligned}
+    \]
+
+    which acts by the natural left multiplication. Note such corresponds to a group homomorphism:
+    \[
+      G \xrightarrow{\varphi} S_G
+    \] 
+
+    And we shall have:
+    \begin{proposition}{(Cayley)}
+      \( \varphi \) is always injective
+    \end{proposition}
+
+    In particular, if \( G \) is finite, \( G \) is then \textbf{isomorphic} to a subgroup of \( S_n \).
+    \[
+      G \cong \Im(\varphi) \subseteq S_G 
+    \] 
+    
+    The proof is immediate by showing \( \ker (\varphi) = \{e\} \) by cancellation.
+  \end{eg}
+
+  \begin{eg}
+    Suppose \( H\leq G \), we have:
+    \[
+    \begin{aligned}
+      G \times (G / H)_l & \to (G / H)_l \\ 
+      (g, ah) & \mapsto ga H \\ 
+    \end{aligned}
+    \]
+
+    easy to see such is a group action after checking well-definedness. Such action is induced by the action of group on itself, note \( H \) here is \textbf{not necessarily normal}.
+  \end{eg}
+
+  \begin{eg}{(Group action by \textbf{Conjugation})}
+    The following will be the most interesting example for us. First recall we have an \textbf{automorphism} given by \( g \; \in G \):
+    \[
+      \alpha_g: G \to G \; , \; \alpha_g(x) = g x g^{-1}
+    \] 
+
+    Moreover, observe \( Aut(G) \leq S_G \), so we have a group homomorphism:
+    \[
+      \begin{aligned}
+        G & \to Aut(G) \leq S_G \\ 
+        g & \mapsto \alpha_g
+      \end{aligned}
+    \] 
+
+    We can understand \( Aut(G) \) as those \textbf{permutation that preserve the group structure}.
+
+    In particular, by our discussion, we get an action of \( G \) on itself:
+
+    \[
+      (g,x) \mapsto gxg^{-1}
+    \] 
+  \end{eg}
+  
 \end{section}
