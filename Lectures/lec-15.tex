@@ -35,12 +35,12 @@
             \] 
 
           By Cauchy's theorem for the abelian group \( Z(G) \), there exists \( x \in Z(G) \), s.t. \( \abs{x} = p \). Since \( x \in Z(G) \implies \angl{x}\) is a normal subgroup of \( G \).
-          Now consider: \( G' := G / \angl{x} \)
+          Now consider: \( G' := \quotient{G}{\angl{x}} \)
           \begin{itemize}
             \item If \( m = 1 \), then we are done! Since \( \angl{x} \) is a \( p \)-Sylow subgroup of \( G \).
             \item If \( m \geq 2 \), see that \( \abs{G'} = \frac{\abs{G}}{p} < \abs{G} \) is divisible by \( p \) \todo{by prime factorization, $G = p^m \cdot (\cdots)$, so see $\abs{G'} = \frac{\abs{G}}{p} = p^{m-1} \cdot (\cdots)$}, so we apply induction on \( G' \), see that \( G' \) contains a \( p \)-Sylow subgroup, which is of the form: \( H / \angl{x} \) for some subgroup \( H \) of \( G \). Notice that:
               \[
-                \abs{H / \angl{x} } = p^{m-1} \implies \abs{H} = p^{m-1} \cdot p = p^m 
+                \abs{\quotient{H}{\angl{x}} } = p^{m-1} \implies \abs{H} = p^{m-1} \cdot p = p^m 
               \] 
           \end{itemize}
         \end{itemize}

@@ -1,0 +1,175 @@
+\begin{section}{Sylow's Second and Third Theorem}
+  Sylow's Second theorem basically tells us how the \( p \)-Sylow subgroup of \( G \) relate to each other, and Sylow's third theorem tells us the possible number of each \( p \)-Sylow subgroup can take. Before diving into the proof, we need to dig more intuition on what group actions can do, i.e. how it \textbf{permute the endian sets}. 
+  \begin{subsection}{More on Group Action}
+    \begin{eg}
+      \label{eg-1}
+      Suppose \( G \) is a group acting on a set \( X \):
+      \[
+        \begin{aligned}
+          G \times X & \longrightarrow X \\ 
+          (g,x) & \longmapsto gx 
+        \end{aligned}
+      \] 
+
+      If \( cP(X) \) is the set of all subsets of \( X \), we then get an \textbf{induced group action}:
+      \[
+        \begin{aligned}
+          G \times \cP(X) & \longrightarrow \cP(X) \\ 
+          (g, A) & \longmapsto gA = \{ga \; | \; a \in A\}
+        \end{aligned}
+      \] 
+
+      and its clear that such satisfy the group action properties, we get a group action of \( G \) acting on \( \cP(X) \).
+
+      \textbf{Important exmaple:} If in this case we consider the action on \( G \) acting on itself by conjugation, we can get a correspond action of \( G \) on \( \cP(G) \):
+      \[
+        (g, A) \longmapsto gAg^{-1} = \{gag^{-1} \; | \; a \in A\}
+      \] 
+
+      \begin{note}
+        If \( A \) is a subgroup of \( G \), then \( gA g^{-1} \) is also a subgroup of \( G \) \todo{the conjugation map is a group \textbf{automorphism}}. 
+      \end{note}
+      \end{eg}
+
+      \begin{remark}
+        If \( H \) is a \( p \)-Sylow subgroup of \( G \) and \( \sigma: G \to G \) be an automorphism, then \( \sigma(H) \) will also be a \( p \)-Sylow subgroup, in particular, \textbf{every conjugation} of \( H \) which is \( p \)-Sylow subgroup will also be a \( p \)-Sylow subgroup. 
+      \end{remark}
+  \end{subsection}
+
+  \begin{subsection}{Sylow's Second and Third Theorem}
+    \begin{theorem}{(\textbf{Sylow's Second Theorem})}
+      If \( H \) is a \( p \)-Sylow subgroup of \( G \), \( K \) is \textbf{any \( \mathbf p \)-subgroup} of \( G \), then there exists \( a \in G \), s.t. \( K \subseteq aHa^{-1} \).
+
+      In particular: if \( K \) is a \( p \)-Sylow subgroup, too. Then \( H, K \) are conjugate of each other: \( K = aHa^{-1} \) for some \( a \in G \).
+    \end{theorem}
+
+    \begin{theorem}{(\textbf{Sylow's Third Theorem})}
+      If we denote: 
+      \[
+        n_p = \# \text{$p$-Sylow subgroups of $G$}
+      \] 
+
+      Then we have:
+      \[
+        \begin{cases}
+          n_p \equiv 1 (\mod p) \\ 
+          n_p = (G : N_G(H)) \implies n_p \mid (G:H)
+        \end{cases}
+      \] 
+
+      with:
+      \[
+        N_G(H) : =\{g \in G \; | \; gHg^{-1} = H\}
+      \] 
+
+      where \( H \) is a \( p \)-Sylow subgroup of \( G \).
+
+      \begin{note}
+        \( N_G(H) \) will be the largest subgroup of \( G \) in which \( H \) is a normal subgroup.
+      \end{note}
+
+      \begin{note}
+        The assertion:
+        \[
+          n_p = (G : N_G(H)) \implies n_p \mid (G:H)          
+        \] 
+
+        is derived from Lagrange's theorem:
+        \[
+          \begin{aligned}
+            H &\leq N_G(H) \leq G \\ 
+            \implies (G:H) &= \frac{\abs{G} }{\abs{H} } = \frac{\abs{G} }{\abs{N_G(H)} } \cdot (N_G(H) : H) \\ 
+            \text{And } (G : N_G(H)) &= \frac{\abs{G} }{\abs{N_G(H)} }
+          \end{aligned}
+        \] 
+      \end{note}
+    \end{theorem}
+
+    We shall prove both of the theorem at the same time.
+
+    \begin{proof}
+      We've seen in \textbf{Example} \ref{eg-1}, \( G \) has an action on \( \cP(G) = \{T \; | \; T \leq G\} \) by conjugation: \( (g, T) \to gTg^{-1} \). We now define:
+      \[
+        \cS = \{H = H_1, H_2, \ldots, H_r\}
+      \] 
+
+      which is the collection of the orbits of \( H \) with respect to such action. By \textbf{Orbit-Stablizer Theorem} \ref{orbi-stab}:
+      \[
+        \begin{aligned}
+          r &= (G : Stab_G(H)) \\ 
+          Stab_G(H) &= \{g \in G \; | \; gHg^{-1} = H\} = N_G(H) \\ 
+          \implies r &= (G : N_G(H))
+        \end{aligned}
+      \] 
+      Now suppose we have a \( p \)-subgroup \( K \) of \( G \), the action of \( G \) on \( \cP(G) \) then induces an action of \( K \) on \( \cP(G) \), and we shall have the canonical injective homomorphism:
+      \[
+        \quotient{K \cap N_G(H)}{K \cap H} \hookrightarrow \quotient{N_G(H)}{H} 
+      \] 
+
+      For the right hand side, see that:
+      \[
+        \abs{\quotient{N_G(H)}{H}} = \frac{\abs{N_G(H)}}{\abs{H} } \Bigg| \frac{\abs{G} }{\abs{H} } = \frac{\abs{G} }{p^m}
+      \] 
+
+      Note that \( \frac{\abs{G}}{p^m} \) is relatively primed to \( p \).
+
+      For the left hand side, it attains a non-negative order (can be \( 0 \)), since \( K \) is a \( p \)-group, it should attain its order to be \textbf{power of $\mathbf p$} by \textbf{Lagrange's Theorem}.
+
+      Now since it is a injective homomorphism, it attains a trival kernel, so by \textbf{Lagrange's theorem + first isomorphism theorem}:
+      \[
+        \abs{\quotient{K\cap N_G(H)}{K\cap H}} \; \Bigg| \; \abs{\quotient{N_G(H)}{H}}
+      \] 
+
+      But notice that the right hand side is coprime with \( p \) but left hand side divides \( p \), this leads to:
+      \begin{equation}
+        \abs{\quotient{K\cap N_G(H)}{K\cap H}} = 1 \implies K \cap N_G(H) = K \cap H 
+        \label{eq-1}
+      \end{equation}
+
+      Now suppose \( I \subseteq \{1, \ldots, r\} \) are those such that \( \{H_i \; | \; i \in I\} \) which gives a system of representatives for the orbits of the \( K \) action on \( \cS \), then by class equation:
+      \begin{equation}
+      r = \abs{\cS} = \sum_{i \in I} (K : \underbrace{Stab_{K}(H_i)}_{= K \cap Stab_G(H_i) = K\cap H_i\text{ by \ref{eq-1}}})
+        \label{eq-2}
+      \end{equation}
+      Now we want to prove:
+      \begin{equation}
+        (K : K \cap H_i) \iff K \subseteq H_i 
+      \end{equation}
+      
+      If it is not the case, then \( (K : K \cap H_i) \) is divisible by \( p \) since \( K \) is a \( p \)-group. First take \( K = H \), since \( \abs{H} = \abs{H_i}, \; \forall i \), we have \( H \leq H_i \iff i = 1\). Hence by \textbf{Equation} \ref{eq-2}, \( r \equiv 1(\mod p) \). 
+
+      Suppose that \( K \) is an arbitrary \( p \)-group, if \( K \not \subseteq H_i, \; \forall i \in I \implies p \mid r\) by \textbf{Equation} \ref{eq-2}, which contradicts to \( r \equiv 1 (\mod p) \). Hence there exists \( i \), s.t. \( K \subseteq H_i = aHa^{-1} \) for some \( a \in G \), such yields \textbf{Sylow's Second Theorem}.
+
+      In particular, we see \( \cS = \{\text{$p$-Sylow subgroups of $G$}\} \implies r = n_p\):
+      \[
+        \begin{aligned}
+          \implies n_p & \equiv 1(\mod p) \\ 
+          n_p &= r = (G : N_G(H))
+        \end{aligned}
+      \] 
+
+      which yields \textbf{Sylow's Third Theorem}.
+   \end{proof}
+  \end{subsection}
+  \begin{note}
+    All \( p \)-Sylow subgroups are conjugate to each other.
+  \end{note}
+  \begin{remark}
+    \[
+      n_p = 1 \iff H \unlhd G
+    \]
+  \end{remark}
+  
+  We state a small proposition that is helpful when we analyze the group structure along with Sylow's Theorem, it is also the midterm problem of this course.
+  \begin{proposition}
+    Let \( H, K \unlhd G \), and \( H \cap K = \{e\} \), then:
+    \[
+      \begin{aligned}
+        H \times K & \longrightarrow HK \\ 
+        (h,k) & \longmapsto hk 
+      \end{aligned}
+    \] 
+
+    is a group isomorphism.
+  \end{proposition}
+\end{section}
