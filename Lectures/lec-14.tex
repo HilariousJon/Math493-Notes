@@ -1,0 +1,70 @@
+\chapter{Sylow's Theorem}
+
+\textbf{Sylow's Theorem} is important when we want to understand and classify the category of finite groups, simply by looking on the order of such finite group. Further, it lays foundation and gives tools for us when we want to understand the structure of the building blocks of finite group (simple group).
+
+\begin{section}{Cauchy's Theorem}
+  Our motivation to study Cauchy's Theorem, as well as Sylow's Theorem, in the first place, is we want to give a partial inverse to \textbf{Lagrange's theorem}. Recall that Lagrange's theorem implies that:
+  \begin{proposition}
+    If \( G \) is a finite group, with order \( n \), then \( \forall \; x \in G \), it satisifies that:
+    \[
+      | x | \mid n 
+    \] 
+  \end{proposition}
+
+  In general, the converse of this statement is not true, in particular:
+  \[
+    \exists \; q \mid  | G |, \text{ but there exists no } g \in G, \text{ s.t. } | g | = q  
+  \] 
+
+  for example we can take \( q = | G | \), but \( G \) is \textbf{not a cyclic group}.
+
+  So we give partial converse of this statement by stating \textbf{Cauchy's Theorem}.
+  \begin{theorem}{(\textbf{Cauchy})}
+    If \( G \) is a finite group and \( p \) is a prime integer, s.t. \( p \mid | G | \), then \( \exists \; g \in G\), \( |g| = p \).
+  \end{theorem}
+
+  We first proof for the case when \( G \) is \textbf{abelian group}, then one can easily derive the general cases by invoking \( \mathbf{Z(G)} \) of any group.
+  \begin{proof}
+    We reason by deviding cases for abelian and non-abelian group:
+    \begin{itemize}
+      \item When \( G \) is \textbf{abelian}: We argue by contradiction, suppose that \( |x| \neq p, \; \forall x \in G \), in this case see that \( p \nmid |x|, \; \forall x \in G \), otherwise if \( |x| = m, \; p \mid m \implies |x^{\frac{m}{p}}|  = p\) $\lightning$.
+        
+        Let \( N = \lcm \{|x| \; \mid \; x \in G\} \), use prime factorization of \( N \) see that \( p \nmid N \). Now suppose \( g_1, \ldots, g_n \) are the elements of \( G \), we define:
+        \[
+          \begin{aligned}
+            f: \underbrace{\mathbb Z / N \mathbb Z \times \ldots \times \mathbb Z / N \mathbb Z}_{n \text{ times}} & \longrightarrow G \\ 
+            f(a_1+N \mathbb Z, \ldots, a_n + N \mathbb Z) &= g_1^{a_1} \ldots g_n^{a_n}
+          \end{aligned}
+        \] 
+
+        one can easily check the well-definedness of such map. The point is \( G \) be an abelian group makes this map a group homomorphism:
+        \[
+          \begin{aligned}
+            f((a_1+N \mathbb Z, \ldots, a_n + N \mathbb Z) + (b_1+N \mathbb Z,  \ldots, b_n + N \mathbb Z)) &= f(a_1 + b_1 +N \mathbb Z, \ldots, a_n + b_n + N \mathbb Z) \\ 
+                                                                                                            &= g_1^{a_1 + b_1} \ldots g_n^{a_n + b_n} \\ 
+                                                                                                            &= (g_1^{a_1}\ldots g_n^{a_n}) (g_1^{b_1}\ldots g_n^{b_n}) \quad \text{By $G$ is abelian}\\ 
+                                                                                                            &=             f((a_1+N \mathbb Z, \ldots, a_n + N \mathbb Z)) \\ 
+                                                                                                            & + f((b_1+N \mathbb Z,  \ldots, b_n + N \mathbb Z))
+          \end{aligned}
+        \] 
+
+        so \( f \) indeed be a group homomorphism. One should then see that \( f \) is clearly surjective by taking:
+        \[
+          g_i = f(0, \ldots, \stackrel{i}{1}, \ldots, 0)
+        \] 
+        
+        By fundemental isomorphism theorem:
+        \[
+          G \cong (\mathbb Z / N \mathbb Z)^n / \ker(f) \implies | G | = \frac{| \mathbb Z / N \mathbb Z |^n}{| \ker(f) |}
+        \] 
+
+        And by Lagrange theorem:
+        \[
+          | G | \mid |(\mathbb Z / N \mathbb Z)^n | = N^n 
+        \] 
+        however, since \( p \mid | G | \), but \( p \nmid N \), hence \( p \nmid N^n \), leading to contradiction $\lightning$.
+        
+      \item When \( G \) is \textbf{non-abelian}: 
+    \end{itemize}
+  \end{proof}
+\end{section}

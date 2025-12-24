@@ -183,4 +183,45 @@
       p \mid | Z (G) |
     \] 
   \end{proof}
+
+  \begin{corollary}
+    If \( p \) prime, \( | G | = p^2 \), then \( G \) is an abelian group.
+    \label{cor-1}
+  \end{corollary}
+  
+  To proof this we need first a lemma:
+  \begin{lemma}
+    For all group \( G \), if \( G / Z(G) \) is cyclic, then \( G \) is abelian.
+    \label{lem-1}
+  \end{lemma}
+
+  \begin{proof}
+    By cyclic property, first suppose that \( x Z(G) \) is a generator of \( G / Z(G) \), then there exists \( i, j \; \in \mathbb Z \), such that:
+    \[
+      \begin{aligned}
+        a Z(G) &= x^i Z(G) \\ 
+        b Z(G) &= x^j Z(G) \\ 
+        \iff a &= x^i a' \\ 
+        b &= x^j b' \qquad \text{for some $a'b' \; \in Z(G)$} \\
+        \implies ab &= x^i a' x^j b' = x^{i+j}a'b' \\ 
+        ba &= x^j b' x^i a' = x^{i+j}b'a' \\ 
+        \implies ab &= ba \qquad \text{since $a',b' \; \in Z(G)$}
+      \end{aligned}
+    \] 
+  \end{proof}
+  
+  We now give proof to \textbf{Corollary} \ref{cor-1}:
+  \begin{proof}
+    We know that:
+    \[
+      Z(G) \neq \{e\}
+    \] 
+
+    Then by \textbf{Lagrange's theorem}, see that either \( Z(G) = G \) or \( | Z(G) | = p \).
+
+    If \( Z(G) = G \), we already done! Now suppose that \( |Z(G)| = p\), now observe that every subgroup of \( Z(G) \) is a \textbf{normal subgroup} of \( G \) by definition.
+
+    In particular, we then consider the group \( G / Z(G) \), this is of order \( p \), so it is cyclic. Then by \textbf{Lemma} \ref{lem-1}, see that \( G \) is abelian, contradict to the fact that \( Z(G) \neq G \) $\lightning$.
+  \end{proof}
+
 \end{section}
