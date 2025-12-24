@@ -64,6 +64,16 @@
 \DeclareMathOperator{\Var}{Var}
 \DeclareMathOperator{\Cov}{Cov}
 \DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathoperator{\gcd}{gcd}
+\DeclareMathOperator{\coker}{coker} % cokernel
+\DeclareMathOperator{\Sym}{Sym} % symmetric group
+\DeclareMathOperator{\Aut}{Aut} % automorphism group
+\DeclareMathOperator{\Hom}{Hom} % homomorphisms
+\DeclareMathOperator{\Gal}{Gal} % galois group
+
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
 
 \let\implies\Rightarrow
 \let\impliedby\Leftarrow
@@ -85,3 +95,35 @@
 	\def\svgwidth{#1}
 	\import{Figures/}{#2.pdf_tex}
 }
+
+% some efficient math alias
+\newcommand{\CC}{\mathbb{C}} % Complex numbers
+\newcommand{\FF}{\mathbb{F}} % Finite fields
+\newcommand{\NN}{\mathbb{N}} % Natural numbers
+\newcommand{\QQ}{\mathbb{Q}} % Rational numbers
+\newcommand{\RR}{\mathbb{R}} % Real numbers
+\newcommand{\ZZ}{\mathbb{Z}} % Integers
+
+% Automated Letter Loops (The "Magic" Part)
+\foreach \x in {A,...,Z} {
+    \expandafter\xdef\csname c\x\endcsname{\noexpand\mathcal{\x}} % mathcal 
+    \expandafter\xdef\csname b\x\endcsname{\noexpand\mathbb{\x}} % mathbb 
+    \expandafter\xdef\csname f\x\endcsname{\noexpand\mathfrak{\x}} % mathfrak 
+    \expandafter\xdef\csname s\x\endcsname{\noexpand\mathscr{\x}} % mathscr 
+}
+
+% Paired Delimiters (Auto-sizing)
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}   % Absolute value |x|
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}  % Norm ||x||
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}  % Ceiling function
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor} % Floor function
+\DeclarePairedDelimiter{\ang}{\langle}{\rangle} % Inner product or generated ideal <x>
+
+% greek and msic symbols
+\newcommand{\eps}{\varepsilon} % Better looking epsilon
+\newcommand{\vp}{\varphi}      % Better looking phi
+\newcommand{\lam}{\lambda}     % Shorthand for lambda
+\newcommand{\half}{\frac{1}{2}} % Very common fraction
+\newcommand{\inv}{^{-1}}       % Inverse operator shorthand
+\newcommand{\iff}{\Longleftrightarrow} % Make 'iff' arrow longer if desired
+
