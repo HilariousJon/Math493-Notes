@@ -64,7 +64,28 @@
         \] 
         however, since \( p \mid | G | \), but \( p \nmid N \), hence \( p \nmid N^n \), leading to contradiction $\lightning$.
         
-      \item When \( G \) is \textbf{non-abelian}: 
+      \item When \( G \) is \textbf{non-abelian}: We argue by induction on \( |G| \).
+        \begin{itemize}
+          \item Base case: If \( |G| = p \implies G\) is cyclic, then we are done. 
+          \item Inductive case: we assume we know the assertion for all \( G' \), such that \( p \mid |G'| \), with \( |G'| < | G |  \), and prove the assertion for \( G \). Note that if there exists \( H \leq G \), with \( H \neq G \), but \( p \mid \abs{H} \), then by the induction hypothesis we are done.
+
+            Hence, may assume: \( \forall \; H \leq G, \; H \neq G \), \( p \mid H \). Then by Lagrange theorem: \( \abs{G} = \abs{H} \cdot (G : H) \implies p \mid (G : H)\). By class equation:
+            \[
+              \abs{G} = \abs{Z(G)} + \sum_{i = 1}^{d} (G : C_G(x_i))
+            \] 
+
+            where \( x_i \) runs over a system of representatives of conjugacy classes with \( \geq 2 \) elements. By our assumptions, we saw:
+            \[
+            p \mid (G : C_G(x_i)), \;  p \mid \abs{G} \implies p \mid \abs{Z(G)}
+            \] 
+
+            Since among all subgroups of \( G \), \textbf{only itself} can be divided by \( p \), so this means that:
+            \[
+              Z(G) = G 
+            \] 
+
+            so we see \( G \) is abelian and yields back to the case we've proven before.
+        \end{itemize}
     \end{itemize}
   \end{proof}
 \end{section}
