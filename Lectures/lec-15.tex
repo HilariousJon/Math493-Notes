@@ -1,3 +1,49 @@
 \begin{section}{Sylow's First Theorem}
-  
+  With the help of Cauchy's theorem, we now give proof to Sylow's first theorem.
+  \begin{definition}
+    If \( G \) is finite group, \( p \) prime integer, s.t. \( p \mid \abs{G} \) and \( p^m \mid \abs{G}, \; p^{m+1} \nmid \abs{G} \), then a subgroup of \( G \) with order \( p^m \) is called a \( p \)-Sylow subgroup of \( G \).
+  \end{definition}
+
+  \begin{theorem}{(\textbf{Sylow's First Theorem})}
+    If \( G \) is a finite group and \( p \) is a prime integer, if \( p \mid \abs{G} \implies G\) contains a \( p \)-Sylow subgroup.
+  \end{theorem}
+
+  \begin{note}
+    Sylow's first theorem actually implies Cauchy's theorem.
+
+    If \( H \leq G \) be a \( p \)-Sylow subgroup and \( g\in H \backslash\{e\} \implies \abs{g} = p^r \implies \abs{g^{p^{r-1}}} = p \).
+
+    However, we will \textbf{use} Cauchy's theorem to prove Sylow's theorem.
+  \end{note}
+  \begin{proof}
+    We argue by induction on \( \abs{G} \).
+    \begin{itemize}
+      \item Base case: \( \abs{G} = p \), the assertion is clear, \( G \) is its own \( p \)-Sylow subgroup.
+      \item Inductive case: Assume that we know the theorem for all groups \( G' \), s.t. \( p \mid |G'| \), and \( |G'| < |G| \), we want to show the assertion for \( G \).
+
+        Suppose that \( p^m \mid \abs{G} \), but \( p^{m+1} \nmid \abs{G} \), then there are two cases:
+        \begin{itemize}
+          \item If there is a \textbf{proper subgroup} \( H \) of \( G \), s.t. \( p^m \mid \abs{H} \), then by induction hypothesis, \( H \) contains a \( p \)-Sylow subgroup, and this is also a \( p \)-Sylow subgroup of \( G \).
+          \item If \textbf{for all proper subgroup} \( H \) of \( G \), \( p^m \nmid \abs{H} \), then \( p^m \) has to \textbf{divide the index of such subgroup}. Then by class equation:
+            \[
+              \abs{G} = \abs{Z(G)} + \sum_{i = 1}^{d} \underbrace{(G : C_G(x_i))}_{\geq 2 \text{ hence divided by $p$.}}
+            \] 
+
+            And see that:
+            \[
+              p \mid \abs{G} \implies p \mid \abs{Z(G)}
+            \] 
+
+          By Cauchy's theorem for the abelian group \( Z(G) \), there exists \( x \in Z(G) \), s.t. \( \abs{x} = p \). Since \( x \in Z(G) \implies \angl{x}\) is a normal subgroup of \( G \).
+          Now consider: \( G' := G / \angl{x} \)
+          \begin{itemize}
+            \item If \( m = 1 \), then we are done! Since \( \angl{x} \) is a \( p \)-Sylow subgroup of \( G \).
+            \item If \( m \geq 2 \), see that \( \abs{G'} = \frac{\abs{G}}{p} < \abs{G} \) is divisible by \( p \) \todo{by prime factorization, $G = p^m \cdot (\cdots)$, so see $\abs{G'} = \frac{\abs{G}}{p} = p^{m-1} \cdot (\cdots)$}, so we apply induction on \( G' \), see that \( G' \) contains a \( p \)-Sylow subgroup, which is of the form: \( H / \angl{x} \) for some subgroup \( H \) of \( G \). Notice that:
+              \[
+                \abs{H / \angl{x} } = p^{m-1} \implies \abs{H} = p^{m-1} \cdot p = p^m 
+              \] 
+          \end{itemize}
+        \end{itemize}
+    \end{itemize}
+  \end{proof}
 \end{section}
