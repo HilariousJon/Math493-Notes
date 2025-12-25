@@ -140,7 +140,7 @@
 
       \item \( \mathbf{(2\implies 3)} \): By \textbf{Frattini's Argument} \ref{lem:frattini}, \( N_G(N_G(P_1)) = N_G(P_i), \; \forall \; i\), by condition in 2, \( N_G(P_i) = G \iff P_i\unlhd G \). 
 
-      \item \( \mathbf{(3 \implies 4)} \): One shall utilize \textbf{Proposition} \ref{prop:midterm} for this. We show by induction on \( n, \; n \in \br{1,r} \), that:
+      \item \( \mathbf{(3 \implies 4)} \): One shall utilize \textbf{Proposition} \ref{prop:pg} for this. We show by induction on \( n, \; n \in \br{1,r} \), that:
         \begin{equation}
           \label{eq:nil}
           P_1 \times \cdots \times P_n \to P_1 \cdots P_n \text{ is an isomorphism.}
@@ -171,9 +171,10 @@
             (a,b) &\mapsto ab 
           \end{aligned}
         \] 
+
         And thus:
         \[
-          (P_1\times\cdots\timesP_n) \times P_{n+1} \underbrace{\xrightarrow{\sim}}_{\text{ By IH}}(P_1 \cdots P_n) \times P_{n+1} \to P_1 \cdots P_n P_{n+1} \text{ is an isomorphism.} \\ 
+          (P_1\times\cdots\times P_n) \times P_{n+1} \xrightarrow[\text{By IH}]{\sim}(P_1 \cdots P_n) \times P_{n+1} \to P_1 \cdots P_n P_{n+1} \text{ is an isomorphism.}
         \] 
 
         The composition is also an isomorphism.

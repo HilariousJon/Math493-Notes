@@ -1,0 +1,260 @@
+\begin{section}{Free groups}
+  In this section, we will give some introduction on the free groups and more generally we hope to grab some idea of \textbf{free objects} in Category Theory.
+
+  We shall start with the \textbf{forget functor}. Suppose that \( \cC \) is a category consisting of ``sets with extra structure", then the forget functor is given by:
+  \[
+    G_{\text{forget}}: \cC \to \underline{\text{Sets}}
+  \] 
+
+  Its easy to understand that the forget functor is to strip off the extra structure on the sets and leaving only its basic set structure, for example, we can view a vector space as a bunch of elements forming a set. 
+
+  The main idea is to see the \textbf{free functor} is the \textbf{left adjoint} of the \textbf{forget functor}. 
+
+  Given a set \( S \), the \textbf{free object corresponding} to \( S \) is an object \( F(S) \in \ob(\cC) \), such that there is a \textbf{functorial bijection} for all \( X \in \ob(\cC) \):
+  \[
+    \Hom_{\cC}(F(S), X) \cong \; \Hom_{\underline{\text{Sets}}}(S, G_{\text{forget}}(X))
+  \] 
+
+  Or say the following diagram is commutative:
+  \begin{displaymath}
+    \begin{tikzcd}[row sep=large, column sep=2cm]
+        \text{Hom}_{\mathcal{C}}(F(S), X) 
+        \arrow[r, "\sim"] 
+        \arrow[d, "f_* = (u \mapsto f \circ u)"']
+        & 
+        \text{Hom}_{\underline{\text{Sets}}}(S, G_{\text{forget}}(X)) 
+        \arrow[d] \\
+        \text{Hom}_{\mathcal{C}}(F(S), X') 
+        \arrow[r, "\sim"] 
+        & 
+        \text{Hom}_{\underline{\text{Sets}}}(S, G_{\text{forget}}(X'))
+    \end{tikzcd}
+  \end{displaymath} 
+  
+  where \( f \) is any \textbf{morphism} from \( X \) to \( X' \) here. Or \( f \in \Hom_{\cC}(X,X') \).
+
+  It maybe helpful to understand it with an example in vector spaces and corresponding bases:
+  \begin{eg}
+    Let \( \cC = \qo{\vect}{\RR} \) with \( S \in \ob(\sets) \to F(S) =\text{ vector spaces with a basis indexed by } S \)
+
+    In this case, see that every object in \( \vect \) is isomorphic to \( F(S) \), for some \( S \), i.e. \textbf{every object in the category of vector spaces is free}.
+
+    \begin{note}
+      This probably give us some sense that why Linear Algebra is easier to study than group theory. Objects in vector space category are all free, so we just count things in terms of basis to classify all of them. But in groups, not every groups are free, so in general it is more complex to study.
+    \end{note}
+  \end{eg}
+  
+  \begin{intuition}
+  In short, \( F(S) \) are free objects \textbf{generated} by \( S \) under some rule.
+  \end{intuition}
+
+  \begin{subsection}{Construction of Free Groups}
+    We introduce the construction of free groups in this section.
+
+    Fix a set \( S \), let \( S^{-1} \) be a set in \textbf{bijection} with \( S \), written as:
+    \[
+      \begin{aligned}
+        S & \to S^{-1} \\ 
+        g &\mapsto g^{-1}
+      \end{aligned}
+    \] 
+
+    \begin{notation}
+      For \( x \in S^{-1} \), s.t. \( x = a^{-1} \), write \( x^{-1} = a \).
+    \end{notation}
+
+    Consider a \textbf{separate} element, denoted as \( 1 \), by notation, \( 1^{-1} = 1 \). We will work with:
+    \[
+      T = S \sqcup S^{-1} \sqcup \{1\}
+    \] 
+
+    \begin{definition}
+      A \underline{word} in \( T \) is a sequence \( (x_1, x_2, \ldots) \), such that:
+      \[
+        \begin{cases}
+          x_n = 1, \; \text{for } n \gg 0 \\ 
+          x_n \in T \; \forall \; n \geq 1 
+        \end{cases}
+      \] 
+
+      \begin{notation}
+        Use the notation \( 1 = (1,1,\ldots) \), to refer the \underline{empty word}.
+      \end{notation}
+
+      A \underline{reduced word} \( (x_1, x_2,\ldots) \) is a word, s.t.:
+      \begin{enumerate}
+        \item For every \( n \geq 1 \), \( x_{n+1} \ne x_n^{-1} \), unless \( x_n = x_{n+1} = 1 \).
+        \item If \( x_n = 1 \), then \( x_p = 1, \; \forall \; p \geq n \).
+      \end{enumerate}
+    \end{definition}
+
+    \begin{definition}{\textbf{(Free Group)}}
+      Define \( F(S) = \{\text{reduced word on } T\} \).
+
+      Define an operation \( \star \) on \( F(S) \) as follow ``concatenation", given:
+      \[
+        \begin{aligned}
+          x &= (x_1, x_2, \ldots, x_m \ne 1, 1, 1, \ldots) \\ 
+          y&= (y_1, y_2, \ldots, y_n \ne 1, 1, 1, \ldots) 
+        \end{aligned}
+      \] 
+
+      consider 
+      \[
+        z = (x_1, \ldots, \underbrace{x_m, y_1}_{\text{inverse?}}, \ldots, y_n, 1,1,\ldots)
+      \] 
+
+      This is reduced unless \( x_m = y^{-1} \), and if this is the case, simply remove both of them and repeat and after finite times later, we get \textbf{a reduced words}, which is \( \underline{x \star y} \).
+      \begin{note}
+        Note that:
+        \[
+          \begin{aligned}
+            1 \star y = y \; \text{if } m = 0 \\ 
+          x \star 1 = x \; \text{if } n = 0 
+          \end{aligned}
+        \] 
+      \end{note}
+
+    It is straightforward but tedious to prove associativity for it. It has identity \( 1 \) and every element have inverses:
+    \[
+      \begin{aligned}
+        x &= (x_1, \ldots, x_m \ne 1, 1,\ldots) \\ 
+        x^{-1} &= (x_m^{-1}, \ldots, x_1^{-1}, 1, \ldots) 
+      \end{aligned}
+    \] 
+
+    So \( (F(S), \star) \) is a group and is called the \underline{free group on the set \( S \)}.
+    \end{definition}
+
+    \begin{note}
+      If we defined with \textbf{word}, the condition existence of inverses will failed, but we can define monoid with it. The reduced word give us equivalence relation so we can guarantee the uniqueness of inverse elements.
+    \end{note}
+    
+    \begin{notation} 
+     We will then follow the followin notation later:
+     \begin{enumerate}
+       \item \( (x_1, x_2, \ldots, x_m, 1, \ldots) = x_1x_2\cdots x_m \) 
+       \item \( x_1 x_1 x_2 x_3^{-1}x_3^{-1}x_3^{-1} = x_1^2 x_2 x_3^{-3} \) 
+       \item \( x_i \in S \text{ or } S^{-1} \)
+     \end{enumerate}
+    \end{notation}
+    
+    \begin{note}
+      Every \( x \in F(S) \) is (finite) product of element in \( S \) or inverses of such elements, so \( F(S) \) is generated by \( S \).
+    \end{note}
+
+    \begin{proposition}{\textbf{(Universal Property)}}
+      For every group \( G \), the map:
+      \[
+        \begin{aligned}
+          \{\text{gp. hom. } F(S) \to G \} &\to \{\text{functions } S \to G\} \text{ is bijective} \\ 
+          f &\mapsto f|_{S}
+        \end{aligned}
+      \] 
+
+      Explicitly: \(\forall \) map \( \vp: S \to G \), there exists a \textbf{unique} group homomorphism \( f: F(S) \to G \), s.t. \( f(s) = \vp(s) \), \( \forall \; s \in S \).
+    \end{proposition}
+
+    \begin{proof}
+      Prove exsistence and uniqueness separately.
+      \begin{itemize}
+        \item Uniqueness follows by the fact that \( S \) generates \( F(S) \). Specifically, let \( H \) be a group and \( A \subseteq H \) such that \( H = \angl{A} \). Let \( f,g: H \to G \) be group homomorphism such that \( f|_A = g|_A \implies f = g \). \textbf{If they map the same on the generator, then they map the same on the whole group}.
+
+        \item Existence: Define:
+          \[
+            \begin{aligned}
+              f: F(S) &\to G \\ 
+              f(x_1, x_2, \ldots, x_m \neq 1, 1,\ldots) &= u(x_1) \cdots u(x_m)
+            \end{aligned}
+          \] 
+          where
+          \[
+            u(x_i) = 
+            \begin{cases}
+            \vp(x_i), \; x_i \in S \\ 
+            \vp(x_i^{-1})^{-1}, \; x_i^{-1} \in S 
+            \end{cases}
+          \] 
+
+          The idea of define \( u \) here is to maintain the group structure after the mapping of generator. Check that \( f \) is a group homomoprhism and \( f|_S = \vp \).
+      \end{itemize}
+    \end{proof}
+
+    \begin{eg}
+      \( \#S = 1 \implies F(S) \cong \; \ZZ \). To see it, use the universal property.
+      \[
+        \begin{aligned}
+          \{\text{gp. hom.: }\ZZ \to G \} &\to G \cong\; \{\text{functions } S \to G\} \text{ is bijection.}\\ 
+          f &\mapsto f(1) \\ 
+          f(n) &= (f(1))^n 
+        \end{aligned}
+      \] 
+    \end{eg}
+  \end{subsection}
+
+  \begin{remark}
+    Given two sets $S, S'$ and a map $\varphi: S \to S'$, the \textbf{universal property} of the free group $F(S)$ implies:
+    \[
+    \exists! \text{ group homomorphism } F(\varphi): F(S) \to F(S')
+    \]
+    such that the following diagram is \textbf{commutative} (think: sending basis elements to basis elements):
+
+    \begin{center}
+    \begin{tikzcd}
+    S \arrow[r, "\varphi"] \arrow[d, "\iota"'] & S' \arrow[d, "\iota'"] \\
+    F(S) \arrow[r, "F(\varphi)"] & F(S')
+    \end{tikzcd}
+    \end{center}
+
+    This construction gives a \textbf{functor} $F$ from the category of Sets to the category of Groups:
+    \[
+      \begin{aligned}
+        F: \underline{\sets} & \to \underline{\text{Gps}} \\ 
+        S & \rightsquigarrow F(S) \\ 
+        (\varphi: S \to S') &\rightsquigarrow (F(\varphi): F(S) \to F(S'))
+      \end{aligned}
+    \] 
+    To verify $F$ is a functor, we need to check two conditions:
+    \begin{enumerate}
+        \item \textbf{Identity:} $F(\text{Id}_S) = \text{Id}_{F(S)}$ for all sets $S$.
+        \item \textbf{Composition:} For $\psi: S' \to S''$ and $\varphi: S \to S'$, 
+        \[ F(\psi) \circ F(\varphi) = F(\psi \circ \varphi) \]
+    \end{enumerate}
+
+
+    Consider the following diagram consisting of two adjacent squares:
+
+    \begin{center}
+      \begin{tikzpicture}
+        \node (CD) {
+            \begin{tikzcd}[column sep=large, row sep=large]
+                S \arrow[r, "\varphi"] \arrow[d, "\iota"'] & 
+                S' \arrow[r, "\psi"] \arrow[d, "\iota'"] & 
+                S'' \arrow[d, "\iota''"] \\
+                F(S) \arrow[r, "F(\varphi)"] & 
+                F(S') \arrow[r, "F(\psi)"] & 
+                F(S'')
+            \end{tikzcd}
+        };
+    \end{tikzpicture}
+    \end{center}
+
+    \begin{itemize}
+        \item By the definition of $F(\varphi)$ and $F(\psi)$, both the \textcolor{green}{left square} and the \textcolor{blue}{right square} are commutative. This implies the \textcolor{red}{outer rectangle} is also commutative.
+        \item By the uniqueness part of the universal property for $F(S)$, the composition $F(\psi) \circ F(\varphi)$ must be the unique homomorphism that satisfies the defining property of $F(\psi \circ \varphi)$.
+        \item Therefore, $F(\psi) \circ F(\varphi) = F(\psi \circ \varphi)$.
+    \end{itemize}
+
+    \begin{remark}
+      In particular, since \( F \) is a functor, if \( \vp \) is a bijection, then \( F(\vp) \) is a group isomorphism, this states that \( F(S) \) \textbf{only depends on the cardinarlity} of \( S \) \textbf{up to isomorphism}.
+      \begin{notation}
+        So we denote \( F_n = F(S) \), when \( \#S = n \).
+      \end{notation}
+    \end{remark}
+  \end{remark}
+
+  \begin{theorem}{\textbf{(Schreier)}}
+    Every subgroup of a free group is again free.
+  \end{theorem}
+
+\end{section}
