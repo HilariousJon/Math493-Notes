@@ -120,4 +120,63 @@
       \end{aligned}
     \] 
   \end{eg}
+  \begin{definition}{\textbf{(Commutator)}}
+    Given \( G \) be a group, define:
+    \[
+      [G,G] = \angl{[g,h] \; | \; g,h \in G, \; [g,h] = ghg^{-1}h^{-1}}
+    \] 
+
+    to be the commutator of \( G \). See that \( [G,G] \unlhd G \) and
+    \[
+      G^{ab} \coloneqq \qo{G}{[G,G]} \text{ is abelian.}
+    \] 
+  \end{definition}
+
+  We can then construct recursively a sequence of subgroups of \( G \):
+  \begin{itemize}
+    \item \( G^{(0)} = G, \; G^{(1)} = [G,G] \).
+    \item If \( G^{(n)} \) is constructed, then \( G^{(n+1)} = [G^{(n)},G^{(n)}] \unlhd G^{(n)} \)
+  \end{itemize}
+
+  Thus defined a series for \( G \).
+
+  We now give an equivalent definition for solvable groups.
+  \begin{proposition}
+    \( G \) is solvable if and only if there exists \( n \), s.t. \( G^{(n)} = \{e\} \).
+  \end{proposition}
+
+  \begin{proof}
+    The ``($\impliedby$)" part is clear by definition, so we only care about ``($\implies$)" part.
+
+    Suppose we have:
+    \[
+      \{e\} = N_r \leq \ldots \leq N_1 \leq N_0 = G 
+    \] 
+
+    s.t.
+    \begin{itemize}
+      \item \( N_{i+1} \unlhd N_i, \; \forall \; i \in \br{0,r-1} \).
+      \item \( \qo{N_i}{N_{i+1}} \) abelian.
+    \end{itemize}
+
+    It is enough to show that for \( i \in \br{0,r-1} \), we have \( G^{(i)} \subseteq N_i \), then when \( i = r \implies G^{(r)} = \{e\} \).
+
+    We argue by induction on \( i \geq 0 \):
+    \begin{itemize}
+      \item \textbf{Base case}: ok when \( i=0 \).
+      \item \textbf{Inductive case}: Suppose \( i\leq r-1 \) and we know the assertion for \( i \):
+        \[
+          G^{(i+1)} = \underbrace{[G^{(i)}, G^{(i)}] \subseteq [N_i, N_i]}_{\text{By induction, } G^{(i)} \subseteq N_i} \subseteq N_{i+1}
+        \] 
+
+        The last inclusion needs further explanation: 
+        \[
+          \begin{aligned}
+            \qo{N_i}{N_{i+1}} &\text{ is abelian} \\ 
+            \qo{N_i}{[N_i, N_i]} & \text{ is the largest abelian group for the quotient}
+          \end{aligned}
+        \] 
+    \end{itemize}
+  \end{proof}
+
 \end{subsection}
