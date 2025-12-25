@@ -50,6 +50,7 @@
   \end{proof}
 
   \begin{proposition}
+    \label{prop:nil}
     Let \( N \leq G\), then:
     \begin{enumerate}
       \item \( G \) nilpotent \( \implies N \) is nilpotent.
@@ -66,8 +67,8 @@
     Almost the same as what we have done for solvable group in \textbf{Propositpion} \ref{prop:sol}. Using the characterization via sequences of subgroups by taking:
     \[
       \begin{aligned}
-        \{G_i \cap N\} \text{ for }& N \\ 
-      \{\qo{G_i N}{N}\} \text{ for } & \qo{G}{N} 
+        \{G_i \cap N\}_{i\in I} \text{ for }& N \\ 
+        \left\{\qo{G_i N}{N}\right\}_{i\in J} \text{ for } & \qo{G}{N} 
       \end{aligned}
     \] 
 
@@ -87,6 +88,20 @@
   \end{proposition}
 
   \begin{proof}
-    
+    We proceed by induction on \( \abs{G} \).
+    \begin{itemize}
+      \item \textbf{Base case}: If \( \abs{G} = p \implies G \cong \; \qo{\ZZ}{p\ZZ} \implies\) nilpotent.
+      \item \textbf{Inductive case}: We've proven \( Z(G) \ne \{e\} \) before in \textbf{Proposition} \ref{prop:pg}, it follows that:
+        \[
+          \abs{\qo{G}{Z(G)}} < \abs{G}
+        \] 
+
+        and 
+        \[
+        \abs{\qo{G}{Z(G)}} \Bigg| \abs{G} \implies \qo{G}{Z(G)} = \{e\} \text{ or a p-group.}
+        \] 
+
+        If \( G=Z(G) \) then \( G \) is abelian thus nilpotent. Otherwise we apply induction hypothesis on \( \qo{G}{Z(G)} \) and learn that it is nilpotent. By \textbf{Proposition} \ref{prop:nil}, \( G \) is nilpotent.
+    \end{itemize} 
   \end{proof}
 \end{subsection}
