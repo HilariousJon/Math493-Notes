@@ -1,3 +1,123 @@
-\begin{section}{Solvable and Nilpotent Groups}
+\section{Solvable and Nilpotent Groups}
+  As we stated before, those two kinds of groups are built out of abelian groups, and both of them are classes of groups that characterized by such fact. Without making confusion we state the definition of characterized group here. 
+  \begin{definition}
+    A group \( H \leq G \) is called \underline{characterized} if \( \forall \; \vp \in \Aut(G), \; \vp(H) = H \). Denoted as \( H \text{char} G \).
+  \end{definition}
   
-\end{section}
+  \begin{subsection}{Solvable Group}
+  \begin{definition}
+    A group \( G \) is \underline{solvable} if there exists a \textbf{finite} sequence of subgroups 
+    \[
+      \{e\} = G_r \leq \ldots \leq G_1 \leq G_0 = G 
+    \] 
+
+    such that: 
+    \begin{itemize}
+      \item \( G_{i+1} \unlhd G_i \) for all \( i \in \br{0,r-1} \).
+      \item \( \quotient{G_{i+1}}{G_i} \) is abelian for all \( i \in \br{0,r-1} \).
+    \end{itemize}
+  \end{definition}
+  
+  \begin{remark}
+    This notation is important in both representation theory and Galois theory. 
+  \end{remark}
+
+  \begin{proposition}
+    \label{prop:sol}
+    Let \( G \) be a group, \( N \leq G \), then:
+    \begin{enumerate}
+      \item If \( G \) is solvable \( \implies N \) is solvable.
+      \item If \( N \unlhd G\), \( G \) is solvable \( \implies \quotient{G}{N} \) is solvable.
+      \item If \( N\unlhd G \), \( N, \quotient{G}{N} \) is solvable \( \implies  G\) is solvable.
+    \end{enumerate}
+  \end{proposition}
+
+  \begin{proof}
+    \textbf{(First statement)}: Suppose we have a sequence of subgroups as stated in the definition of solvable group. If \( N \leq G \), we get a corresponding sequences of subgroups in \( N \):
+    \[
+      \{e\} = N \cap G_r \leq \ldots \leq N \cap G_1 \leq N = N \cap G_0 
+    \] 
+
+    Easy to see that \( N\cap G_{i+1} \unlhd N \cap G_i \). Moreover, we have an injective group homomoprhism:
+    \[
+      \begin{aligned}
+        \quotient{N\cap G_i}{N\cap G_{i+1}} & \to \quotient{G_i}{G_{i+1}} \\ 
+        x(N\cap G_{i+1}) & \mapsto x G_{i+1} 
+      \end{aligned}
+    \] 
+    In particular, if \( G \) is solvable, then have such sequence with all \( \quotient{G_i}{G_{i+1}} \) abelian, and thus have \( \quotient{N\cap G_i}{N\cap G_{i+1}} \) abelian for all \( i \), thus \( N \) is solvable, which yields the first statement.
+    \begin{note}
+      Abelian property is \textbf{carried through} by the injective group homomorphism.
+    \end{note}
+    
+    \textbf{(Second Statment)}: Suppose we have a sequence of subgroups as stated in the defintion of solvable group for \( G \). Consider \( \forall i \), that \( N \subseteq G_i N \leq G \) (It is a subgroup by the normality of \( N \)).
+
+    Since \( G_{i+1} \unlhd G_i\implies G_{i+1}N \unlhd G_i N \), we then get a sequence of subgroups of \( \quotient{G}{N} \) given by:
+    \[
+      \{e\} = \quotient{G_rN}{N} \subseteq \quotient{G_{r-1}N}{N} \subseteq \ldots \subseteq \quotient{G_0 N}{N} = \qo{G}{N}
+    \] 
+
+    with:
+    \[
+      \qo{G_{i+1} N}{N} \unlhd \qo{G_i N}{N}
+    \] 
+
+    By the third isomorphism theorem:
+    \[
+      \begin{aligned}
+        \qo{\qo{G_i N}{N}}{\qo{G_{i+1}N}{N}} \cong &\quad \qo{G_i N}{G_{i+1}N} \leftarrow \qo{G_i}{G_{i+1}} \quad \text{gp. hom. by abelian group} \\ 
+                                                   & \underbrace{g \cdot G_{i+1}N \mapsfrom g \cdot G_{i+1}}_{\text{This is surjective } \implies \qo{G_{i+1 N}}{G_i N} \text{ is abelian.}}
+      \end{aligned}
+    \] 
+    which yields the second statement.
+
+    \textbf{(Third Statement)}: Suppose we have two sequences of subgroups as in the definition of solvable groups:
+    \[
+      \begin{aligned}
+        N_0 &= \{e\} \subseteq N_1 \subseteq \ldots \subseteq N_r = N \\ 
+        \{e\} &= \qo{N_r}{N} \subseteq \qo{N_{r+1}}{N} \subseteq \ldots \subseteq \qo{N_{r+s}}{N} = \qo{G}{N} 
+      \end{aligned}  
+    \] 
+
+    The third isomorphism theorem tells us the sequence of subgroups
+    \[
+      N_0 \subseteq \ldots \subseteq N_r \subseteq N_{r+1} \subseteq \ldots \subseteq N_{r+s} = G 
+    \] 
+
+    satisfy the condition to make \( G \) solvable.
+  \end{proof}
+  
+  We shall give some examples to commonly seen solvable groups.
+
+  \begin{eg}
+    Every abelian group \( G \) is solvable. 
+  \end{eg}
+
+  \begin{eg}
+    \( D_{2n} \) is solvable since \( \exists \; H \leq D_{2n} \) with \( H \) abelian, take \( H = \angl{\sigma} \), see that \( H \) is normal and \( \qo{D_2n}{H} \cong \qo{\ZZ}{2\ZZ}\).
+  \end{eg}
+
+  \begin{eg}
+    If \( G \) is simple, but non-abelian, then \( G \) is not solvable. For example \( A_n, \; n\geq 5 \) is not solvable. 
+  \end{eg}
+
+  \begin{eg}
+    By \textbf{Proposition} \ref{prop:sol}, \( S_n, \; n\geq 5 \) is not solvable.
+  \end{eg}
+
+  \begin{eg}
+    \( S_4 \) is solvable, take \( K \) to be the Klein group, and we have the sequences as:
+    \[
+    \{e\} \leq K \leq A_4 \leq S_4 
+    \] 
+
+    where:
+    \[
+      \begin{aligned}
+        K &\cong\; \qo{\ZZ}{2\ZZ} \times \qo{\ZZ}{2\ZZ} \\ 
+        \qo{A_4}{K} &\cong \;  \qo{\ZZ}{3\ZZ} \\ 
+        \qo{S_4}{A_4} &\cong\;  \qo{\ZZ}{2\ZZ}
+      \end{aligned}
+    \] 
+  \end{eg}
+\end{subsection}
