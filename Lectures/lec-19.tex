@@ -27,7 +27,8 @@
 
 \begin{section}{Semidirect Product}
   \textbf{General Motivation:} Suppose \( G \) be a group, \( N \unlhd G \), s.t. we understand \( N \) and \( \quotient{G}{N} \), what can we say about \( G \)? In general, not much. However, in particular cases when we have \( G \xrightarrow{\pi} \quotient{G}{N} \) and there is a section of \( \pi \) to be a group homomorphism: \( s: \quotient{G}{N} \to G \), s.t. \( \pi \circ s = Id \), then we can completely describe \( G \) if we know one more piece of data.
-
+  
+  The external semidirect product is built by two separate independent group, while the internal semidirect product is to decompose an existing group at hand.
   \begin{subsection}{External Semidirect Product}
     \begin{definition}
     Suppose \( N, H \) be two groups, and we have a group homomorphism
@@ -113,6 +114,45 @@
   \end{subsection}
 
   \begin{subsection}{Internal Semidirect Product}
-    
+    \begin{definition}
+      Suppose \( G \) be any group, and \( H, N \) be subgroups of \( G \) with \( N \unlhd G \) normal. And define:
+      \[
+        \begin{aligned}
+          \vp: H & \to \Aut(N) \\ 
+          h &\mapsto \vp_h \\ 
+          \vp_h(n) &= hnh^{-1} \qquad \text{ ok since $N \unlhd G$}
+        \end{aligned}
+      \] 
+
+      We get a map \( N \rtimes_\vp H \xrightarrow{\alpha} G, (n,h) \mapsto nh \). And we claim it is a \textbf{group homomorphism}, with the operation defined as:
+      \[
+        (n_1, h_1) \star (n_2, h_2) = (n_1 \vp_{h_1}(n_2), h_1 h_2)
+      \] 
+      
+      One should easily verify that.
+      
+      We define \( G \) to be the \textbf{internal semidirect product} of its subgroups \( N, H \) if \( \alpha \) is an isomorphism.
+    \end{definition}
+   
+    We then give a more straightforward equivalence of this definition.
+    \begin{proposition}
+      Let \( H, N, G \) be as in the definition, \( G \) is the internal semidirect product of \( N, H \) if and only if:
+      \begin{enumerate}
+        \item \( N \unlhd G \)
+        \item \( G = N \cdot H \)
+        \item \( H \cap N = \{e\} \)
+      \end{enumerate}
+    \end{proposition}
+
+    \begin{proof}
+      \( \alpha \) is isomorphism if and only if it is injective and surjective. It is surjective if and only if \( G = N \cdot H \) (This is subgroup since \( N \unlhd G \)). It is injective if and only if:
+      \[
+        \begin{aligned}
+          \ker(\alpha) &= \{(n,h) \; | \; n \in N, \; h \in H, \; nh = e\} \\ 
+                       &= \{(n,n^{-1}) \; | \; n \in H \cap N\} \\ 
+                       &= \{e\}
+        \end{aligned}
+      \] 
+    \end{proof}
   \end{subsection}
 \end{section}
