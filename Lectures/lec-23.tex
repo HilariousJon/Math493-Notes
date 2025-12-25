@@ -1,2 +1,92 @@
 \begin{subsection}{Nilpotent Group}
+  \begin{definition}{\textbf{(Nilpotent Group)}}
+    Let \( G \) be any group, we define a sequence of subgroups \( \{Z_i(G)\}_{i\geq0} \) as follows:
+    \begin{itemize}
+      \item \( Z_0(G) = \{e\} \) 
+      \item \( Z_1(G) = Z(G) \) 
+      \item If \( Z_i(G) \leq G \) is constructed, consider:
+        \[
+          Z\left(\qo{G}{Z_i(G)}\right) = \qo{Z_{i+1}(G)}{Z_i(G)} 
+        \] 
+        for some \( Z_{i+1}(G) \unlhd G \) and containing \( Z_i(G) \).
+    \end{itemize}
+
+    The group \( G \) is \underline{nilpotent} if there exists \( n \), s.t. \( Z_n(G) = G \).
+  \end{definition}
+
+  We then give some examples for nilpotent groups.
+  \begin{eg}
+    nilpotent group is solvable group, since 
+    \[
+      Z\left(\qo{G}{Z_i(G)}\right) = \qo{Z_{i+1}(G)}{Z_i(G)} \text{ is abelian.}
+    \] 
+  \end{eg}
+
+  \begin{eg}
+    abelian groups are nilpotent: \( Z(G) = G = Z_1(G) \).
+  \end{eg}
+  
+  \begin{eg}
+    \( S_3 \cong \; D_6 \) is solvable but not nilpotent, since \( Z(S_3) = \{e\} \) but \( S_3 \neq \{e\} \). 
+    
+    In particular, \( S_3, S_4 \) are solvable, but not nilpotent.
+  \end{eg}
+
+  \begin{proposition}
+    A group \( G \) is nilpotent if and only if there exists a sequence of subgroups:
+    \[
+      \{e\} = G_0 \subseteq G_1 \subseteq \ldots \subseteq G_r = G 
+    \] 
+
+    s.t. 
+    \begin{enumerate}
+      \item \( G_i \unlhd G, \; \forall\; i \in \br{0,r-1} \).
+      \item \( \qo{G_i}{G_{i+1}} \subseteq Z\left( \qo{G}{G_{i-1}}\right), \; \forall \; i \in \br{1,r} \).
+    \end{enumerate}
+  \end{proposition}
+  
+  \begin{proof}
+    \textbf{Sketch of Proof}: One direction is trivial. The other direction can be treated by prove \( G_i \subseteq Z_i(G), \; \forall \; i \in \br{0,r} \) by induction on \( i \).
+  \end{proof}
+
+  \begin{proposition}
+    Let \( N \leq G\), then:
+    \begin{enumerate}
+      \item \( G \) nilpotent \( \implies N \) is nilpotent.
+      \item \( N \unlhd G, \; G \) is nilpotent \( \implies \qo{G}{N} \) is nilpotent.
+      \item If \( \mathbf{N \leq Z(G)} \) and \( \qo{G}{N} \) is nilpotent \( \implies G \) is nilpotent.
+    \end{enumerate}
+
+    \begin{note}
+      If we just know \( N \unlhd G \) nilpotent and \( \qo{G}{N} \) nilpotent \( \not\implies G\)  nilpotent.
+    \end{note}
+  \end{proposition}
+  
+  \begin{proof}
+    Almost the same as what we have done for solvable group in \textbf{Propositpion} \ref{prop:sol}. Using the characterization via sequences of subgroups by taking:
+    \[
+      \begin{aligned}
+        \{G_i \cap N\} \text{ for }& N \\ 
+      \{\qo{G_i N}{N}\} \text{ for } & \qo{G}{N} 
+      \end{aligned}
+    \] 
+
+    We give more assertion for the \textbf{third statement}: 
+
+    If \( \{e\} = \qo{G_0}{N} \leq \qo{G_1}{N} \leq \ldots \leq \qo{G_r}{N} = \qo{G}{N}\) as characterization of \( \qo{G}{N} \) being nilpotent, then 
+    \[ 
+      \{e\} \underbrace{\leq N}_{\text{Since } N\subseteq Z(G)} = G_0 \leq G_1 \leq \ldots \leq G 
+    \] 
+
+    satisfies the characterization of \( G \) being nilpotent group.
+  \end{proof}
+
+  We now look at what \( p \)-group has.
+  \begin{proposition}
+    If \( G \) is a \( p \)-group, then \( G \) is nilpotent.
+  \end{proposition}
+
+  \begin{proof}
+    
+  \end{proof}
 \end{subsection}
