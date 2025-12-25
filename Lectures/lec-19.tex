@@ -1,0 +1,118 @@
+\begin{subsection}{Classification of Finite Simple Groups}
+  There exists an \textbf{explicit classification} of finite simple groups!
+  \begin{enumerate}
+    \item \( \quotient{\ZZ}{p \ZZ} \), \( p \) primes.
+    \item \( A_n, \; n\geq 5 \)
+    \item \( 12 \) series of  ``finite groups of Lie types".
+
+      For example: \( \text{PSL}_n(\quotient{\ZZ}{p\ZZ}) \) or more generally \( \text{PSL}_n(\FF_q) \).
+      \[
+        \begin{aligned}
+          \text{SL}_n(\quotient{\ZZ}{p\ZZ}) & = \{A \in M_n(\quotient{\ZZ}{p\ZZ}) \; | \; \det A = 1\} \\ 
+          \text{PSL}_n(\quotient{\ZZ}{p\ZZ})& = \quotient{\text{SL}_n(\quotient{\ZZ}{p\ZZ})}{\{A = \lambda I_n \; | \; \lambda \in \quotient{\ZZ}{p\ZZ}, \; \lambda^n = 1\}}
+        \end{aligned}
+      \] 
+    \item 26 ``sporaolic examples".
+      \[
+    \begin{aligned}
+      &\text{The largest one: the Monster} \\
+      &\quad \text{has order } 2^{46} \cdot 3^{20} \cdot 5^9 \cdot 7^6 \cdot 11^2 \cdot 13^3 \cdot 17 \cdot 19 \cdot 23 \cdot 29 \\
+      &\qquad \qquad \quad \cdot 31 \cdot 41 \cdot 47 \cdot 59 \cdot 71 \\
+      &\qquad \qquad \quad \sim 8 \cdot 10^{53} \\
+      &\text{This can be embedded as a subgroup of } GL_n(\mathbb{C}), \ n = 196,883
+    \end{aligned}
+      \] 
+  \end{enumerate}
+\end{subsection}
+
+\begin{section}{Semidirect Product}
+  \textbf{General Motivation:} Suppose \( G \) be a group, \( N \unlhd G \), s.t. we understand \( N \) and \( \quotient{G}{N} \), what can we say about \( G \)? In general, not much. However, in particular cases when we have \( G \xrightarrow{\pi} \quotient{G}{N} \) and there is a section of \( \pi \) to be a group homomorphism: \( s: \quotient{G}{N} \to G \), s.t. \( \pi \circ s = Id \), then we can completely describe \( G \) if we know one more piece of data.
+
+  \begin{subsection}{External Semidirect Product}
+    \begin{definition}
+    Suppose \( N, H \) be two groups, and we have a group homomorphism
+    \[
+      \vp: H \to \Aut(N)
+    \] 
+
+    We define an operation \( \star \) on \( \mathbf{N\times H} \) by:
+    \[
+      (n_1, h_1)\star(n_2, h_2) = (n_1\vp_{h_1}(n_2), h_1 h_2)
+    \] 
+
+    Such defines a group, denoted as \( N\rtimes H \), which is called the \textbf{external semidirect product} of \( N \) and \( H \) with respect to \( \vp \).
+    \end{definition}
+
+    Left for the reader to check that it is indeed a group, checking associativity, existence of identity and existence of inverses are not hard.
+
+    \begin{note}
+      \begin{itemize}
+        \item If \( \vp: H \to \Aut(N), \; h \mapsto Id \), we recover the usual group structure on \( N\times H \), namely the direct product.
+        \item We have a map \( H \to N \rtimes_\vp H, \; h \mapsto (e_N, h) \), this is a group homomorphism, it is clearly injective, with image to be:
+          \[
+            H'=\{(n,h) \in N \rtimes_\vp H \; | \; n = e_N\}
+          \] 
+
+          Similarly, we have \( N \to N \rtimes_\vp H, \; n \mapsto (n,e_H) \), which is also a group homomorphism, injective, with image to be:
+          \[
+            N'=\{(n,h) \in N \rtimes_\vp H \; | \; h = e_H\}
+          \] 
+
+          In fact this is a normal subgroup of \( N\rtimes_\vp H \), can be verified by proving:
+          \[
+            (n', h')^{-1} \star (n,e) \star (n',h') \in N'
+          \] 
+        \item We can also prove the following claim by checking:
+          \[
+            (e_N,h)\star(n,e_H)\star(e_N,h)^{-1} = (\vp_h(n), e_H)
+          \] 
+          
+          \begin{claim}
+            via the isomorphism \( N\cong N', \; H\cong H' \), the morphism:
+            \[
+              \begin{aligned}
+                H' &\to \Aut(N') \\ 
+                g &\mapsto (n \mapsto gng^{-1})
+              \end{aligned}
+            \] 
+
+            is given by \( \vp \).
+          \end{claim}
+
+        \item We have a group homomorphism:
+          \[
+            \begin{aligned}
+              N\rtimes H &\to H \\ 
+              (n,h) &\mapsto h 
+            \end{aligned}
+          \] 
+
+          This is surjective group homomorphism, with the kernel to be \( N' \cong N \implies \) \( \quotient{N\rtimes_{\vp}H}{N'} \cong H \).
+
+        \item We have a section given by:
+          \[
+            H \to N \rtimes_\vp H 
+          \] 
+
+          \begin{definition}{(\textbf{Section of a Group Extension})}
+          \label{def:section}
+          Let explicit the short exact sequence:
+          \[
+              1 \longrightarrow N \xrightarrow{\iota} G \xrightarrow{\pi} H \longrightarrow 1
+          \]
+          A homomorphism $s: H \to G$ is called a \textbf{section} (or a splitting) of the extension if it satisfies:
+          \[
+              \pi \circ s = \text{id}_H
+          \]
+          where $\text{id}_H$ represents the identity map on $H$.
+
+          If such a section exists, we say the extension \textit{splits}, and $G$ is isomorphic to the semidirect product $N \rtimes H$.
+          \end{definition}
+      \end{itemize}
+    \end{note}
+  \end{subsection}
+
+  \begin{subsection}{Internal Semidirect Product}
+    
+  \end{subsection}
+\end{section}
