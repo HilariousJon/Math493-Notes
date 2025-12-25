@@ -104,4 +104,110 @@
         If \( G=Z(G) \) then \( G \) is abelian thus nilpotent. Otherwise we apply induction hypothesis on \( \qo{G}{Z(G)} \) and learn that it is nilpotent. By \textbf{Proposition} \ref{prop:nil}, \( G \) is nilpotent.
     \end{itemize} 
   \end{proof}
+
+  We now give several equivalent definition to nilpotent groups to strengthen the intuition. It is actually strict for some groups to be nilpotent or even solvable.
+  \begin{theorem}
+    Let \( G \) be a finite group, \( p_1, p_2, \ldots, p_r \) are the primes in the prime factorization of \( \abs{G} \). Let \( P_i \) be the \( p_i \)-Sylow subgroup of \( G \), then the following are equivelent:
+    \begin{enumerate}
+      \item \( G \) is nilpotent.
+      \item For every \( H \lneq G \), we have \( H \subsetneq N_G(H) \).
+      \item \( P_i \unlhd G, \; \forall \;i \).
+      \item \( G \cong \; P_1 \times \ldots \times P_r \).
+    \end{enumerate}
+  \end{theorem}
+
+  \begin{lemma}{\textbf{Frattini's Argument}}
+    \label{lem:frattini}
+    If \( G \) is a finite group with normal subgroup \( H \), and if \( P \) is a Sylow p-subgroup of \( H \), then 
+    \[
+      G = N_G(P) H 
+    \] 
+
+    in particular, by applying it to \( N_G(N_G(P)) \), one can show that
+    \[
+      N_G(N_G(P)) = N_G(P)
+    \] 
+
+    whenever \( G \) is a fnite group and \( P \) is a Sylow \( p \)-subgroup of \( G \).
+  \end{lemma}
+  \begin{proof}
+    The main idea is to show: \( \mathbf{1 \implies 2 \implies 3 \implies 4 \implies 1} \).
+
+    \begin{itemize}
+      \item \( \mathbf{(1 \implies 2)} \): Proceed by induction on \( \abs{G} \). If \( \abs{G} = 1 \), things are clear. For the inductive step, If \( Z(G) \not\subseteq H \implies \exists \;a \in Z(G) \backslash H \), and so \( a \in N_G(H) \backslash H\).
+
+        If \( Z(G) \subseteq H \), take \( \overline{G} = \qo{G}{Z(G)} \supsetneq \overline{H} = \qo{H}{Z(G)} \). Since \( G \) is nilpotent, then \( \abs{Z(G)} > 1 \implies \abs{\overline{G}} < \abs{G} \). Note that \( \overline{G} \) is nilpotent by \textbf{Prposition} \ref{prop:nil}. We now apply induction for \( \overline{H} \) and obtain: \( \overline{H} \subsetneq N_{\overline{G}}(\overline{H}) \implies \exists \; aZ(G) \in \qo{H}{Z(G)}, \; a\not\in H \), s.t. \( aZ(G) \overline{H} a^{-1}Z(G) = \overline{H} \implies a H a^{-1} = H\), such completes the induction step.
+
+      \item \( \mathbf{(2\implies 3)} \): By \textbf{Frattini's Argument} \ref{lem:frattini}, \( N_G(N_G(P_1)) = N_G(P_i), \; \forall \; i\), by condition in 2, \( N_G(P_i) = G \iff P_i\unlhd G \). 
+
+      \item \( \mathbf{(3 \implies 4)} \): One shall utilize \textbf{Proposition} \ref{prop:midterm} for this. We show by induction on \( n, \; n \in \br{1,r} \), that:
+        \begin{equation}
+          \label{eq:nil}
+          P_1 \times \cdots \times P_n \to P_1 \cdots P_n \text{ is an isomorphism.}
+        \end{equation}
+
+        Note that \( P_1 \cdots P_n \unlhd G \) since \( P_i \unlhd G \; \forall \; i \).
+
+        If this is ok, take \( n=r \), since
+        \[
+          \abs{P_1 \times \cdots \times P_r} = \abs{G} \implies P_1 \cdots P_r = G 
+        \] 
+
+        and yields the result. We now try to proceed the inductive step:
+
+        We have \( P_1 \cdots P_n \unlhd G \) and \( P_{n+1} \unlhd G \) and \( P_1 \cdots P_n \cap P_{n+1} = \{e\}\). By 
+        \[
+        |P_1 \dots P_n \cap P_{n+1}| \ \Bigg| \ 
+        \begin{rcases} 
+            |P_1 \dots P_n| = \prod_{i \le n} |P_i| \\
+            |P_{n+1}| 
+        \end{rcases} \text{relatively prime}
+        \] 
+
+        By lagrange theorem and our previous proposition, such holds:
+        \[
+          \begin{aligned}
+            (P_1 \cdots P_n) \times P_{n+1} & \to P_1 \cdots P_n P_{n+1} \text{ is an isomorphism.} \\ 
+            (a,b) &\mapsto ab 
+          \end{aligned}
+        \] 
+        And thus:
+        \[
+          (P_1\times\cdots\timesP_n) \times P_{n+1} \underbrace{\xrightarrow{\sim}}_{\text{ By IH}}(P_1 \cdots P_n) \times P_{n+1} \to P_1 \cdots P_n P_{n+1} \text{ is an isomorphism.} \\ 
+        \] 
+
+        The composition is also an isomorphism.
+
+      \item \( \mathbf{(4 \implies 1)} \): Since we know that each \( P_i \) is nilpotent by being a \( p_i \)-group, it is enough to show the following lemma:
+        \begin{lemma}{(structrual theorem)}
+          If \( G,H \) are nilpotent group, then \( G\times H \) is still nilpotent.
+        \end{lemma}
+
+        \begin{proof}
+          Check that:
+          \[
+            Z(G\times H) = Z(G) \times Z(H)
+          \] 
+
+          then:
+          \[
+            \qo{G\times H}{Z(G\times H)} \cong \; \left(\qo{G}{Z(G)}\right) \times \left(\qo{H}{Z(H)}\right)
+          \] 
+
+          And apply induction on \( i \):
+          \[
+            Z_i(G\times H) = Z_i(G) \times Z_i(H) 
+          \] 
+
+          and if \( i\gg 0 \):
+          \[
+            \begin{aligned}
+              Z_i(G) &= G \\ 
+              Z_i(H) &= H \\ 
+              \implies Z_i(G\times H) &= G \times H 
+            \end{aligned}
+          \] 
+        \end{proof}
+    \end{itemize}
+  \end{proof}
 \end{subsection}
