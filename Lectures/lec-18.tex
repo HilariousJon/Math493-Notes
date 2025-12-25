@@ -1,0 +1,130 @@
+\begin{subsection}{Special simple groups}
+  We now give an important theorem, which gives us a big type of simple finite groups.
+  \begin{theorem}
+    For every \( n \geq 5 \), \( A_n \) is simple.
+  \end{theorem}
+
+  \begin{proof}
+    We will proceed by induction on \( n \geq 5 \).
+    \begin{itemize}
+      \item \textbf{Base case ($\mathbf{n=5}$)}: \( \abs{A_5} = 2^2 \cdot 3 \cdot 5 = 60 \). Suppose \( H \) be the non-trivial \textbf{normal} subgroup of \( A_5 \), we want to deduce a contradiction.
+
+        \begin{itemize}
+          \item If \( \mathbf{5 \big| \abs{H}} \): notice that \( n_5(H) = n_5(G) \) by similar reasoning as we've done in \textbf{Proposition} \ref{prop:inherit}: (Sylow's Second theorem + $H \unlhd G$).
+
+            See that:
+            \[
+              \left.
+                \begin{aligned}
+                  n_5(G) &\equiv 1 (\bmod 5) \\ 
+                  n_5(G) &\Bigg| \frac{\abs{G}}{5} = 12
+                \end{aligned}
+              \right\} \implies n_5(G) = 1 \text{ or } 6 
+            \] 
+            \begin{itemize}
+              \item If \( n_5(G) = n_(H) = 6\): then \( H \) contains more than $24$ elements of order \( 5 \). And by \( \abs{H} \big| \abs{G} \), \( \abs{H} = 30 \). By \textbf{Proposition} \ref{prop:inherit}, see that \( n_5(H) = 1 \), leads to contradiction $\lightning$.
+              \item If \( n_5(G) = n_5(H) = 1 \): then \( G \) only has \( 4 \) elements of order \( 5 \) in \( G \), but \( G = A_5 \), these are precisely the \( 5 \)-cycles (They have sign to be \( 1 \)). But we have \( 4\times 3 \times 2 \times 1 \) such cycles, in \( A_5 \) $\lightning$.
+            \end{itemize}
+            
+            So we reach the conclusion that we cannot have \( 5\big| \abs{H} \).
+
+          \item Since \( \abs{H} \big| 60 \) and \( \gcd(5, \abs{H}) =1 \implies \abs{H} \big| 12 \implies \abs{H} \in \{2,3,4,6,12\}\). The main idea is to try to \textbf{contract to the acse of 2,3,4}.
+            \begin{itemize}
+              \item If \( \abs{H} = 6 \), then:
+                \[
+                  \left.
+                    \begin{aligned}
+                      n_3(H) &\equiv 1(\bmod 3) \\ 
+                      n_3(H) &\Bigg| \frac{\abs{H}}{3} = 2
+                    \end{aligned}
+                  \right\} \implies n_3(H) = 1 
+                \] 
+
+                Again by sylow's second theorem + \( H \unlhd G \implies n_3(H) = n_3(G) = 1 \implies G\) has a \( 3 \)-Sylow subgroup that is normal.
+
+              \item If \( \abs{H} = 12 \), then:
+                \[
+                  \left.
+                    \begin{aligned}
+                      n_3(H) = n_3(G) &\equiv 1(\bmod 3) \\ 
+                      n_3(H) = n_3(G) & \Bigg| \frac{12}{3} = 4
+                    \end{aligned}
+                  \right\} \implies n_3(H) = n_3(G) = 1 \text{ or } 4 
+                \] 
+
+                \begin{itemize}
+                  \item If \( n_3(G) = 1 \), then replacing \( H \) by a \( 3 \)-Sylow subgroup get a normal subgroup of \( G \) or order 3.
+                  \item If \( n_3(G) = n_3(H) = 4 \), we have \( 4\times 2 = 8 \) elements of order \( 3 \) in \( H \), thus we get \( 3 \) elements of order different from \( 1 \) and \( 3 \) in \( H \).
+
+                    Since \( \abs{H} = 12 \), it has a subgroup \( P \) with \( 4 \) elements (a \( 2 \)-Sylow subgroup), thus \( P \) is the unique \( 2 \)-Sylow subgroup of \( H \), and thus be a unique \( 2 \)-Sylow subgroup of \( G \). So we repalce \( H \) by \( P \) and get a normal subgroup of \( G \) with \( 4 \) elements.
+                \end{itemize}
+              \item Hence assume \( \abs{H} \in \{2,3,4\} \), thus \( \abs{\quotient{G}{H}} \in \{30, 20, 15\} \).
+                \begin{claim}
+                  \( \quotient{G}{H} \) contains a normal subrgoup with \( 5 \) elements, then this has to be of the form \( \quotient{K}{H} \) where \( K \unlhd G, \; H \subseteq K \implies 5 \big| \abs{K}\), which contradicts to \textbf{the initial case!}
+                \end{claim}
+                
+                Let \( \overline{G} = \quotient{G}{H} \):
+                \begin{itemize}
+                  \item If \( \abs{\overline{G}} = 30\), then by \textbf{Proposition} \ref{prop:inherit}, \( n_5(\overline{G}) = 1\), and we get a normal subgroup with \( 5 \) elements.
+                  \item If \( \abs{\overline{G}} = 20 \), then \( n_5(\overline{G}) \equiv 1(\bmod 5) \) and \( n_5(\overline(G)) \big| \frac{20}{5} = 4 \implies n_5(\overline{G}) = 1\), conclusion the same.
+                  \item If \( \abs{\overline{G}} = 15 \), then similarly as the case just proved, \( n_5(\overline{G}) = 1 \), conclusion the same.
+                \end{itemize}
+
+                So the claim holds and the base case is done.
+            \end{itemize}
+        \end{itemize}
+        
+      \item \textbf{Inductive case}: Suppose that \( n\geq 6 \) and we know that \( A_{n-1} \) is simple.
+
+        Suppose that \( H \) is non-trivial normal subgroup of \( A_n = G \). For \( i \in [n] \), let:
+        \begin{equation}
+          \label{eq:aiso}
+          G_i = \{\sigma \in G \; | \; \sigma(i) = i\} \cong A_{n-1}
+        \end{equation}
+
+        Note that if \( \alpha \in S_n \), then:
+        \begin{equation}
+          \label{eq:con}
+         \alpha G_i \alpha^{-1} = G_{\alpha(i)} 
+        \end{equation}
+
+        Since \textbf{Formula} \ref{eq:aiso} is clear, if \( i=1 \implies \) it follows for all \( i \) by taking some \( \alpha \), s.t. \( \alpha(i) = 1 \).
+
+        We now consider \( H \cap G_i \) be normal subgroup of \( G_i \), with \( G_i \) being simple group by \textbf{IH}, there is only two possibilities:
+        \begin{enumerate}
+          \item \( H\cap G_i = \{e\} \) 
+          \item \( H\cap G_i = G_i \implies G_i \subseteq H \)
+        \end{enumerate}
+
+        \begin{itemize}
+          \item If there exists \( i \), s.t. \( G_i \subseteq H \), then for every \( j \), if \( \sigma \in G \) is s.t. \( \sigma(i) = j \), then by \textbf{Formula} \ref{eq:con} and \( H \unlhd G \), \( G_j \subseteq H \implies \angl{G_1, \ldots, G_n} \subseteq H\).
+
+            But \( \angl{G_1, \ldots, G_n} = A_n \) by the fact that every \( \sigma \in A_n \) are product of even number of transposition of the form \( (ij)(kl) \), and if \( q \neq i,j,k,l \implies (ij)(kl) \in G_q\).
+          
+          \item If \( G_i \cap H = \{e\}, \; \forall \; i \): then if \( \sigma, \sigma' \in H \), s.t. \( \sigma(i) = \sigma'(i) \) for some \( i \), then \( \sigma(\sigma')^{-1} \in H\cap G_i \implies \sigma = \sigma'\).
+
+            Suppose \( \sigma \in H, \sigma \ne e \)
+            \begin{itemize}
+              \item In the decomposition of \( \sigma \) into disjoint cycles, there is a cycle of order \( \geq 3 \):
+                \[
+                  \sigma = (a_1 a_2 a_3 \ldots) \ldots 
+                \] 
+
+                Let \( \alpha \in A_n \), s.t. \( \alpha(a_1) = a_1, \alpha(a_2) = a_2, \alpha(a_3) \ne a_3 \), there must exsist such \( \alpha \), since \( n\geq 6 \). then:
+                \[
+                  \sigma' = \alpha \sigma \alpha^{-1} = (a_1 a_2 \alpha (a_3) \ldots) \ldots \in H \text{ by normality of } H 
+                \] 
+
+                See that \( \sigma (a_1)  =\sigma'(a_1) \) but \( \sigma(a_2) \ne \sigma'(a_2) \), leading to contradiction $\lightning$.
+
+              \item The decomposition of \( \sigma \) into disjoint cycles only has transpositions, by Induction hypotheis, it can't fix any elements as \( G_i \cap H = \{e\}, \; \sigma \in H\).
+                \[
+                  \sigma = (a_1 a_2)(a_3 a_4) (a_5 a_6) \ldots 
+                \] 
+
+                Take \( \alpha \in A_n \), s.t. \( \alpha = (a_1 a_2) (a_3 a_5) \), and let \( \sigma' = \alpha \sigma \alpha^{-1} \), see that \( \sigma'(a_1) = a_2 = \sigma(a_1), \; \sigma'(a_3) = a_6 \ne \sigma(a_3) \implies \sigma \neq \sigma' \), leading to contradiction \( \lightning \).
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+  \end{proof}
+\end{subsection}
