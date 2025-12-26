@@ -58,7 +58,141 @@
   \begin{proof}
     \leavevmode
     \begin{idea}
-      
+      Starting with any linear map \( \vp: \CC^n \to \CC^m \) use the ``averaging procedure" from the proof of \textbf{Theorem} \ref{thm:complement} to get from \( \vp \) a morphism of \( G \)-repr \( \psi: \CC^n \to \CC^m \), then by \textbf{Schur's Lemma} \ref{lem:schur}, \( \psi = 0 \) in case 1 and \( \psi = \lambda \Id \) in case 2. Choose \( \vp \) suitably and taking the trace shall yield the results.
     \end{idea}
+    
+    May assume: 
+    \[
+      \begin{aligned}
+        \rho_1 : G & \to \GL_n(\CC) \\ 
+        \rho_2: G& \to \GL_n(\CC) 
+      \end{aligned}
+    \] 
+    In the setting of 2, may assume \( \rho_1 = \rho_2\) since by \textbf{Remark} \ref{rem:same-char}, isomorphic repr have the same character.
+    Given any linear map \( \vp: \CC^n \to \CC^m \), take \( \psi \) given by
+    \[
+      \psi(v) = \sum_{g\in G}g^{-1}\vp(gv)
+    \] 
+
+    the \textbf{key point} is: this is a morphism of \( G \)-repr:
+    \[
+      \psi(hv) = \sum_{g\in G} \underbrace{g^{-1}}_{h(gh)^{-1}}\vp(ghv) = h \sum_{g\in G}(g^{-1} \vp(gv)) = h \vp(v)
+    \] 
+
+    \begin{note}
+      \leavevmode 
+      \begin{enumerate}
+        \item \( gv \) here is \( \rho_1(g) v\), the group action for \( v\in \CC^n \). 
+        \item \( g^{-1} \) here is \( \rho_2(g^{-1}) \), the group action for \( \Im(\vp) \in \CC^m \).
+      \end{enumerate}
+    \end{note}
+
+    If \( \vp \) described w.r.t. the standard basis of \( \CC^n, \CC^m \) by the matrix \( (\gamma_{ij})_{\substack{1 \le i \le m \\ 1 \le j \le n}} \) and 
+    \[
+      \begin{aligned}
+        \rho_2(g^{-1}) &\longleftrightarrow (b_{pq}(g))_{1\leq p,q\leq m} \\ 
+        \rho_1(g) &\longleftrightarrow (a_{kl}(g))_{1\leq k,l\leq n}
+      \end{aligned}
+    \] 
+    
+    then \( \psi \) correspond to th matrix 
+    \begin{equation}
+      \label{eq:gam-mat}
+      \sum_{g\in G} (b_{pq}(g))\cdot(\gamma_{ij})\cdot(a_{kl}(g))
+    \end{equation}
+
+    \begin{itemize}
+      \item Suppose we are in \textbf{Case 1}: By Schur's Lemma, \( \psi = 0 \). Now fix \( i\leq m, j\leq n \) and take 
+        \[
+        \gamma_{i'j'} =
+        \begin{cases}
+          1, \text{ if } i'=i, j'=j \\ 
+          0, \text{ otherwise}
+        \end{cases}
+      \]
+
+      Now \textbf{Formula} \ref{eq:gam-mat} is \( 0 \implies \forall \; p \leq m, \forall \;l\leq n \) :
+      \[
+        \sum_{g\in G} b_{pi}(g) a_{jl}(g) = 0 
+      \] 
+
+      Take \( p=i, l=j \implies \sum_{g\in G} b_{ii}(g)a_{jj}(g) = 0\), take \( \sum_{i,j} \) on both sides:
+      \[
+        \sum_{g\in G} \underbrace{\Trace\bace{\rho_2(g^{-1})}}_{\chi_{\rho_2}(g^{-1}) = \overline{\chi_{\rho_2}(g)}} \underbrace{\Trace\bace{\rho_1(g)}}_{\chi_{\rho_1(g)}} = 0 \implies \angl{\chi_{\rho_1}, \chi_{\rho_2}} = 0 
+      \] 
+
+      \item Suppose we are in \textbf{Case 2}: Then \( \rho_1 = \rho_2 \) are irreducible repr, by \textbf{Schur's Lemma} \ref{lem:schur}, \( \forall \; \vp = (\gamma_{ij}) \), we have \(\psi = \lambda(\vp)\Id \) for some \( \lambda (\vp) \). 
+
+        For every fixed \( i,j\leq n \), let
+        \[
+          \gamma_{i'j'} = 
+          \begin{cases}
+            1, \text{ if } i=i', j=j' \\ 
+            0, \text{ otherwise}
+          \end{cases}
+        \] 
+
+        For all \( p,l \leq n \), we have 
+        \[
+          \sum_{g\in G} b_{pi }(g) a_{jl}(g) = \lambda_{i,j} \delta_{p,l} \quad \text{ for some } \lambda_{i,j} \in \CC 
+        \] 
+
+        Take \( p=i, l=j \implies \) 
+        \begin{equation}
+          \label{eq:sec}
+          \sum_{g\in G}b_{ii}(g)a_{jj}(g) = \lambda_{i,j}\delta_{i,j}
+        \end{equation}
+
+        Take sum \( \sum_{i,j} \) on both sides, obtain:
+        \[
+          \underbrace{\sum_{g\in G}\Trace\bace{\rho_2(g^{-1})}\Trace\bace{\rho_1(g)}}_{\abs{G} \cdot \angl{\chi_{\rho_1}, \chi_{\rho_2}}} = \sum_{i=1}^{n} \lambda_{i,i} 
+        \] 
+        
+        Recall that \( \rho_1 = \rho_2 \implies b_{ij} = (a_{kl})^{-1} \), take \( i=j \) in \textbf{Formula} \ref{eq:sec} and take the sum \( \sum_{i=1}^{n} \), we have:
+        \[
+          \begin{aligned}
+            \sum_{g\in G} \delta_{p,l} &= \sum_{i=1}^{n}\lambda_{i,i}\delta_{p,l} \\ 
+            \text{Let } p=l \implies \sum\lambda_{i,i}&= \abs{G} \\ 
+            \implies \abs{G} \cdot \angl{\chi_{\rho_1} , \chi_{\rho_2}} &= \abs{G} \\ 
+            \implies \angl{\chi_{\rho_1} , \chi_{\rho_2}} &= 1 
+          \end{aligned}
+        \] 
+    \end{itemize}
+  \end{proof}
+  
+  Thus we see the \textbf{irreducible representations} yields a \textbf{orthonormal system}.
+
+  \begin{corollary}
+    There are only finitely many classes of \( G \)-repr if \( G \) be finite group.
+  \end{corollary}
+
+  \begin{proof}
+    If \( \rho_1, \ldots, \rho_n \) are pairwise non-isomorphic irreducible representation, the theorem implies:
+    \[
+      \angl{\chi_{\rho_i}, \chi_{\rho_j}} = \delta_{i,j}
+    \] 
+
+    This implies \( \chi_{\rho_1}, \ldots, \chi_{\rho_n} \) are linearly independent, and \( n \) will have an upperbound, which is 
+    \[ 
+      \dim\bace{\Fun(G)} = \abs{G}
+    \]
+  \end{proof}
+
+  \begin{corollary}
+    A \( G \)-repr \( \rho \) is irreducible if and only if \( \chi_{\rho}, \chi_{\rho} = 1 \).
+  \end{corollary}
+
+  \begin{proof}
+    Consider a decomposition into irreducible representation 
+    \[
+      \rho \cong\; \bigoplus_{i=1}^{r} V_{i}^{\oplus a_i}, \quad V_i \ncong V_j\; \text{ if } i\ne j 
+    \] 
+
+    then 
+    \[
+      \chi_{\rho} = \sum_{i=1}^{r} a_i \chi_{V_i} 
+    \] 
+
+    The theorem tells us \( \angl{\chi_{\rho}, \chi_{\rho}} = \sum_{i=1}^{r} a_i^2 \), hence \( \angl{\chi_{\rho}, \chi_{\rho}} = 1\) iff \( r=1 \) and \( a=1 \).
   \end{proof}
 \end{section}

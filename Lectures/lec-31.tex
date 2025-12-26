@@ -25,6 +25,24 @@ At this point we are able to have some sense that irreducible representation are
       \Trace(A) = \Trace(BAB^{-1})
     \] 
   \end{lemma}
+  
+  \begin{remark}
+    \label{rem:same-char}
+    If \( V \cong \; W \) are isomorphism representations, then 
+    \[
+      \chi_V= \chi_W 
+    \] 
+
+    To see it we can choose basis \( e_1, \ldots, e_n \) for \( V \) and basis \( \vp(e_1), \ldots, \vp(e_n) \) for \( W \), and get the following diagram:
+    \[
+      \begin{tikzcd}
+        V \arrow[r, "\sim" ,"\varphi"'] \arrow[d, "\rho_V(g)"'] & W \arrow[d, "\rho_W(g)"] \\
+      V \arrow[r, "\sim" ,"\varphi"']                         & W
+      \end{tikzcd}
+    \]
+    
+    Thus the matrix for \( \rho_V(g) \) and \( \rho_W(g) \) is the same thing for all \( g\in G \).
+  \end{remark}
 
   \begin{remark}
     If \( V \) is a \( G \)-repr, then \( \chi_V \) is a \underline{class function}. i.e. it takes some value on the elements in each \textbf{conjugacy class}.
