@@ -1,0 +1,193 @@
+\begin{subsection}{Direct Sum of Representations}
+  \begin{definition}{\textbf{(External Direct Sum)}}
+    Let \( G \) be group and \( V_1, \ldots, V_n \) are \( G \)-representations, the \underline{(external) direct sum}:
+    \[
+      V_1 \oplus \cdots \oplus V_n 
+    \] 
+
+    is the vector spaces \( V_1 \oplus \cdots \oplus V_n =  V_1 \times \cdots \times V_n \) with the \( G \)-action given by:
+    \[
+      g \cdot (v_1, \ldots, v_n) = (gv_1, \ldots, gv_n)
+    \] 
+
+  \end{definition}
+  
+  \begin{proposition}{\textbf{(Universal Property of Direct Sum)}}
+    According to our construction above, we have the \underline{universal property}:
+
+    For \( j \in \br{1,n} \), we have a morphism of \( G \)-repr:
+    \[
+      \begin{aligned}
+        \alpha_j: V_j &\longrightarrow V_1 \oplus \cdots \oplus V_n \\ 
+        v & \longmapsto (0, \ldots, \stackrel{j}{v}, \ldots, 0) 
+      \end{aligned}
+    \] 
+    
+    For every \( G \)-repr \( W \) and morphism of \( G \)-repr \( V_j \xrightarrow{\vp_j} W\), there exists a \textbf{unique} morphism of \( G \)-repr \( \vp: V_1 \oplus \cdots \oplus V_n \to W \), s.t. \( \vp \circ \alpha_j = \vp_j, \; \forall \; j \in \br{1,n}  \).
+
+    One can check that \( \vp(v_1, \ldots, v_n) = \sum_{j=1}^{n} \vp_j(v_j)\).
+
+  \end{proposition}
+
+  \begin{definition}{\textbf{Internal Direct Sum}}
+    If \( V \) is a \( G \)-repr, \( V_1, \ldots, V_n \subseteq V \) are subrepr, we say that \( V \) is the \underline{(internal) direct sum} of \( V_1, \ldots, V_n \), written as:
+    \[
+      V = V_1 \oplus \cdots \oplus V_n 
+    \] 
+
+    if and only if the morphism of \( G \)-repr:
+    \[
+      \begin{aligned}
+        \vp: V_1 \oplus \cdots \oplus V_n & \to V \\ 
+        \vp(v_1, \ldots, v_n) &= v_1 + \ldots + v_n 
+      \end{aligned}
+    \] 
+
+    is an \textbf{isomorphism}.
+  \end{definition}
+  \begin{eg}
+    If \( n=2 \), then \( V = V_1 \oplus V_2 \) iff \( V_1 \cap V_2 = \{0\} \) and \( V_1 + V_2 = V \).
+  \end{eg}
+
+  \begin{proposition}
+    If \( \rho: G \to \GL(V) \) is any \( 1 \)-dimensional subrepr of \( V \), then it is of the form \( \CC \cdot v \), where \( v \) is a common eigenvector for each \( \rho(g) \).
+  \end{proposition}
+
+  \begin{eg}
+    \( G = S_3 \), \( G \) has a standard action on \( \{1,2,3\} \) by permutation and consider the corresponding \( G \)-repr on \( \CC^3 \) with the basis \( (e_1, e_2, e_3) \).
+    \[
+      \sigma \cdot e_i = e_{\sigma (i)}
+    \] 
+
+    \begin{question}
+      What is the \( 1 \)-dim subrepr of such \( G \)-repr?
+    \end{question}
+
+    A \( 1 \)-dim subrepr is \( \CC \cdot (e_1 + e_2 + e_3) = V_1 \).
+
+    A \( 2 \)-dim subrepr is \( V_2 = \{a_1 e_1 + a_2 e_2 + a_3 e_3 \; | \; a_1 + a_2 + a_3 = 0\} \), and see that \( V = V_1 \oplus V_2 \).
+
+    There is also a \( 1 \)-dimensional \textbf{sign} representation for it. But now we want to explicitly express \( V_2 \):
+
+    Given \( G \to \GL(V_2) \), a basis of \( V_2 \) is given by:
+    \[
+      \begin{cases}
+        u_1 = e_1 - e_2 \\ 
+        u_2 - e_2 - e_3 
+      \end{cases}
+    \] 
+
+    Let \( \tau(12), \sigma = (123) \) as two examples;
+    \[
+      \begin{aligned}
+        \rho (\tau ): u_1 &\mapsto e_2 - e_1 = -u_1 \\ 
+        u_2 &\mapsto e_3 - e_1 = u_1 - u_2 \implies \rho (\tau ) \text{ correspond to } 
+        \begin{pmatrix}
+          -1 & 1 \\ 
+          0 & -1 \\ 
+        \end{pmatrix} \\ 
+        \rho (\sigma ): u_1 & \mapsto e_2 - e_3 = u_2 \\ 
+        u_2 & \mapsto e_3 - e_1 = -u_1 - u_2 \implies \rho (\sigma) \text{ correspond to }
+        \begin{pmatrix}
+          0 & -1 \\ 
+          1 & -1 
+        \end{pmatrix}
+      \end{aligned}
+    \] 
+
+    
+  \end{eg}
+
+  \begin{theorem}{\textbf{(Complement of Subrepresentation)}}
+    \( G \) be a finite group, \( V \) is a \( G \)-repr, \( W \subseteq V \) is a subrepr. Then there exits \( W' \subseteq V \) be a subrepr, such that:
+    \[
+      V = W \oplus W'
+    \] 
+  \end{theorem}
+
+  \begin{remark}
+    The same assertion holds for all finite dimensional \textbf{vector spaces}. We use similar project method idea to deal with this problem. Main idea is that in vector spaces, we use linear map to project, but now in \( G \)-representation, we use \textbf{morphism} to project. The way to transfrom the project map is similar as we transform the \textbf{isomorphism between vector spaces} to \textbf{isomorphism between \( \mathbf G \)-representations} + we use a \textbf{averaging procedure}.
+  \end{remark}
+
+  \begin{proof}
+    The \textbf{issue} in linear algebra proof is that for the linear map \( p \), we don't yet know \( \ker(p) \) will be a \textbf{subrepr} of \( V \).
+
+    Define the projection as the linear map \( p: V\to W \), s.t. \( p(x) = x\; \forall \; x \in W \). Now define:
+    \[
+      \begin{aligned}
+        p' : V & \to W  \\ 
+        p'(v) = \frac{1}{\abs{G}} \sum_{g \in G} g^{-1} p(gv) \in W \; \text{Since $W$ is a subrepr.}
+      \end{aligned}
+    \] 
+
+    It is clear that \( p' \) is a linear map, we want to see it is a morphism as well as a projection.
+    \begin{enumerate}
+      \item \textbf{Projection}: If \( v\in W \implies gv \in W\implies p(gv) = gv\), then:
+        \[
+          p'(v) = \frac{q}{\abs{g}} \sum_{g\in G} g^{-1} \cdot (gv) = v \; \text{ indeed a projection.}
+        \] 
+
+      \item \textbf{Morphism}: \( p' \) is a morphism of \( G \)-repr, for \( h\in G \):
+        \[
+          p' (hv) = \frac{1}{\abs{G}} \sum_{g\in G} \underbrace{g^{-1}p(ghv)}_{=h(gh)^{-1}p(ghv)} = \frac{1}{\abs{G}} h\sum_{g'\in G} (g')^{-1} p (g'v) = hp'(v)
+        \]
+
+        Indeed a morphism.
+    \end{enumerate}
+
+    Thus \( \ker(p') \) will be a subrepr of \( V \). Then follow similar procedure of proof in linear algebra:
+    \[
+      V = W \oplus \ker(p')
+    \] 
+
+    where 
+    \[
+      W' \coloneqq \ker(p')
+    \] 
+  \end{proof}
+
+  \begin{subsection}{Hom between two Representations}
+    We already have a sense that we can obtain the category of \( G \)-repr, and clearly the objects are those \( G \)-repr, but what about the morphisms? namely the ``Hom"?
+
+    Recall that if \( V, W \) are vector spaces over \( \CC \), then \( \Hom_{\CC}(V,W) \) is again a vector space, with:
+    \[
+      \begin{cases}
+        (f+g)(v) = f(v) + g(v) \\ 
+        (\lambda f)(v) = \lambda (f(v))
+      \end{cases}
+    \] 
+
+    If \( e_1, \ldots, e_n \) is basis of \( V \) and \( f_1, \ldots, f_m \) is basis of \( W \):
+    \[
+      \begin{aligned}
+        \Hom_{\CC}(V,W) &\xrightarrow{\sim} M_{m,n} (\CC) \\ 
+        f&\mapsto (a_{i,j})_{i\in \br{1,m}, j \in \br{1,n}} \text{ s.t. } f(e_j) = \sum a_{ij} e_j 
+      \end{aligned}
+    \] 
+
+    and in particular:
+    \[
+      \dim(\Hom_{\CC}(V,W)) = m\cdot n 
+    \] 
+
+    Now what if \( V, W \) are \( G \)-reprs? Abuse the notation to let \( \Hom_{\CC}(V,W) \) become a \( G \)-repr, with the group action defined as: for \( \varphi \in \Hom_{G\text{-repr}}(V,W), \; \vp_0 \in \Hom_{\CC}(V,W) \)
+    \[
+      \begin{aligned}
+        (g\vp)(v) &= g\cdot \vp_0(g^{-1} v) \\ 
+        (\underbrace{g\vp}_{g\text{ acting on } \vp}) (v) &= \underbrace{g\cdot \underbrace{\vp_0(\underbrace{g^{-1}v}_{G\text{-action in } V})}_{\text{map vector to} W}}_{G\text{-action in }W} \quad \forall \; v\in V 
+      \end{aligned}
+    \] 
+
+    easy to see that \( g\vp \) is linear, remains to see it is a group acton, check:
+    \[
+      \begin{aligned}
+        \bace{h\bace{g\vp}} (v) &= h\cdot \bace{(g\vp) \cdot (h^{-1} v)} \\ 
+                               &= h \cdot \bace{g\cdot \vp(g^{-1}h^{-1}v)} \\ 
+                               &= (h\cdot g) \cdot \vp \bace{(hg)^{-1}v} \\ 
+                               &= \bace{(hg)\vp}(v) \\ 
+        \implies h(g\vp) &= (hg)\vp \\ 
+      \end{aligned}
+    \] 
+
+  \end{subsection}
+\end{subsection}

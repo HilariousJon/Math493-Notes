@@ -121,7 +121,13 @@
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}  % Ceiling function
 \DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor} % Floor function
 \DeclarePairedDelimiter{\angl}{\langle}{\rangle} % inner product or genrated idea
-\DeclarePairedDelimiter{\br}{\llbracket}{\rrbracket}
+\DeclarePairedDelimiter{\br}{\llbracket}{\rrbracket} % french styled integer expression
+\DeclarePairedDelimiter{\baceInner}{(}{)} % auto resized braces
+\NewDocumentCommand{\bace}{s m}{
+  \IfBooleanTF{#1}
+    {\baceInner{#2}} % normal sized if \bace*
+    {\baceInner*{#2}} % auto resized if \bace
+}
 
 % greek and msic symbols
 \newcommand{\eps}{\varepsilon} % Better looking epsilon
