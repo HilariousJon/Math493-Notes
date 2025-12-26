@@ -35,7 +35,7 @@
     \[
       \begin{rcases}
         V_1 \cong \; \bigoplus_{i=1}^{r} W_i^{\oplus a_i}, \quad V_2 \cong \; \bigoplus_{i=1}^{r}W_i^{\oplus b_i} \\ 
-        \text{\textbf{Prop.} \ref{prop:count}} \implies a_i = \angl{\chi_{W_i}, \chi_{V_i}} = \chi_{\chi_{W_i}, \chi_{V_2}} = b_i \quad \forall \; i \\ 
+  \text{\textbf{Prop.} \ref{prop:count}} \implies a_i = \angl{\chi_{W_i}, \chi_{V_i}} = \angl{\chi_{W_i}, \chi_{V_2}} = b_i \quad \forall \; i \\ 
       \end{rcases}
       \implies V_1 \cong V_2 
     \] 
@@ -45,5 +45,45 @@
 
   \begin{subsection}{Regular Repr. and Irred. Repr.}
     In this section, we shall use the regular representation \( V^{\text{reg}} \) of \( G \) to deduce information about the irreducible representation of \( G \).
+
+    Recall that the regular representation \( V^{\reg} \) has a basis \( \{e_g \; | \; g \in G\} \) with \( G \) acting via \( h \cdot e_g = e_{hg}, \; \forall \; g,h \in G \). Since \( hg = g \) iff \( h=e \), so 
+    \[
+      \chi_{V^{\reg}} = 
+      \begin{cases}
+        0, \text{ if } h \ne e \\ 
+        \abs{G}, \text{ if } h = e 
+      \end{cases}
+    \] 
+
+    Suppose \( V_1, \ldots, V_r \) are \textbf{all} the pairwise non-isomorphic irred. repr. of \( G \), assume:
+    \[
+      V^{\reg} \cong \; V_1^{\oplus a_1} \oplus \cdots \oplus V_r^{\oplus a_r}
+    \] 
+
+    We saw: 
+    \[
+      \begin{aligned}
+        a_i = \angl{\chi_{V_i}, \chi_{V^{\reg}}} &= \frac{1}{\abs{G}} \sum_{g\in G} \chi_{V_i} (g) \overline{\chi_{V^{\reg}}(g)} \\ 
+                                                 &= \frac{1}{\abs{G}} \cdot \dim V_i \cdot \abs{G} \\ 
+                                                 &= \dim V_i 
+      \end{aligned}
+    \] 
+
+    Thus we obtain the following proposition.
+    \begin{proposition}
+      If \( W \) is an irred. repr. of \( G \), then the \# of times this appears in a decomposition of \( V^{\reg} \) in irred. repr. is \( \dim W \). 
+
+      In particular, if \( V_1, \ldots, V_r \) are the irred. \( G \)-repr, then:
+      \[
+        \begin{aligned}
+          V^{\reg} &\cong \; V_1^{\dim V_1} \oplus \cdots \oplus V_r^{\dim V_r} \\ 
+          \implies \abs{G} &= \sum_{i=1}^{r} \bace{\dim V_i}^2 
+        \end{aligned}
+      \] 
+
+      \begin{note}
+        This is extremely useful for \textbf{determining all the irred. repr.} of a specific \textbf{finite} group.
+      \end{note}
+    \end{proposition}
   \end{subsection}
 \end{section}
