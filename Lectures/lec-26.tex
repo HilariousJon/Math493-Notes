@@ -13,7 +13,7 @@ Group representation theory is intended to understand group by how it maps to ma
     \end{aligned}
   \] 
 
-  \begin{definition}{\textbf{(Group Representation)}}
+  \begin{definition}[\textbf{Group Representation}]
     Let \( G \) be a group, a \underline{representation} of \( G \) is an action of \( G \) on a \textbf{complex} vector space \( V \), such that for all \( g\in G \), the map:
     \[
       \begin{aligned}
@@ -55,14 +55,14 @@ Group representation theory is intended to understand group by how it maps to ma
   \end{remark}
 
   We then give some examples for finite group representation.
-  \begin{eg}
+  \begin{eg}[\textbf{Trivial Representation}]
     A \underline{trivial representation} is the representation \( V \), s.t. 
     \[
       gv=v,\; \forall \; g \in G, \; v\in V \iff G \to \GL(V), \; g\mapsto \Id_V
     \] 
   \end{eg}
 
-  \begin{eg}
+  \begin{eg}[\textbf{Permutation Representation}]
     If \( G \) acts on a finite set \( X \), take \( V \) vector spaces with basis \( \{e_x \; | \; x \in X\} \), the map is determined by its value on the basis, we put:
     \[
       g\cdot e_x = e_{gx} 
@@ -71,7 +71,7 @@ Group representation theory is intended to understand group by how it maps to ma
     Since we have an action of \( G \) on \( X \), so the above is a representation, called \textbf{permutation representation}.
   \end{eg}
 
-  \begin{eg}{(\textbf{Regular Representation})}
+  \begin{eg}[\textbf{Regular Representation}]
     Given \( G \) be finite group, consider the action of \( G\times G \to G, \; (g,h) \mapsto gh \) given by left multiplication, we get a representation:
     \[
       V = \bigoplus_{g\in G} \CC e_g (\cong \; \CC^{\abs{G}}), \text{ s.t. } h\cdot\left(\sum_{g\in G}a_g e_g\right) = \sum_{g\in G} a_g e_{hg}

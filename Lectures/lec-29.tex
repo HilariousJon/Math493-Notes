@@ -1,3 +1,39 @@
 \begin{subsection}{Irreducible Representation}
-  
+  We now introduce the irreducible representation, which is the building blocks of any representation, it is similar to what simple groups means to finite groups.
+
+  \begin{definition}[\textbf{Irreducible Representation}]
+    A \( G \)-repr \( V \) is \underline{irreducible} if 
+    \begin{itemize}
+      \item \( V \ne \{0\} \).
+      \item For every subrepr \( W\subseteq V \), either \( W = \{0\} \) or \( W = V \).
+    \end{itemize}
+  \end{definition}
+
+  \begin{eg}
+    \leavevmode 
+    \begin{enumerate}
+      \item Every \( 1 \)-dimensional repr is irreducible.
+      \item If \( \dim V = 2 \implies \) \( V \) is an irreducible repr iff there exists no common eigenvector for all \( \rho(g), \; g\in groups \).
+    \end{enumerate}
+  \end{eg}
+
+  \begin{theorem}
+    If \( V \) is a repr of the finite group \( G \), then there exists irreducible subrepr \( W_1, \ldots , W_r \). s.t.
+    \[
+      V = W_1 \oplus \cdots \oplus W_r
+    \] 
+  \end{theorem}
+  \begin{proof}
+    \textbf{(Sketch of Proof)}: Use induction on dimension of \( V \), and utilize \textbf{Theorem} \ref{thm:complement}.
+  \end{proof}
+
+  The following lemma is very important in terms of \textbf{classifying irreducible representation}, thus we can classify different representation using irreducible representation.
+
+  \begin{lemma}[\textbf{Schur's Lemma}]
+    Let \( f: V \to W \) be a \textbf{morphism} between \textbf{irreducible} \( G \)-repr, with \( G \) be a finite group. Then
+    \begin{enumerate}
+      \item If \( V \ncong W \implies f=0\).
+      \item If \( V=W \implies f = \lambda \Id_V \) for some \( \lambda \in \CC \).
+    \end{enumerate}
+  \end{lemma}
 \end{subsection}

@@ -1,5 +1,5 @@
 \begin{subsection}{Direct Sum of Representations}
-  \begin{definition}{\textbf{(External Direct Sum)}}
+  \begin{definition}[\textbf{External Direct Sum}]
     Let \( G \) be group and \( V_1, \ldots, V_n \) are \( G \)-representations, the \underline{(external) direct sum}:
     \[
       V_1 \oplus \cdots \oplus V_n 
@@ -12,7 +12,7 @@
 
   \end{definition}
   
-  \begin{proposition}{\textbf{(Universal Property of Direct Sum)}}
+  \begin{proposition}[\textbf{Universal Property of Direct Sum}]
     According to our construction above, we have the \underline{universal property}:
 
     For \( j \in \br{1,n} \), we have a morphism of \( G \)-repr:
@@ -29,7 +29,7 @@
 
   \end{proposition}
 
-  \begin{definition}{\textbf{Internal Direct Sum}}
+  \begin{definition}[\textbf{Internal Direct Sum}]
     If \( V \) is a \( G \)-repr, \( V_1, \ldots, V_n \subseteq V \) are subrepr, we say that \( V \) is the \underline{(internal) direct sum} of \( V_1, \ldots, V_n \), written as:
     \[
       V = V_1 \oplus \cdots \oplus V_n 
@@ -98,7 +98,8 @@
     
   \end{eg}
 
-  \begin{theorem}{\textbf{(Complement of Subrepresentation)}}
+  \begin{theorem}[\textbf{Complement of Subrepresentation}]
+    \label{thm:complement}
     \( G \) be a finite group, \( V \) is a \( G \)-repr, \( W \subseteq V \) is a subrepr. Then there exits \( W' \subseteq V \) be a subrepr, such that:
     \[
       V = W \oplus W'
@@ -215,7 +216,7 @@
           then \( V^* \) correspond to \( \lambda^{-1} \) in this case.
 
           More generally, we state the definition of dual representation here:
-          \begin{definition}{\textbf{(Dual Representation)}}
+          \begin{definition}[\textbf{Dual Representation}]
             Let $(\rho, V)$ be a representation of a group $G$. The \underline{dual representation} is the vector space $V^* = \text{Hom}(V, \mathbb{C})$ equipped with the $G$-action defined by:
             \[
             (g \cdot f)(v) = f(g^{-1}v)
