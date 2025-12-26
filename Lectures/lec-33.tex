@@ -1,0 +1,49 @@
+\begin{section}{Analysis on Decomposition}
+  We shall see further application on how to take advantages to the orthogonality of the characters of the irreducible representations.
+
+  \begin{proposition}
+    \label{prop:count}
+    Given a representation \( V \) and an irreducible representation \( W \), the \# of times \( W \) shows up in a decomposition of \( V \) into irreducible repr is 
+    \[
+      \angl{\chi_W, \chi_V}
+    \] 
+
+    \begin{note}
+      This actually gives the proof for the fact that the number is independent on the way of decomposition. 
+    \end{note}
+  \end{proposition}
+
+  \begin{proof}
+    Let \( V \cong \; V_1 \oplus \cdots \oplus V_r \), where \( V_i \) irreducible, then 
+    \[
+      \chi_V = \sum_{i=1}^{r} \chi_{V_i} 
+    \] 
+
+    thus 
+    \[
+      \angl{\chi_W, \chi _V} = \sum_{i=1}^{r} \angl{\chi _W, \chi _{V_i}} \xlongequal{\text{\textbf{Thm.} \ref{thm:ortho}}} \# \{i \; | \; W \cong \; V_i \} 
+    \] 
+
+  \end{proof}
+
+  \begin{proposition}
+    Two repr \( V_1, V_2 \) are isomorphic iff \( \chi_{V_1} = \chi_{V_2} \).
+  \end{proposition}
+
+  \begin{proof}
+    The forward direction is cleared as we've seen in \textbf{Remark} \ref{rem:same-char}. Conversely, followed from \textbf{Proposition} \ref{prop:count} as above: Suppose \( W_1, \ldots, W_r \) are pairwise non-isomorphic irreducible repr of \( G \), s.t. 
+    \[
+      \begin{rcases}
+        V_1 \cong \; \bigoplus_{i=1}^{r} W_i^{\oplus a_i}, \quad V_2 \cong \; \bigoplus_{i=1}^{r}W_i^{\oplus b_i} \\ 
+        \text{\textbf{Prop.} \ref{prop:count}} \implies a_i = \angl{\chi_{W_i}, \chi_{V_i}} = \chi_{\chi_{W_i}, \chi_{V_2}} = b_i \quad \forall \; i \\ 
+      \end{rcases}
+      \implies V_1 \cong V_2 
+    \] 
+  \end{proof}
+
+  This tells us: If we understand the \textbf{characters of a repr.}, then we understand the repr.
+
+  \begin{subsection}{Regular Repr. and Irred. Repr.}
+    In this section, we shall use the regular representation \( V^{\text{reg}} \) of \( G \) to deduce information about the irreducible representation of \( G \).
+  \end{subsection}
+\end{section}
