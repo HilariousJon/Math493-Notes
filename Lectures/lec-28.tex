@@ -188,6 +188,73 @@
         \implies h(g\vp) &= (hg)\vp
       \end{aligned}
     \] 
+    \begin{eg}
+      There are some special cases for the \( G \)-repr \( \Hom_{\CC}(V,W) \):
+      \begin{enumerate}
+        \item Let \( V =\CC^\times \) be the trivial \( G \)-action: \( gv = v, \; \forall g \in G \), then
+          \[
+            \begin{aligned}
+              \Hom_{\CC}(\CC, V)& \xrightarrow{\sim} V \\ 
+              \vp & \mapsto \vp(1) \text{ is an isomorphism of $G$-action.}
+            \end{aligned}
+          \] 
 
+        \item \( W = \CC \) with trivial \( G \)-action, we obtain the dual representation of \( V \):
+          \[
+            V^* \coloneqq \Hom_{\CC}(V,\CC)
+          \] 
+
+          For example, \( G = \qo{\ZZ}{n\ZZ} \) and \( V \) be the \( 1 \)-dim repr given by:
+          \[
+            \begin{aligned}
+              \qo{\ZZ}{n\ZZ} &\to \GL(V) = \CC^\times \\ 
+              1 &\mapsto \lambda \in \CC^\times, \; \lambda^n = 1 
+            \end{aligned}
+          \] 
+
+          then \( V^* \) correspond to \( \lambda^{-1} \) in this case.
+
+          More generally, we state the definition of dual representation here:
+          \begin{definition}{\textbf{(Dual Representation)}}
+            Let $(\rho, V)$ be a representation of a group $G$. The \underline{dual representation} is the vector space $V^* = \text{Hom}(V, \mathbb{C})$ equipped with the $G$-action defined by:
+            \[
+            (g \cdot f)(v) = f(g^{-1}v)
+            \]
+            for all $g \in G$, $f \in V^*$, and $v \in V$, and \( \CC \) here is the \( 1 \)-dimensional \textbf{trivial representation}.
+
+            \textit{Note:} Alternatively, denoted using $\rho^*$:
+            \[
+            \rho^*(g) = \rho(g^{-1})^T
+            \]
+            The inverse $g^{-1}$ is necessary to ensure that it satisfies the group homomorphism property (i.e., to make it a \textit{left} action).
+
+            \begin{question}
+              Can we use the \textit{sign representation} for the codomain $\mathbb{C}$ instead of the \textit{trivial representation}?
+            \end{question}
+
+            No, strictly speaking.
+            \begin{itemize}
+                \item The standard \textbf{Dual Representation} $V^*$ is defined as $\text{Hom}(V, \mathbb{C}_{\text{triv}})$. This ensures the natural pairing is $G$-invariant:
+                \[ \langle g\phi, gv \rangle = \langle \phi, v \rangle \]
+                
+                \item If we use the sign representation (denoted $\epsilon$), we obtain a different object, the \textbf{Twisted Dual}:
+                \[ \text{Hom}(V, \mathbb{C}_{\epsilon}) \cong V^* \otimes \epsilon \]
+                In this case, the action involves the sign of the permutation:
+                \[ (g \cdot \phi)(v) = \text{sgn}(g) \phi(g^{-1}v) \]
+            \end{itemize}
+
+            In the context of dual representations, this ``inner product" denotes the \textbf{Natural Pairing} (or Canonical Pairing), not necessarily a Hermitian inner product.
+            \begin{itemize}
+                \item \textbf{Natural Pairing} (Used here):
+                \[ \langle \cdot, \cdot \rangle : V^* \times V \to \mathbb{C}, \quad \langle \phi, v \rangle := \phi(v) \]
+                It is \textbf{bilinear} (linear in both arguments). No complex conjugation involves.
+                
+                \item \textbf{Hermitian Inner Product} (Used in Unitary Reps):
+                \[ \langle \cdot, \cdot \rangle : V \times V \to \mathbb{C} \]
+                It is \textbf{sesquilinear} (linear in one, conjugate-linear in the other).
+            \end{itemize}
+          \end{definition}
+      \end{enumerate}
+    \end{eg}
   \end{subsection}
 \end{subsection}
