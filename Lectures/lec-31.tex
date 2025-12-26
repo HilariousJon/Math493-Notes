@@ -1,0 +1,123 @@
+\chapter{Character Theory}
+
+At this point we are able to have some sense that irreducible representation are the building blocks of representations. We have also developed ways to classify irreducible representation, namely the \textbf{Schur's Lemma} \ref{lem:schur}. However we still lack the way to classify general representations in a convenient way. In this chapter we will introduce \textbf{Character Theory} on group representation, which give us a good sense on how to classify them.
+
+\begin{section}{Basic Definition}
+  \begin{definition}[\textbf{Character of Group Representations}]
+    If \( V \) is a \(G \)-repr, then the \underline{character of \( V \)} is a function:
+    \[
+      \begin{aligned}
+        \chi_V : G & \to \CC \\ 
+        \chi_V (g) &= \Trace(\rho(g))
+      \end{aligned}
+    \] 
+
+    where \( \rho: G \to \GL(V) \) gives the \( G \)-action on \( V \), and \( \Trace \) is the sum of the diagonal elements of the matrix.
+  \end{definition}
+  
+  A typical lemma from Linear Algebra, we state here without proof
+  \begin{lemma}
+    \[
+      \Trace(AB) = \Trace(BA)
+    \] 
+    Hence:
+    \[
+      \Trace(A) = \Trace(BAB^{-1})
+    \] 
+  \end{lemma}
+
+  \begin{remark}
+    If \( V \) is a \( G \)-repr, then \( \chi_V \) is a \underline{class function}. i.e. it takes some value on the elements in each \textbf{conjugacy class}.
+    \[
+      \chi_V(g) = \chi_V(hgh^{-1}) \; \forall \; g,h\in G 
+    \] 
+  \end{remark}
+
+  The proof is straightforward by considering \( \rho \) is a group homomorphism as well as the Lemma we just stated above.
+
+  \begin{eg}
+    Let \( V \) be any repr, then \( \chi_V(e) = \dim V \).
+  \end{eg}
+
+  \begin{eg}
+    If \( V \) is a \( 1 \)-dimensional repr, then:
+    \[
+      G \xrightarrow{\rho} \GL(V) \cong \; \CC^\times \rsa \chi_V(g) = \rho(g)
+    \] 
+  \end{eg}
+
+  \begin{eg}
+    Consider the permutation representation on \( S_3 \) corresponding to the obvious action of \( S_3 \) on \( \{1,2,3\} \), see that:
+    \[
+      V = \CC e_1 \oplus \CC e_2 \oplus \CC e_3
+    \] 
+
+    and given \( W \) as the standard representation:
+    \[
+      W = \{a_1 e_1 + a_2 e_2 + a_3e_3 \;|\; a_1 + a_2 + a_3 = 0\} \subseteq V \text{ is a subrepr.}
+    \] 
+
+    By similar manner in \textbf{Example} \ref{eg:mat}, we can compute out:
+    \[
+      \chi_W(e) = 2 \; \chi_W(\tau ) = 0 \; \chi_W(\sigma ) = -1 
+    \] 
+
+    Note that since \( \chi_W \) is class function, it is enough to calculate the above to obtain all the information.
+  \end{eg}
+
+  We state two more important property of character.
+  \begin{proposition}
+    If \( V\cong \; V_1 \oplus V_2 \) on \( G \)-repr, then:
+    \[
+      \chi_V = \chi_{V_1} + \chi_{V_2}
+    \] 
+  \end{proposition}
+
+  The proof of it is straightforward once written out the basis and write the matrx of \( \rho_{V_1 \oplus V_2}(g) \) as \textbf{Block Diagonal Matrix}.
+
+  \begin{proposition}
+    \label{prop:conjugacy}
+    If \( V \) is a \( G \)-repr, then:
+    \[
+      \chi_V(g^{-1}) = \overline{\chi_V(g)} \quad \forall \; g \in G
+    \] 
+  \end{proposition}
+
+  We need a important lemma from linear algebra to prove it. 
+  \begin{lemma}
+    \begin{definition}[\textbf{Minimal Polynomial}]
+      Given \( A \in M_n(\CC) \), the \underline{minimal polynomial of \( A \)}, denoted as \( P_0 \) is the lowest degree monic polynomial that make \( P(A) = 0 \).
+      \begin{theorem}
+        \label{thm:mini}
+        If polynomial \( Q \) s.t. \( Q(A) = 0\), then \( P_0 \big| Q \).
+      \end{theorem}
+    \end{definition}
+    \( A \in M_n(\CC) \) is diagonalizable if and only if the minimal polynomial of \( A \) has simple roots/distinct roots.
+  \end{lemma}
+
+  \begin{proof}[\textbf{Proof of Proposition \ref{prop:conjugacy}}]
+    \leavevmode
+    \begin{claim}
+      \( \rho_V(g) \) is diagonalizable for all \( g\in G \).
+    \end{claim}
+    \begin{proof}[\textbf{Proof of the Claim}]
+      If \( N = \abs{G} \implies g^N = \Id \; \forall \; g\in G \implies \bace{\rho_V(g)}^N = \Id\). So by \textbf{Theorem} \ref{thm:mini}, the minimal polynomial of \( \rho_V(g) \) divides \( X^N - 1 \). Since \( X^N - 1 \) has no multiple roots (no numerical multiplicity bigger than $1$), it follows \( \rho_V(g) \) is diagonalizable.
+    \end{proof}
+
+    So far, see that there exists a basis of \( e_1, \ldots, e_n \) of \( V \), s.t. the matrix corresponds to \( \rho_V(g) \) is diagonal matrix, with eigenvalues being \( \lambda_1, \ldots, \lambda_n \), and \( \lambda_i^N = 1 \; \forall \; i \), then:
+    \[
+      \abs{\lambda_i} = 1 \implies \lambda_i^{-1} = \overline{\lambda _i}
+    \] 
+
+    Thus the matrix for \( \rho_V(g^{-1}) = \rho_V(g)^{-1} \), so
+    \[
+      \begin{aligned}
+        \Trace\bace{\rho_V(g^{-1})} &= \sum_{i=1}^{n} \lambda _i^{-1} \\ 
+                                    &= \sum_{i=1}^{n} \overline{\lambda _i} \\ 
+                                    &= \overline{\sum_{i=1}^{n} \lambda _i} \\ 
+                                    &= \overline{\Trace \bace{\rho_V(g)}}
+      \end{aligned}
+    \] 
+    Thus yields the result.
+  \end{proof}
+\end{section}
