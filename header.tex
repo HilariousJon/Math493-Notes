@@ -256,6 +256,7 @@
 \declaretheorem[style=conjpurplebox, name=Conjecture, numberwithin=section]{conjecture}
 \declaretheorem[style=conclredbox, name=Conclusion, numberwithin=section]{conclusion}
 \declaretheorem[style=conjpurplebox, name=Question, numberwithin=section]{question}
+\declaretheorem[style=thmbluebox, numberwithin=section, name=Example]{eg}
 
 \renewcommand\theHdefinition{\thesection.\arabic {definition}}
 \renewcommand\theHtheorem{\thesection.\arabic {theorem}}
@@ -281,10 +282,8 @@
 }
 \makeatother
 
-\declaretheorem[style=thmbluebox, numbered=no, name=Example]{eg}
 \declaretheorem[style=thmexplanationbox, numbered=no, name=Proof]{tmpexplanation}
 \newenvironment{explanation}[1][]{\vspace{-10pt}\pushQED{\(\circledast\)}\begin{tmpexplanation}}{\null\hfill\popQED\end{tmpexplanation}}
-
 \declaretheorem[style=thmblueline, numbered=no, name=Remark]{remark}
 \declaretheorem[style=thmblueline, numbered=no, name=Note]{note}
 \declaretheorem[style=thmpinkbox, numbered=no, name=Exercise]{exercise}
@@ -292,6 +291,7 @@
 \declaretheorem[style=thmgreen3box, numbered=no, name=Intuition]{intuition}
 \declaretheorem[style=notgraybox, numbered=no, name=Notation]{notation}
 \declaretheorem[style=thmanswerbox, numbered=no, name=Answer]{tmpanswer}
+\declaretheorem[style=notgraybox, numbered=no, name=Parenthesis]{parenthesis}
 \newenvironment{answer}[1][]{\vspace{-10pt}\pushQED{\(\circledast\)}\begin{tmpanswer}}{\null\hfill\popQED\end{tmpanswer}}
 
 

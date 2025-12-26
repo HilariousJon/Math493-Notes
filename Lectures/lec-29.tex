@@ -30,10 +30,83 @@
   The following lemma is very important in terms of \textbf{classifying irreducible representation}, thus we can classify different representation using irreducible representation.
 
   \begin{lemma}[\textbf{Schur's Lemma}]
+    \label{lem:schur}
     Let \( f: V \to W \) be a \textbf{morphism} between \textbf{irreducible} \( G \)-repr, with \( G \) be a finite group. Then
     \begin{enumerate}
       \item If \( V \ncong W \implies f=0\).
       \item If \( V=W \implies f = \lambda \Id_V \) for some \( \lambda \in \CC \).
     \end{enumerate}
   \end{lemma}
+
+  \begin{proof}
+    Suppose \( f: V \to W \) is non-zero, then \( \ker(f) \subseteq V \) is a subrepr, and \( f\neq 0 \implies \ker(f) \neq V \). Since \( V \) is irreducible, then \( \ker(f) = \{0\} \implies f \) is injective.
+
+    Let's take \( \Im(f) \subseteq W \) to be subrepr, similarly we see \( \Im(f) = W \implies f \) is surjective. Thus conclude that \( f \) is isomorphism.
+
+    This implies: Suppose now \( V = W \), let \( \lambda \) be an eigenvalue for \( f \), it is an automorphism, so \( \ker(f - \lambda \Id_V) \ne\{0\} \). And clearly \( f-\lambda \Id_V: V\to V \) is morphism of \( G \)-repr.
+
+    Since \( V \) is irreducible, since \( \ker(f-\lambda \Id_V) \ne \{0\} \implies f - \lambda \Id_V = 0\).
+  \end{proof}
+
+  We now focus more on what a trivial representation can derive.
+  \begin{definition}
+    Given ant \( G \)-repr \( V \), define:
+    \[
+      V^G \coloneqq \{v\in V \; | \; gv = v\} \subseteq V \text{ is a subrepr.}
+    \] 
+  \end{definition}
+
+  \begin{eg}
+    Suppose \( V, W \) are \( G \)-repr, we have:
+    \[
+      \Hom_\CC(V,W)^G = \{\vp \in \Hom_{\CC}(V,W) \; | \; g\bace{\vp(g^{-1}v)} = \vp(g^{-1}v) \; \forall \; g\in G\}
+    \] 
+
+    By definition of morphisms of \( G \)-repr, obtain:
+    \[
+      \Hom_\CC(V,W)^G = \{\text{Morphisms of $G$-repr } V\to W \}
+    \] 
+    
+    \begin{parenthesis}
+      If \( V = V_1 \oplus \cdots \oplus V_r \) where \( V_1,\ldots, V_r \) are \( G \)-repr, \( W \) is a \( G \)-repr, then:
+      \[
+        \begin{aligned}
+          \Hom_\CC(V,W) \xrightarrow{\sim} \Hom_\CC(V_1, W) \oplus \cdots \oplus \Hom_\CC (V_r, W) \\ 
+          \vp & \to (\vp|_{V_1}, \ldots, \vp|_{V_r})
+        \end{aligned}
+      \] 
+
+      which is an isomorphism by the universal properties of direct sums of \( G \)-repr, thus be a unique decomposition.
+    \end{parenthesis}
+  \end{eg}
+
+  And we give an application to this example:
+  \begin{proposition}
+    Suppose \( V = V_1 \oplus \cdots \oplus V_r \) where \( V_i \) are irreducible \( G \)-repr, \( W \) be arbitrary irreducible repr:
+    \[
+      \#\{i \; | \; V_i \cong \; W\} = \dim_\CC \bace{\Hom_\CC(V,W)^G}
+    \] 
+
+    In particular, the LHS is \textbf{independent} of the decomposition of \( V \).
+  \end{proposition}
+
+  \begin{proof}
+    See that:
+    \[
+      \begin{aligned}
+        \Hom_\CC(V,W) &\cong \; \Hom_\CC(V_1, W) \oplus \cdots \oplus \Hom_\CC(V_r, W) \\ 
+        \implies \Hom_\CC(V,W)^G &\cong \; \Hom_\CC(V_1, W)^G \oplus \cdots \oplus \Hom_\CC(V_r, W)^G 
+      \end{aligned}
+    \] 
+    
+    Thus we obtain a decomposition of \textbf{morphisms}, so we can apply \textbf{Schur's Lemma} \ref{lem:schur},
+    \[
+      \Hom_\CC(V_i, W)^G \cong\; 
+      \begin{cases}
+        0, \; \text{ if } V_i \ncong W \text{ (Contribute no dim.)}\\ 
+        \CC, \; \text{ i } V_o \cong W \text{ (Add 1 dim.)}
+      \end{cases}
+    \] 
+  \end{proof}
+
 \end{subsection}
