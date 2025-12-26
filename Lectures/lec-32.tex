@@ -1,0 +1,64 @@
+\begin{section}{Orthogonality of Characters}
+  We would gradually define the Hermitian product of characters in this section, notably, there is orthonormality within.
+
+  Consider \( \Fun(G) = \{f: G\to \CC\} \) be arbitrary functions, this is a vector space over \( \CC \):
+  \[
+    \begin{aligned}
+      (f+g)(x) &= f(x) + g(x) \; \forall \; x \in G \\ 
+      (\lambda f)(x) &= \lambda (f(x)) \; \forall \; x \in G 
+    \end{aligned}
+  \] 
+
+  A basis of \( \Fun(G) \) is given by \( \{f_x \; | \; x \in G\} \), with:
+  \[
+    f_x(y) = 
+    \begin{cases}
+      1 \text{ if } x = y \\ 
+      0 \text{ otherwise}
+    \end{cases}
+  \] 
+  
+  \begin{note}
+    \( h \in \Fun(G), \; h = \sum_{x\in G}h(x) \cdot f_x\).
+  \end{note}
+
+  Thus we see
+  \[
+    \dim(\Fun(G)) = \abs{G}
+  \] 
+
+  \begin{definition}[\textbf{Hermintian Product over $\mathbf{Fun(G)}$}]
+    We have on \( \Fun(G) \), the \underline{Hermitian product} \( \angl{-,-} \) defined by:
+    \[
+      \angl{\vp, \psi} \coloneqq \frac{1}{\abs{G}} \sum_{g\in G}\vp(g) \overline{\psi(g)} \in \CC
+    \] 
+
+    such that:
+    \begin{enumerate}
+      \item \( \angl{-, \psi}: \Fun(G) \to \CC \) is linear.
+      \item \( \angl{\vp, \psi} = \overline{\angl{\psi, \vp}} \).
+      \item \( \angl{\vp, \vp} > 0\), if \( \vp \ne 0 \), it is \( \frac{1}{\abs{G}} \sum_{g\in G} \abs{\vp(g)}^2 \).
+    \end{enumerate}
+  \end{definition}
+
+  \begin{theorem}
+    \leavevmode
+    \begin{enumerate}
+      \item If \( \rho_1, \rho_2 \) are \textbf{non-isomorphic irreducible} repr of \( G \), then 
+        \[
+          \angl{\chi_{\rho_1}, \chi_{\rho_2}} = 0 
+        \] 
+      \item If \( \rho_1 \cong \; \rho_2 \) are \textbf{irreducible}, then 
+        \[
+          \angl{\chi_{\rho_1}, \chi_{\rho_2}} = 1
+        \] 
+    \end{enumerate}
+  \end{theorem}
+
+  \begin{proof}
+    \leavevmode
+    \begin{idea}
+      
+    \end{idea}
+  \end{proof}
+\end{section}
