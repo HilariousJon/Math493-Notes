@@ -4,7 +4,7 @@
 
 Group representation theory is intended to understand group by how it maps to matrices. In general its more kinds of flavor of Category Theory, basically study group by study the morphism between group and general linear transformation.
 
-\begin{section}{Introduction}
+\section{Basic Definitions}
   General idea: group representation are linearized version of group actions on sets. 
   \[
     \begin{aligned}
@@ -53,4 +53,48 @@ Group representation theory is intended to understand group by how it maps to ma
       \end{aligned}
     \] 
   \end{remark}
-\end{section}
+
+  We then give some examples for finite group representation.
+  \begin{eg}
+    A \underline{trivial representation} is the representation \( V \), s.t. 
+    \[
+      gv=v,\; \forall \; g \in G, \; v\in V \iff G \to \GL(V), \; g\mapsto \Id_V
+    \] 
+  \end{eg}
+
+  \begin{eg}
+    If \( G \) acts on a finite set \( X \), take \( V \) vector spaces with basis \( \{e_x \; | \; x \in X\} \), the map is determined by its value on the basis, we put:
+    \[
+      g\cdot e_x = e_{gx} 
+    \] 
+
+    Since we have an action of \( G \) on \( X \), so the above is a representation, called \textbf{permutation representation}.
+  \end{eg}
+
+  \begin{eg}{(\textbf{Regular Representation})}
+    Given \( G \) be finite group, consider the action of \( G\times G \to G, \; (g,h) \mapsto gh \) given by left multiplication, we get a representation:
+    \[
+      V = \bigoplus_{g\in G} \CC e_g (\cong \; \CC^{\abs{G}}), \text{ s.t. } h\cdot\left(\sum_{g\in G}a_g e_g\right) = \sum_{g\in G} a_g e_{hg}
+    \] 
+
+    where:
+    \[
+      e_{hg} \coloneqq h\cdot e_g 
+    \] 
+
+    which gives us \textbf{regular representation} of \( G \).
+  \end{eg}
+
+  \begin{eg}
+    If \( V \) is a \( 1 \)-dimensional vector space over \( \CC \), then:
+    \[
+      G \xrightarrow{\rho} \GL(V) \cong \; \CC^{\times}
+    \] 
+
+    Since \( \CC^{\times} \) is abelian, then for every \( \rho \) above, there exists a \textbf{unqiue} map satisfying the universal property of \textbf{quotients}:
+    \[
+      \overline{\rho}: G^{ab} = \qo{G}{[G,G]} \to \GL(V)
+    \] 
+
+    Hence \( G \) and \( G^{ab} \) have the same \( 1 \)-dimensional representation, since the \textbf{images} of \( \rho \) and \( \overline{\rho} \) are the same.
+  \end{eg}

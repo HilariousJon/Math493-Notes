@@ -1,0 +1,129 @@
+\section{Category of \( G \)-representations}
+
+\subsection{Morphisms of \( G \)-representations}
+  \begin{definition}{\textbf{(Morphism of Group Representations)}}
+    Fix \( G \) a group, Given two \( G \)-representation \( V, W \) of \( G \), a \underline{morphism of representations} is a \textbf{linear map}:
+    \[
+      \begin{aligned}
+        f: V & \to W \\ 
+        \text{s.t. } f(gv) &= gf(v), \; \forall g\in G, \; v\in V
+      \end{aligned}
+    \] 
+  \end{definition}
+
+  To check well-definedness\todo{try with commutative diagram}, we need to check the property of category and verify the definition of general morhpism.
+
+  It is easy to see:
+  \begin{enumerate}
+    \item If \( V_1 \xrightarrow{f} V_2 \) and \( V_2 \xrightarrow{g} V_3\) are morphism of \( G \)-representation, then \( g\circ f \) is a morphism of \( G \)-representation. 
+    \item \( \Id_V \) is clearly a morphism of \( G \)-representation. 
+  \end{enumerate}
+
+  \begin{definition}{\textbf{(Isomorphism of \( \mathbf G \)-repr)}}
+  We get a category \underline{\( G \)-repr} with objects be \( G \)-representations and  morph be morphism of \( G \)-representation.
+
+  In particular, we get a notion of \underline{isomorphism} of \( G \)-repr as a morphism \( f: V\to W \) of \( G \)-representation, s.t. \( \exists \; g: W \to V \) being morphism of \( G \)-representation, s.t. \( g\circ f = 1_V, \; f\circ g = 1_W \). 
+
+  \end{definition}
+  \begin{lemma}
+    A morphism of \( G \)-repr \( f: V \to W \) is an isomorphism of \( G \)-repr if and only if \( f \) is bijective.
+  \end{lemma}
+
+  The proof is straightforward.
+
+  \begin{remark}
+    Given a representation \( V \) of \( G \) if we choose a basis \( v_1, \ldots, v_n \) of \( V \), get an \textbf{isomorphism of vector spaces}
+    \[
+      \begin{aligned}
+        V &\xrightarrow[\vp]{\sim} \CC^n \\ 
+        v_i & \leftrightarrow e_i \quad i \in \br{1,n}
+      \end{aligned}
+    \] 
+
+    Can use \( \vp \) to define a structure of \( G \)-repr on \( \CC^n \) such that we get an \textbf{isomorphism of \( \mathbf G \)-repr}: if \( u \in \CC^n \), \( gu = \vp(g\vp^{-1}(u)) \). Specifically, it is defined as:
+    \begin{equation}
+      \label{eq:repr-iso}
+      \begin{aligned}
+        \psi: (G \to \GL_n(\CC)) & \xrightarrow{\sim} (G\to GL(V)) \\ 
+          \psi(g)(u) &= \vp(g\underbrace{\vp^{-1}(u)}_{\text{this vector in } V})
+      \end{aligned}
+    \end{equation}
+
+    Conclusion, up to isomorphism, may always assume \( V = \CC^n \) for some \( n \). To give a structure of \( G \)-repr on \( \CC^n \):
+    \[
+      G \xrightarrow{\rho} \GL_n(\CC)
+    \] 
+    
+    \begin{question}
+      Given two \( G \)-repr \( \rho_1, \rho_2: G \to \GL_n(\CC) \), when are they \textbf{isomorphism}?
+    \end{question}
+
+    By definition, this means: there exists linear isomorphism \( \vp:\CC^n \to \CC^n \), s.t. the following diagram is commutative:
+    \[
+      \begin{tikzcd}
+      \mathbb{C}^n \arrow[r, "\varphi"] \arrow[d, "\rho_1(g)"'] & \mathbb{C}^n \arrow[d, "\rho_2(g)"] \\
+      \mathbb{C}^n \arrow[r, "\varphi"']                         & \mathbb{C}^n
+      \end{tikzcd}
+    \]
+    which is also means, by what we have done in \textbf{Formula} \ref{eq:repr-iso}:
+    \[
+      \begin{aligned}
+      \psi: \underbrace{(G \to \GL(\underbrace{\CC^n}_{=V_1}))}_{=\rho_1} & \xrightarrow{\sim} \underbrace{(G\to GL(\underbrace{\CC^n}_{=V_2}))}_{\rho_2} \\ 
+          \psi(g)(u) &= \vp(g\underbrace{\vp^{-1}(u)}_{\text{this vector in } V_1})
+      \end{aligned}
+    \] 
+
+    The diagram is \textbf{commutative}, meaning:
+    \[
+      \vp \circ \rho_1(g) = \rho _2(g)\circ \vp 
+    \] 
+
+    Hence \( \rho_1 \cong \; \rho_2 \) if and only if there exists \( A \in GL_n(\CC) \), s.t. 
+    \[
+      \rho_1(g) = A^{-1}\rho_2(g)A \quad \forall \; g\in G
+    \] 
+  \end{remark}
+  
+  \begin{eg}
+    Suppose that \( n = 1 \), \( \rho_1,\rho_2: G \to \CC^{\times} \), then \( \rho_1 \cong\; \rho_2 \) iff \( \rho_1 = \rho_2 \).
+
+    It is straightforward since \( \CC^n \) is an abelian group on multiplication.
+  \end{eg}
+
+  \begin{eg}
+    \( G \cong \; \qo{\ZZ}{n\ZZ} \). The isomorphism classes of \( 1 \)-dim repr of \( G \): They are in bijection with group isomorphism 
+    \[
+      \qo{\ZZ}{n\ZZ} \longrightarrow \CC^{\times}
+    \] 
+
+    This is easy to see since it is \( 1 \)-dimensional representation. 
+
+    We look at the generator of these two groups and realize the set of this group homomorphism is in bijection with 
+    \[
+      \{\lambda \in \CC \; | \; \lambda ^n = 1\}
+    \] 
+
+    Since the group homomorphism is determined by:
+    \[
+      i+n\ZZ \longrightarrow \lambda^i 
+    \] 
+  \end{eg}
+
+  We now look at the subobject of a representation of a given group.
+  \begin{definition}{\textbf{(Subrepresentation)}}
+    If \( V \) is a \( G \)-repr, a \underline{subrepresentation} of \( V \) is a linear subspace \( W \subseteq V \), s.t. \( gv\in W, \; \forall\; v\in W \).
+
+    In this case, \( W \) has a structure of \( G \)-repr, s.t. 
+    \[
+      \begin{aligned}
+      \mathbf{i : W} & \mathbf{\to V} \\ 
+      i(x) &= x 
+      \end{aligned}
+    \] 
+
+    is a \textbf{morphism} of \( G \)-repr.
+  \end{definition}
+
+  \begin{proposition}
+    If \( f: V \to W \) is a morphism of \( G \)-repr, then \( \ker(f) \subseteq V \) and \( \Im(f) \subseteq W \) are subrepresentation.
+  \end{proposition}
