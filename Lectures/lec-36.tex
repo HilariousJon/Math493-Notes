@@ -1,0 +1,203 @@
+\begin{section}{Characters and Conjugacy Classes}
+  In this section, our general goal is to see how the number of irreducible representation of a given group is connected to the number of conjugacy classes of the group. In particular, we will see that they are in fact equal. In general there is no algorithm to derived them from each other, but we have such quantative relationship, which is magical.
+
+  We first introduce the setup of this section: Given \( G \) be a finite group, define the \textbf{class function} as:
+  \[
+    \cC (G) \coloneqq \{f: G \to \CC \; | \; f(g) = f(hgh^{-1}), \; \forall \; g,h\in G\} \subseteq \Fun(G)
+  \] 
+
+  which is clearly a linear subspace. It has a basis \( (f_C)_{C \text{ be conjugacy class of } G} \), such that:
+  \[
+    f_C(g) = 
+    \begin{cases}
+      1, \text{ if } g\in C \\ 
+      0, \text{ otherwise}
+    \end{cases}
+  \] 
+
+  In particular, \( \dim\cC(G) = \# \) conjugacy classes of \( G \). We've seen: if \( \rho \) be representation of \( G \), then \( \chi_\rho \in \cC(G) \) given by the trace property.
+  
+  \begin{theorem}
+    \label{thm:conjugacy}
+    \leavevmode
+
+    If \( \rho_1, \ldots, \rho_r \) are all the irreducible \( G \)-repr, then \( \chi_{\rho_1}, \ldots, \chi_{\rho_r} \) is a basis of \( \cC(G) \). 
+
+    In particular, \( r = \#\) conjugacy classes of \( G \).
+
+    \begin{remark}
+      \label{rmk:easy}
+      We know, \( \chi_{\rho_1}, \ldots, \chi_{\rho_r} \in \cC(G)\) and
+      \[
+        \angl{\chi_{\rho_i}, \chi_{\rho_j}} = \delta_{i,j} \quad \forall \; i,j 
+      \] 
+
+      i.e. they are linearly independent. It is left to proof:
+      \[
+        \chi_{\rho_1}, \ldots \chi_{\rho_r} \text{ span } \cC(G)
+      \] 
+    \end{remark}
+  \end{theorem}
+  
+  We need some preparation to give the proof.
+  \begin{lemma}
+    \label{lem:prep}
+    Suppose \( f\in\cC(G) \) and \( \rho: G \to \GL(V) \) be a \( G \)-repr. Define:
+    \[
+      \begin{aligned}
+        \rho_f &\in \End_{\CC}(V) \\ 
+        \rho_f = \sum_{g\in G} f(g) \rho(g)
+      \end{aligned}
+    \] 
+
+    \begin{enumerate}
+      \item \( \rho_f: V \to V \) is a morphism of \( G \)-repr. See that:
+        \[
+          \begin{aligned}
+            \rho_f(hv) = \sum_{g\in G} f(g) \underbrace{ghv}_{gv = \rho(g)v} &= h\cdot \bace{\sum_{g\in G}f(g) \cdot h^{-1} ghv} \\ 
+                                                                             &= h\cdot \bace{\sum_{g\in G} (h^{-1}gh) \cdot (h^{-1}gh) v} \\ 
+                                                                             &= h \cdot \bace{\sum_{g'\in G} f(g')g'v} \\ 
+                                                                             &= h\cdot \bace{\sum_{g'\in G} f(g') \rho(g') (v)} \\ 
+                                                                             &= f\cdot \rho_f(v) 
+          \end{aligned}
+        \] 
+      \item If \( \rho \) is irreducible, then by \textbf{Schur's Lemma} \ref{lem:schur} and that \( \rho_f \) gives a morphism from \( V\to V \), see that \( \rho_f = \lambda \Id_V \) for some \( \lambda \in \CC \). 
+
+        Take trace on both sides:
+        \[
+          \begin{aligned}
+            \sum_{g\in G}f(g) \chi_{\rho}(g) &= \lambda \cdot \dim(V) \\ 
+                                             &= \abs{G} \angl{\chi_{\rho},\overline{f}} \\ 
+            \implies \lambda &= \angl{\chi_{\rho}, \overline{f}} \frac{\abs{G}}{\dim V} \\ 
+            \text{where } \overline{f} : &G\to \CC, \; \overline{f}(g) = \overline{f(g)}
+          \end{aligned}
+        \] 
+
+      \item If \( \rho = \rho_1 \oplus \rho_2 \), then by \( V = V_1 \oplus V_2 \) and \( \rho(g) = (\rho_1(g), \rho_2(g)) \implies \rho_f = (\rho_{f_1}, \rho_{f_2}) \).
+    \end{enumerate}
+  \end{lemma}
+
+  \begin{proof}[\textbf{Proof of Thm. \ref{thm:conjugacy}}]
+    By \textbf{Remark} \ref{rmk:easy}, it is enough to show: 
+    \[
+      \Span\{\chi_{\rho_1}, \ldots, \chi_{\rho_r}\} = \cC(G)
+    \]  
+
+    \begin{fact}
+      Since \( \angl{-,-} \) is a Hermitian product on \( \cC(G) \), it is enough to show:
+      \[
+        \{f \in \cC(G) \; | \; \angl{\chi_{\rho_i}, f} = 0 \; \forall \; i\} = \{0\}
+      \] 
+
+      Reckon this in terms of othorgonal projection shall yields the results.
+
+      \begin{parenthesis}[\textbf{From Linear Algebra}]
+        If \( W \subseteq \cC(G) \) be linear subspace, then \( W \oplus W^\perp = \cC(G) \), where:
+        \[
+          W^\perp = \{\vp \; | \; \angl{w, \vp} = 0, \; \forall w \in W\}
+        \] 
+
+        By definition of dual, we have such isomorphism:
+        \[
+          \begin{aligned}
+            \cC(G) & \xrightarrow{\sim} \cC(G)^* \\ 
+            \vp & \mapsto \angl{-, \overline{\vp}}
+          \end{aligned}
+        \] 
+
+        It is injective: \( \vp \ne 0 \implies \angl{\overline{\vp}, \overline{\vp}} \ne 0 \). They have same dimension, thus bijection and hence isomorphism.
+
+        If \( W \hookrightarrow \cC(G) \) be subspace, then:
+        \[
+          \cC(G) \xrightarrow{\sim} \cC(G)^* \to W^* \text{ is surjective.}
+        \] 
+
+        with kernel \( \{\psi\; | \; \angl{\psi, \overline{\vp}} = 0, \; \forall \; \vp \in W\} \)
+        \[
+          \implies \underbrace{\dim W^*}_{=\dim W} + \underbrace{\dim \overline{W}^\perp}_{=\dim W^\perp} = \dim \cC(G)* = \dim \cC(G)
+        \] 
+
+        by the rank theorem. Since \( W \cap W^\perp = \{0\} \) since \( \angl{\vp, \vp} \ne 0 \; \forall \; \vp \) 
+        \[
+          \cC(G) = W \oplus W^\perp 
+        \] 
+      \end{parenthesis}
+    \end{fact}
+    
+    Hence we want to show: if \( f \in \cC(G) \), s.t. 
+    \[
+      \angl{\chi_{\rho_i}, f} = 0, \; \forall \; i \implies f = 0 
+    \] 
+
+    By \textbf{Lemma} \ref{lem:prep} \textbf{2}, \( \bace{\rho_i}_{\overline{f}} = 0 \; \forall \; i \), since:
+    \[
+      \bace{\rho_i}_{\overline{f}} = \underbrace{\angl{\chi_{\rho_i}, f}}_{=0} \frac{\abs{G}}{\dim (\rho_i)} 
+    \] 
+
+    By \textbf{Lemma} \ref{lem:prep} \textbf{3}, since every repr. is a direct sum of irred. repr., then \( \rho_f = 0 \; \forall \rho \) as representation. 
+
+    Apply for \( \rho = \rho^{\reg} \) which is the regular representation:
+    \[
+      V = \bigoplus_{g\in G}\CC e_g \implies \sum_{g\in G} \overline{f}(g) \rho^{\reg} (g) = 0 
+    \] 
+
+    this is a endormorphism, so we can apply it to \( e_1 \in V \) who is the \textbf{identity element} of \( V \), and get:
+    \[
+      \sum_{g\in G} \overline{f}(g)e_g = 0 \quad (\text{since } \rho^{\reg} (g)(e_1) = g\cdot e_1 = e_{g\cdot 1} = e_g)
+    \] 
+
+    The \( e_g \) are \textbf{linearly independent} by definition of regular representation, thus \( \overline{f}(g) = 0 \; \forall \; g \in G \implies \overline{f} = 0 \implies f = 0 \).
+  \end{proof}
+
+  \begin{note}
+    There is \textbf{no natural canonical way to associate conjugacy classes and irreducible representation!}
+
+    However, it is recommended to make a table for a group \( G \) with \( x \)-axis being irreducible characters and \( y \)-axis being the conjugacy classes.
+  \end{note}
+
+  \begin{proposition}[\textbf{Second Orthogonal Property}]
+    \leavevmode 
+    \begin{enumerate}
+      \item If \( g,h\in G \) are not conjugate to each other, and \( \rho_1, \ldots, \rho_r \) are irred. \( G \)-repr, then:
+        \[
+          \sum_{i=1}^{r} \chi_{\rho_i}(g) \overline{\chi_{\rho_i}(h)} = 0 
+        \] 
+
+      \item we have:
+        \[
+          \sum_{i=1}^r \chi_{\rho_i}(g) \overline{\chi_{\rho_i}(g)} = \frac{\abs{G}}{c(g)}
+        \] 
+
+      where \( c(g) = \# \{\text{conjugacy classes of } g\} \)
+    \end{enumerate}
+  \end{proposition}
+
+  \begin{proof}
+    \textbf{(Sketch of Proof)}: Choose \( f\in \cC(G) \), s.t.
+    \[
+      f(x) = 
+      \begin{cases}
+        1, \text{ if } x \in \text{ conjugacy classes of } h \\ 
+        0, \text{ otherwise}
+      \end{cases}
+    \] 
+
+    We know we can write \( f = \sum_{i=1}^r a_i \chi_{\rho_i} \), with :
+    \begin{equation}
+      \label{eq:plug}
+      a_i = \angl{f, \chi_{\rho_i}} =\frac{1}{\abs{G}} \sum_{g\in G} f(g) \overline{\chi_{\rho_i}(h)} = \frac{c(h)\overline{\chi_{\rho_i}(h)}}{\abs{G}}
+    \end{equation}
+
+    By construction: if \( g \not\in \) conjugacy class of \( h \implies f(g) = 0\):
+    \[
+      \implies \sum_{i=1}^{r} \angl{f, \chi_{\rho_i}} \chi_{\rho_i}(g) = 0 
+    \] 
+
+    if \( g\in \) conjugacy class of \( h \):
+    \[
+      \implies \sum_{i=1}^r \angl{f, \chi_{\rho_i}} \chi_{\rho_i}(g) = 0 
+    \] 
+
+    now plugin \textbf{Equation} \ref{eq:plug} yields the results.
+  \end{proof}
+\end{section}
