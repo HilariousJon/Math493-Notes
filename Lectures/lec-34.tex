@@ -1,0 +1,290 @@
+\begin{section}{Group Representations on Multi-linear Algebra}
+  In this section we focus on how to get representation via tensor product, exterior product as well as symmetric product. They are special way to derive special vector spaces in linear algebra, and it will be natural to explore its usage in representation theory.
+
+  \begin{subsection}{Representation via Tensor Product}
+    Let's first consider the definition of tensor product.
+    \begin{definition}[\textbf{Tensor Product of Vector Spaces}]
+      If \( V, W \) are finite dimensional vector spaces over \( \CC \), then the \underline{tensor product} of these two vector spaces \( V\otimes_{\CC} W \) is another vector space with a bilinear map:
+      \[
+        \begin{aligned}
+         g: V\times W & \to V \otimes_\CC W \\ 
+          (v,w) &\mapsto v\otimes w 
+        \end{aligned}
+      \] 
+      
+      which has a \textbf{universal property} that if \( f: V \times W \to U \) is bilinear, then there exists a \textbf{unique linear map \( \mathbf h \)}, such that the following diagram is commutative:
+      \[
+        \begin{tikzcd}[column sep=large, row sep=large]
+      V \times W \arrow[r, "g"] \arrow[rd, "f"'] & V \otimes_{\mathbb{C}} W \arrow[d, "h"] \\
+        & U
+        \end{tikzcd}
+      \]
+    \end{definition}
+
+    \begin{remark}
+      \leavevmode 
+      \begin{itemize}
+        \item The universal property of tensor product implies that if 
+          \[
+            \begin{aligned}
+              V_1 &\xrightarrow{f_1} W_1 \\ 
+              V_2 & \xrightarrow{f_2} W_2 
+            \end{aligned}
+          \] 
+
+          are both linear maps, then we get a new linear map 
+          \[
+            \begin{aligned}
+              V_1 \otimes V_2 &\xrightarrow{f_1 \otimes f_2} W_1 \otimes W_2 \\ 
+              v_1 \otimes v_2 & \longmapsto f_1(v_1) \otimes f_2(v_2) 
+            \end{aligned}
+          \] 
+
+          In particular, such map behaves well with respect to composition 
+          \[
+            (g_1 \circ f_1) \otimes (g_2 \circ f_2) = (g_1 \otimes g_2) \circ (f_1 \otimes f_2)
+          \] 
+        \item If \( e_1, \ldots, e_n \) is basis for \( V \) and \( f_1, \ldots, f_m \) is basis of \( W \), then a basis for \( V \otimes W \) is given by:
+          \[
+            \{e_i \otimes f_j \; | \; i \in \br{1,n}, \; j \in \br{1,m}\}
+          \] 
+      \end{itemize}
+    \end{remark}
+
+    Then we step into tensor product of representations. 
+    \begin{definition}[\textbf{Tensor Product of Group Representations}]
+      Let \( G \) be finite group, and have \( 2 \) representations:
+      \[
+        \begin{aligned}
+          \rho _1: G & \to \GL(V_1) \\ 
+          \rho_2 : G& \to \GL(V_2) 
+        \end{aligned}
+      \] 
+
+      We get a new representation \( \rho_1 \otimes \rho_2 \), which is the \underline{tensor product} of \( 2 \) representations, such that:
+      \[
+        \begin{aligned}
+          G & \to \GL(V_1 \otimes V_2) \\ 
+          \rho_1 \otimes \rho _2(g) &= \rho _1(g) \otimes \rho _2(g)
+        \end{aligned}
+      \] 
+    \end{definition}
+    
+    One can check that such map results is invertible and itself yields a group homomorphism, thus it is indeed a well-defined group representation.
+
+    One can also try an example of calculating \( \rho \otimes \rho((12)) \) and \( \rho \otimes \rho((123)) \) with the same setup in \textbf{Example} \ref{eg:mat}. The point is to write the basis of tensor product as \( f_1 \otimes f_1, f_1 \otimes f_2, f_2\otimes f_1, f_2\otimes f_2 \) and take advantage of the property of \textbf{bilinearity}.
+
+    \begin{proposition}
+      If \( \rho_1, \rho_2 \) are \( 2 \) \( G \)-repr, then:
+      \[
+        \chi_{\rho_1 \otimes \rho_2} (g) = \chi_{\rho_1}(g) \cdot \chi_{\rho_2}(g) \qquad \forall \; g\in G 
+      \] 
+    \end{proposition}
+
+    \begin{proof}
+      Suppose:
+      \[
+        \begin{aligned}
+          \rho_1: G & \to \GL(V) \qquad e_1, \ldots e_n \text{ basis of } V \\ 
+          \rho_2: G & \to \GL(W) \qquad f_1, \ldots, f_m \text{ basis of } W 
+        \end{aligned}
+      \] 
+
+      then:
+      \[
+        \begin{aligned}
+          \rho _1(g): e_j &\to \sum_{i=1}^{n} a_{ij} e_i \qquad \chi_{\rho_1}(g) = \sum_{i=1}^n a_ii \\ 
+          \rho _2(g): f_l &\to \sum_{i=1}^m b_{kl}f_k \qquad \chi_{\rho _2}(g) = \sum_{k=1}^m b_{kk}
+        \end{aligned}
+      \] 
+
+      thus:
+      \[
+        \begin{aligned}
+          \rho _1 \otimes \rho _2(g): e_j\otimes f_l & \mapsto \bace{\sum_{i=1}^n a_{ij}e_i} \otimes \bace{\sum_{k=1}^m b_{kl}f_k} 
+                                                     &= \sum_{i=1}^n \sum_{k=1}^m a_{ij}b_{kl} \bace{e_i \otimes f_k}
+        \end{aligned}
+      \] 
+
+      For \( i=j, k=l \), thus:
+      \[
+        \begin{aligned}
+          \Trace(\rho _1 \otimes \rho _2 (g)) &= \sum_{i,k}a_{ii} b_{kk} \\ 
+                                               &= \bace{\sum a_{ii}} \cdot \bace{\sum b_{kk}} \\ 
+                                               &= \chi_{\rho_1} (g) \cdot \chi_{\rho_2}(g)
+        \end{aligned}
+      \] 
+    \end{proof}
+
+    \begin{remark}
+      \leavevmode 
+      \[
+        \chi_{\rho \otimes \rho} (g) = \bace{\chi_{\rho }(g)}^2 
+      \] 
+    \end{remark}
+  \end{subsection}
+
+  \begin{subsection}{Representation via Exterior Product}
+    Let's first state the definition for exterior product for vector spaces.
+    \begin{definition}[\textbf{Exterior Product for Vector Spaces}]
+    Suppose \( V \) be any finite dimensional vector space over \( \CC \), \( p\geq 1 \), then the \underline{\textbf{\( \mb p\)\textsuperscript{th}} exterior product} is defined:
+      \[
+        \bigwedge^{p} V \coloneqq \qo{V^{\otimes p}}{\text{span} \{ x_1 \otimes \cdots \otimes x_p \mid \exists \, i < j, \, x_i = x_j \}}
+      \] 
+      
+      along with the \textbf{multi-linear and alternating map}:
+      \[
+        \begin{aligned}
+          g: \underbrace{V\times \cdots \times V}_{p \text{ times}} & \to \bigwedge^p V \\ 
+          (v_1, \ldots, v_p) &\mapsto v_1 \wedge \cdots \wedge v_p 
+        \end{aligned}
+      \] 
+      
+      which has the \textbf{universal property} that if \( f: V^{\times p} \to U \) is multi-linear and alternating, then there exists a \textbf{unique linear map \( \mb h \)}, such that the following diagram is commutative: 
+      \[
+      \begin{tikzcd}[column sep=large, row sep=large]
+          \underbrace{V \times \cdots \times V}_{p \text{ times}} \arrow[r, "g"] \arrow[rd, "f"'] & \bigwedge^p V \arrow[d, "h"] \\
+          & U
+      \end{tikzcd}
+      \]  
+      In fact, this gives us a functor, if \( f: V \to W \) is a linear map, then the following diagram is commutative: 
+      \[
+        \begin{tikzcd}[column sep=huge, row sep=huge]
+          \underbrace{V \times \dots \times V}_{p \text{ times}} \arrow[r, "f \times \dots \times f"] \arrow[d, "\varphi_V"'] & \underbrace{W \times \dots \times W}_{p \text{ times}} \arrow[d, "\varphi_W"] \\
+          \text{\hspace{5em}} & \text{\hspace{5em}} \\[-9ex]
+          \bigwedge^p V \arrow[r, "\bigwedge^p f"] & \bigwedge^p W
+        \end{tikzcd}
+      \] 
+
+      The universal property of \( \bigwedge^p V \) implies that there exists a unique linear map:
+      \[
+        \begin{aligned}
+          \bigwedge^p f: \bigwedge^p V & \to \bigwedge^p W \\ 
+          v_1 \wedge \cdots \wedge v_p &\to f(v_1) \wedge \cdots \wedge f(v_p)
+        \end{aligned}
+      \] 
+
+      The upshot:
+      \[
+        \bigwedge^p : \qo{\vect}{\CC} \to \qo{\vect}{\CC} \text{ is a functor.  }
+      \] 
+    \end{definition}
+
+    \begin{question}
+      What is \( \dim \bigwedge^p V \)?
+    \end{question}
+
+    \begin{theorem}[\textbf{Dimension of Exterior Product}]
+      If \( e_1, \ldots, e_n \) be basis of \( V \), then a basis of \( \bigwedge^p V \) is given by:
+      \[
+        \{e_{i_1}\wedge \cdots \wedge e_{i_p} \; | \; 1 \leq i_1 < \cdots < i_p \leq n\} 
+      \] 
+
+      In particular, \( \bigwedge^p V = 0 \) if \( p > n \), and \(\dim \bigwedge^n V = 1 \).
+    \end{theorem}
+
+    \begin{proof}
+      Since \( e_{i_1} \otimes \cdots \otimes e_{i_p} \) for \( 1\leq i_1, \cdots ,i_p \leq n \) form a basis of \( \underbrace{V\otimes \cdots \otimes V}_{p \text{ times}}  \). Then \( e_{i_1} \wedge \cdots \wedge e_{i_p} \) generates \( \bigwedge^p V \). But \( e_{i_1} \wedge \cdots \wedge e_{i_p} =0\) if \( i_k = i_l \) for some \( k < l \) and 
+      \[
+        e_{i_{\sigma (1)}} \wedge \cdots \wedge e_{i_{\sigma (p)}} = \epsilon (\sigma )(e_{i_1} \wedge \cdots \wedge e_{i_p}) \quad \forall \; \sigma \in S_p 
+      \] 
+
+      Hence \( \{e_{i_1}\wedge \cdots \wedge e_{i_p} \; | \; 1 \leq i_1 < \cdots < i_p \leq n\} \) generates \( \bigwedge^p V \). Let's then check these elements are linearly independent.
+
+      We denote if \( I \subseteq \{1, \ldots, n\} \), \( \abs{I} = p \), then put \( e_I = e_{i_1} \wedge \cdots \wedge e_{i_p} \) where \( I = i_1 < \cdots < i_p \). 
+
+      Suppose \( \sum_{I \subseteq [n], \abs{I} = p} a_I e_I = 0 \) in \( \bigwedge^p V \), want to see: \( a_I = 0\; \forall \; I \), we want to construct a linear map:
+      \[
+        \begin{aligned}
+          \alpha_I : \bigwedge^p V & \to \CC \\ 
+          \alpha_I(e_I) & = \pm 1 \\ 
+          \alpha_I(e_J) & =0 \quad \forall J \ne I 
+        \end{aligned}
+      \] 
+
+      This would imply what we need. 
+
+      To get this, let \( I \) be fixed, and \( \overline{I} := \{1,2,\ldots, n\} - I \) with elements being \( j_1, \ldots, j_{n-p} \), then define:
+      \[
+        \begin{aligned}
+          \tilde{\alpha }: \underbrace{V\times \cdots \times V}_{p \text{ times}}& \to \CC \\ 
+          \alpha(v_1, \ldots, v_p) &= \det\bace{
+          \begin{array}{cccc}
+            \vline & \vline & & \vline \\
+            v_1 & v_2 & \dots & v_p \\
+            \vline & \vline & & \vline
+          \end{array}
+          \right. \left.
+          \begin{array}{ccc}
+            \vline & & \vline \\
+            e_{j_1} & \dots & e_{j_{n-p}} \\
+            \vline & & \vline
+          \end{array}}
+        \end{aligned}
+      \] 
+
+      where the matrix on the right hand side is written as column vectors w.r.t. \( e_1, \ldots, e_n \). By properties of determinant, this is a multi-linear alternating map. By the \textbf{universal property} of \( \bigwedge^p V \), this gives us a linear map:
+      \[
+        \begin{aligned}
+          \bigwedge^p &\to \CC \\ 
+          v_1\wedge \cdots \wedge v_p &\mapsto \det\bace{
+          \begin{array}{cccc}
+            \vline & \vline & & \vline \\
+            v_1 & v_2 & \dots & v_p \\
+            \vline & \vline & & \vline
+          \end{array}
+          \right. \left.
+          \begin{array}{ccc}
+            \vline & & \vline \\
+            e_{j_1} & \dots & e_{j_{n-p}} \\
+            \vline & & \vline
+          \end{array}}
+        \end{aligned}
+      \] 
+
+      and its clear that this maps satisfy that \( e_J \to 0 \) if \( J \ne I \) and \( e_I \to \pm 1 \).
+    \end{proof}
+  \end{subsection}
+
+  \begin{subsection}{Representation via Symmetric Product}
+    This section will be basically almost the same as what we introduced for the exterior product, but the universal property we get is w.r.t. multi-linear symmetric map. 
+    \begin{definition}[\textbf{Symmetric Product for Vector Spaces}]
+      Supppose \( V \) be anyy finite dimensional vector spaces over \( \CC \), then the \underline{\( \mb p \)\textsuperscript{th} symmetric product} is defined:
+      \[
+        S^p V \coloneqq \qo{V^{\otimes p}}{\text{span} \{v_1\otimes \cdots \otimes v_p - v_{\sigma(1)} \otimes \cdots \otimes v_{\sigma(p)} \; | \; v_1, \ldots, v_p \in V, \; \sigma \in S_p\}}
+      \] 
+      along with the \textbf{multi-linear symmetric map}: 
+      \[
+        \begin{aligned}
+          g: \underbrace{V\times \cdots \times V}_{p \text{ times}} &\to S^p V \\ 
+          (v_1, \ldots, v_p) &\mapsto v_1 \cdots v_p 
+        \end{aligned}
+      \] 
+
+      which has the universal property that if \( f: V^{\times p} \to U \) is multi-linear and symmetric, then there exists a \textbf{unique linear map} \( \mathbf h \), such that the following diagram is commutative: 
+      \[
+      \begin{tikzcd}[column sep=large, row sep=large]
+          \underbrace{V \times \cdots \times V}_{p \text{ times}} \arrow[r, "g"] \arrow[rd, "f"'] & S^p V \arrow[d, "h"] \\
+          & U
+      \end{tikzcd}
+      \]
+
+      which defines a functor \( S^p: \qo{\vect}{\CC} \to \qo{\vect}{\CC} \).
+    \end{definition}
+
+    \begin{theorem}
+      If \( e_1, \ldots, e_n \) is basis of \( V \), then a basis of \( S^p V \) is given by:
+      \[
+        \{e_{i_{1}} \cdots e_{i_p} \; | \; 1 \leq i_{i} \leq \cdots \leq i_p \leq n\}
+      \] 
+    \end{theorem}
+    
+    Analyzing the property of representation induced by exterior product and symmetric product is similar to what we have done for tensor product: write out the basis and use the multi-linearity and symmetric/alternating property. Here is an interesting statement:
+    \begin{proposition}
+      \leavevmode 
+      \[
+        \rho \otimes \rho \cong \; \bace{S^2 \rho} \oplus \bace{\bigwedge^2 \rho}
+      \] 
+    \end{proposition}
+  \end{subsection}
+\end{section}
