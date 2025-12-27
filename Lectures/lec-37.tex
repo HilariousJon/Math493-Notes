@@ -1,0 +1,114 @@
+\begin{section}{Irreducible Representation of \( \mb S_4 \)}
+  In this section we will give a comprehensive analysis of the irreducible representation of \( S_4 \), as an example, to reveal some technique of finding them. In general, we will introduce induced representation later, which also gives us a powerful way to discover the irrreducible representation of a give group by deriving representation from its subgroup. Such will be given in an example of \( D_{2n} \).
+
+  Recall that \( S_4 \) have two \( 1 \)-dim irred. repr, which are the \textbf{trivial} and \textbf{sign} representation, and no other \( 1 \)-dim irred. repr. Also recall that there are two \( 3 \)-dim and one \( 2 \)-dim irred. repr., we denote them as \( V_1, V_2, V_3 \), so in this section, our goal is to determine \( V_1, V_2, V_3 \).
+  \begin{enumerate}
+    \item \( \mb{V_1} \):   We start with the representation of \( S_4 \) on \( \CC^4 \) with the action of \( S_4 \) permuting the entries of a vector space:
+    \[
+      V_1 = \{(a_1, a_2, a_3, a_4) \; | \; a_1 + a_2 + a_3 + a_4 = 0\} \subseteq V \text{ is a subrepr.}
+    \] 
+
+    We want to see if its irreducible. So we look into its character, as it's class function we only look at conjugacy classes of \( S_4 \), in particular its cycle type and count the number of elements in the orbits.
+    \begin{itemize}
+      \item \( \chi_{V_1}(e) = 3 \) as its a \( 3 \)-dim repr. May use basis \( f_1 = e_1 - e_2, f_2 = e_2 - e_3, f_3 = e_3 - e_4 \).
+      \item \( \chi_{V_1}((12)) \) \textbf{(transposition)}: 
+        \[
+          \begin{aligned}
+            f_1 &\mapsto -f_1 \\ 
+            f_2&\mapsto f_1 + f_2 \implies \begin{pmatrix}
+              -1 &  1 & 0 \\ 
+              0 & 1 & 0 \\ 
+              0 & 0 & 1 
+            \end{pmatrix} \implies \chi_{V_1}((12)) = 1 \\ 
+              f_3 & \mapsto f_3 
+          \end{aligned}
+        \] 
+
+        There are \( 6 \) of such elements. 
+      \item \( \chi_{V_1}((12)(34)) \) \textbf{prod. of disjoint cycles}: 
+        \[
+        \begin{aligned}
+            f_1 &\mapsto -f_1 \\ 
+            f_2&\mapsto f_1 + f_2 + f_3 \implies \begin{pmatrix}
+              -1 &  1 & 0 \\ 
+              0 & 1 & 0 \\ 
+              0 & 1 & -1 
+            \end{pmatrix} \implies \chi_{V_1}((12)(34)) = -1 \\ 
+              f_3 & \mapsto -f_3 
+        \end{aligned}
+        \]
+
+        There are \( 3 \) of such elements.
+      \item \( \chi_{V_1}((123)) \) \textbf{3-cycles}:
+        \[
+        \begin{aligned}
+            f_1 &\mapsto f_2 \\ 
+            f_2&\mapsto -f_1 - f_2  \implies \begin{pmatrix}
+              0 &  -1 & 1 \\ 
+              1 & -1 & 1 \\ 
+              0 & 0 & 1 
+            \end{pmatrix} \implies \chi_{V_1}((123)) = 0 \\ 
+              f_3 & \mapsto f_1 + f_2 + f_3 
+        \end{aligned}
+        \]
+
+        There are \( 8 \) of such elements.
+      \item \( chi_{V_1}((1234)) \) \textbf{4-cycles}: 
+        \[
+        \begin{aligned}
+            f_1 &\mapsto f_2 \\ 
+            f_2&\mapsto f_3  \implies \begin{pmatrix}
+              0 &  0 & -1 \\ 
+              1 & 0 & -1 \\ 
+              0 & 1 & -1 
+            \end{pmatrix} \implies \chi_{V_1}((1234)) = -1  \\ 
+              f_3 & \mapsto -(f_1 + f_2 + f_3)
+        \end{aligned}
+        \]
+        
+        There are \( 6 \) of such elements.
+    \end{itemize}
+    \[
+      \angl{\chi_{V_1}, \chi_{V_1}} = \frac{1}{24}(3^2 + 6\cdot 1^2 + 3 \cdot (-1)^2 + 8 \cdot 0^2 + 6 \cdot (-1)^2) = 1
+    \] 
+
+    Indeed irreducible. 
+  \item \( \mb V_2 \): Now \( \rho_1: S_4 \to GL(V_1) \), let \( \rho_2 = \rho_1 \otimes \rho_{\text{sign}} \) whose correspoding vector space \( V_2 = V_1 \), with \( \rho_2(\sigma) = \epsilon(\sigma)\rho_1(\sigma) \). Thus:
+    \[
+      \chi_{\rho_2} (\sigma) = \epsilon(\sigma)\chi_{\rho_1}(\sigma ) \qquad \forall \; \sigma \in S_4 
+    \] 
+
+    Take \( \sigma \) to be an odd permutation, so \( \chi_{\rho_1}(\sigma) \ne 0 \implies \chi_{\rho_2}(\sigma) \ne \chi_{\rho_1}(\sigma) \implies \rho_1 \ncong \; \rho_2 \).
+    \[
+      \angl{\chi_{\rho_2}, \chi_{\rho_2}} = \angl{\chi_{\rho_1}, \chi_{\rho_1}} = 1 \implies \rho_2 \text{ is also irreducible.}
+    \] 
+  
+  \item \( \mb V_3 \): To get the \( 2 \)-dim irred. repr. Look into the Klein subgroup:
+    \[
+      K = \{e, (12)(34), (13)(24), (14)(23)\} \unlhd S_4
+    \] 
+
+    We've seen its normality before. See that \( \abs{\qo{S_4}{K}} = 6 \), with \( a=(12) \in S_4, \; b = (123) \in S_4 \) and their images \( \overline{a}, \overline{b} \in \qo{S_4}{K} \). Since \( a^2 = b^3 = e\implies \overline{a}^2 = \overline{b}^3 = e\cdot K, \; a,b\not\in K \implies \abs{\overline{a}} = 2, \; \abs{\overline{b}} = 3 \).
+
+    See that \( ab = (12)(123) = (23) \implies abab = e \implies \overline{a}\overline{b}\overline{a}\overline{b}=e\cdot K \implies \overline{b}\overline{a} = \overline{a}\overline{b}^2 \implies \qo{S_4}{K} \) is not abelian, thus \( \qo{S_4}{K} \cong \; S_3\).
+
+    We know we have a \( 2 \)-dim irred. repr. for \( S_3 \):
+    \[
+      \rho': S_3 \to \GL(V_3)
+    \] 
+
+    Let \( \rho_3 \) be the corresponding composition:
+    \[
+    \begin{tikzcd}[column sep=large, row sep=large]
+      S_4 \arrow[rr, "\rho_3", bend left=20, orange] \arrow[d, "\pi"] \arrow[r, "\text{surj}", two heads] & 
+      S_3 \arrow[r, "\rho'"] & 
+      GL(V_3) \\
+      \qo{S_4}{K} \arrow[ur, "\cong"'] & & 
+    \end{tikzcd}
+    \] 
+
+    We claim \( \rho_3 \) is irreducible since \( \rho' \) is irreducible. This is given by the fact that \( S_4 \to S_3 \) is surjective, so the \( S_3 \)-subrepr of \( V_3 \) are the same as \( S_4 \)-subrepr, namely their images the same. The fact that the surjection is given by \( \pi \) is \textbf{important} as it \textbf{averaging over the whole group} so that \( \angl{\chi_{\rho_3}, \chi_{\rho_3}} = \angl{\chi_{\rho'}, \chi_{\rho'}} = 1 \).
+  \end{enumerate}
+
+  Conclusion: We've find \textbf{all} irreducible representation of \( S_4 \).
+\end{section}
