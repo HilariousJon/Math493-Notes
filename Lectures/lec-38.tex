@@ -7,6 +7,7 @@
   \end{notation}
 
   \begin{definition}[\textbf{Induced Functor}]
+    \label{def:induce}
     In particular, a \underline{induced functor} means: Given a \( H \)-repr \( W \), we construct a \( G \)-repr \( V \) together with a \textbf{morphism} of \underline{\( H \)-repr} \( f: W \to V \), with the following \textbf{universal property}:
 
     Given any \( G \)-repr \( V' \) and morphism of \( H \)-repr \( f': W \to V' \), there exists a \textbf{unique morphism of \( \mb G \)-repr} \( g: V \to V' \), s.t. the following diagram is commutative:
@@ -180,4 +181,83 @@
   \begin{notation}
     Notation for \( V \) will be \( \Ind_{H}^{G}(W) \).
   \end{notation}
+  
+  \begin{subsection}{Character of an Induced Representation}
+    In this section, we shall introduce the character for the induced representation.
+    \begin{note}
+      If \( \rho': G \to \GL(V) \) repr of \( G \), then 
+      \[
+        \chi_{\rho'|_H} = \chi_{\rho'}|_H
+      \] 
+    \end{note}
+
+
+    Now give \( \rho: H \to \GL(W) \), lets compute \( \chi_{\Ind_{H}^G}(\rho) \).
+
+    Recall the definition of \( \Ind_{H}^G(\rho) \), we choose \( g_1,\ldots, g_r \), s.t. \( g_1 = e \) and \( \bace{\qo{G}{H}}_l = \{g_1H ,\ldots, g_rH\} \). See that
+    \[
+      V = \bigoplus_{i=1}^r g_i W \qquad W \cong\; g_i W 
+    \] 
+
+    the action of \( G \) is given by \( g(g_iw) = g_j(hw) \) for \( w \in W \) where \( gg_i = g_j h \) for some \( j \) and \( h\in H \). Thus 
+    \[
+      \chi_{\Ind_H^G(\rho)}(g) = \sum_{i, g^{-1}_i g g_i \in H} \chi_{W} (g^{-1}_i g g_i)
+    \] 
+
+    where we compute this using a basis \( e_1, \ldots, e_n \) for \( W \) and the basis \( (g_i e_k)_{i \in \br{1,r}, k\in \br{1,n}} \) for \( V \). The idea here is we only consider those \( i=j \) as they will be block matrix on the diagonal, while those \( i\ne j \) will not contribute to the calculation of trace.
+    \begin{note}
+      If \( i=j \), then the diagram is commutative:
+    \[
+      \begin{tikzcd}[row sep=large, column sep=huge]
+          \sigma_i W \arrow[r] \arrow[d, "\cong"'] & \sigma_i W \arrow[d, "\cong"] \\
+          W \arrow[r, "\rho(g_i^{-1} g g_i)"] & W
+      \end{tikzcd}
+    \]  
+    \end{note}
+
+    \begin{theorem}[\textbf{Frobenius Reciprocity}]
+        If \( \psi \in \cC(H) \) and \( \vp \in cC(G) \), then:
+        \[
+          \angl{\Ind_H^G(\psi), \vp}_{\cC(G)} = \angl{\psi, \Res_H^G(\vp)}_{\cC(H)}
+        \] 
+    \end{theorem}
+
+    \begin{question}
+      Why this theorem so important?
+
+      This gives us a easy way to calculate and understand the irreducible decomposition of induced representation.
+    \end{question}
+
+    \begin{proof}
+      Since \( \cC(G) \) has a basis given by character of irred. repr. of \( G \) and similarly for \( H \), using the conjugate bilinearity of the Hermitian product, it is enough to check the formula when \( \vp = \chi_V, \psi = \chi_W \) where \( V,W \) are irred. \( G,H \)-repr respectively.
+
+      Hence \( \Res(\vp) = \chi_{\Res(V)}, \Ind(\psi) = \chi_{\Ind(W)} \), hence we need to see:
+
+      \[
+      \begin{aligned}
+        \langle \chi_{\text{Ind}(W)}, \chi_V \rangle_{\mathcal{C}(G)} &= \langle \chi_W, \chi_{\text{Res}(V)} \rangle_{\mathcal{C}(H)} \\
+        || \quad \quad \quad & \quad \quad \quad || \\
+        \# \text{ copies of } V \text{ in } \text{Ind}(W) & \quad \# \text{ copies of } W \text{ in } \text{Res}(V) \\
+        || \quad \quad \quad  & \quad \quad \quad || \; \longleftarrow \text{ \textbf{Schur's Lemma} \ref{lem:schur}}\\
+        \dim_{\mathbb{C}} \text{Hom}_{G\text{-repr}}(\text{Ind}(W), V) & \quad \dim_{\mathbb{C}} \text{Hom}_{H\text{-repr}}(W, \text{Res}(V))
+      \end{aligned}
+      \] 
+
+      where the last layer of equation can be refered to \textbf{Proposition} \ref{prop:copy}.
+
+      But the universal property \ref{def:induce} of \( \Ind(W) \) shows that:
+      \[
+      \begin{tikzcd}
+        W \arrow[r] \arrow[d] &  \text{Ind}(W) \arrow[ld] \\
+                              V &                         
+      \end{tikzcd}
+      \] 
+
+      \[
+        \implies \Hom_{G-\text{repr}}(\Ind(W), V) \xlongleftrightarrow{\text{bij}} \Hom_{H-\text{repr}} (W,V) = \Hom_{H-\text{repr}}(W, \Res(V))
+      \] 
+      
+      This is a isomorphism of \( \CC \)-vector spaces, thus the two dimensions are equal
+    \end{proof}
+  \end{subsection}
 \end{section}
