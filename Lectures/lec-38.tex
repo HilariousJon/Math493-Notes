@@ -1,0 +1,183 @@
+\begin{section}{Induced Representation}
+  We can easily derived a representation of a subgroup for a given group by directly taking restriction on the representation. However, it is relatively unknown for us to whether be able to derived a representation of a subgroup into a representation of the group. The goal is to construct a functor in the opposite direction of the restriction functor, in particular, it will be the \textbf{Induced Functor}. The representation derived will be \textbf{Induced Representation}. The general intuition is that we have a group \( G \) and a subgroup \( H \), we want to relate the representation of \( G \) and the representation of \( H \), in particular their irreducible representation. Notably, a induced representation of a irreducible representation \textbf{may not} be irreducible, and the restriction of a irreducible representation \textbf{also may not} be irreducible.
+  
+  First introduce the setup: Let \( G \) be finite group, \( H\leq G \) be a subgroup of \( G \), we then have two categories: \textbf{The category of \( \mb G \)-repr and the catgeory of \( \mb H \)-repr.} We already gave the \textbf{restriction functor} \( \rho \rsa \rho \circ \text{inclusion map} \).
+  \begin{notation}
+    We denote the restrction functor for a representation as \( \rho |_H \) or \( \Res_{H}^G(\rho) \).
+  \end{notation}
+
+  \begin{definition}[\textbf{Induced Functor}]
+    In particular, a \underline{induced functor} means: Given a \( H \)-repr \( W \), we construct a \( G \)-repr \( V \) together with a \textbf{morphism} of \underline{\( H \)-repr} \( f: W \to V \), with the following \textbf{universal property}:
+
+    Given any \( G \)-repr \( V' \) and morphism of \( H \)-repr \( f': W \to V' \), there exists a \textbf{unique morphism of \( \mb G \)-repr} \( g: V \to V' \), s.t. the following diagram is commutative:
+    \[
+      \begin{tikzcd}
+      W \arrow[r, "f"] \arrow[d, "f'"'] & V \arrow[d, "g", ld, dashed] \\
+      V' &  
+      \end{tikzcd}
+    \]
+
+    Note that here \( V, V' \) are both \( G \)-repr. In particular we see: \( g\circ f = f' \).
+
+    Equivalently, it means:
+    \[
+      \begin{aligned}
+        \Hom_{G-\text{repr}} (V, V') & \to \Hom_{H-\text{repr}}(W, V') \\ 
+        g &\rsa g\circ f 
+      \end{aligned}
+    \] 
+
+    is a \textbf{bijection} for all \( G \)-repr \( V' \).
+  \end{definition}
+  Before the construction, we shall first give a warm-up proposition.
+
+  \begin{proposition}
+    If every irreducible repr. of \( H \) has dimension \( \leq d \), then every irred. repr. of \( G \) has dimension \( \leq d\cdot (G:H) \).
+
+    In particular, if \( H \) is abelian, then every irreducible repr of \( G \) has dimension \( \leq (G:H) \).
+  \end{proposition}
+  
+  \begin{proof}
+    Let \( V \ne 0 \) be any repr. of \( G \), we can also view it as a repr of \( H \) by \( H \xrightarrow{\text{incl}} G \to \GL(V) \). Suppose \( W \subseteq V \) is an irred. \( H \)-repr (we can always find such a subrepr by \textbf{Theorem} \ref{thm:complement}), then \( \dim W \leq d \) by assumption.
+
+    We now want to enlarge \( W \) into a \( G \)-subrepr of \( V \). Suppose \( \sigma \in \bace{\qo{G}{H}}_l \), Define: \( W_\sigma := gW = \rho(g)(W)\subseteq V \) where \( \sigma = gH \) for some \( g\in G \). One can check that this does not depends on the choice of \( g \) by definition of cosets.
+
+    Let \( V' = \sum_{\sigma \in \bace{\qo{G}{H}}_l} W_\sigma \subseteq V \) be a \( G \)-subrepr of \( V \), indeed since \( g' W_\sigma \subseteq W_{g'\sigma} \) (note here the notation using the action of \( G \) on \( \bace{\qo{G}{H}}_l \)).
+
+    Note that each \( W_\sigma \cong \; W \) as  vector spaces via \( W \xrightarrow{\rho(g)} W_\sigma \) where \( \sigma = gH \). Thus \( \dim(W_\sigma) = \dim W \; \forall \; \sigma \). 
+    \[
+      \implies \dim(V') \leq \bace{\dim W} \cdot (G:H) \leq d \cdot (G:H)
+    \] 
+
+    If \( V \) is irred. \( G \)-repr, then \( V' = V \implies \dim V \leq d \cdot (G:H)\).
+  \end{proof}
+
+  We shall use \textbf{similar} construction method for the construction of induced functor.
+
+  Fix an \( H \)-repr \( W \), choose \( g_1, \ldots, g_r \in G \), s.t. \( \bace{\qo{G}{H}}_l = \{g_1 H, \ldots, g_r H\} \), s.t. \( g_1 = e \).
+
+  For each \( i \in \br{1,r} \), choose a vector subspace \( W_i \cong \; W \) with an isomorphism:
+  \[
+    \begin{aligned}
+      W & \xrightarrow{\sim} W_i \\ 
+      w &\mapsto g_i w \text{ (notation for the map.)}
+    \end{aligned}
+  \] 
+
+  Let \( V:= W_1 \oplus \cdots \oplus W_r \), shall define an action of \( G \) on \( V \): Define \( (g, (w_1, \ldots, w_r)) \) as \( gw_1 + \cdots + gw_r \) where \( gw_i \) is defined as follows:
+
+  If \( w_i = g_i v_i, \; v_i \in W \), there exists a \textbf{unique} \( j \), s.. \( gg_i H = g_j H \), thus define \( gw_i := g_j(hv_i) \in W_j \). We want to see \( V \) gives a representation of \( G \). Let's check that it gives an action of \( G \) on \( V \) and its linearity:
+  \begin{enumerate}
+    \item \( V \) gives a \textbf{group action}:
+      \begin{itemize}
+        \item If \( g=e \), then \( j=i, h=e \in H \) thus \( g(g_i v_i) = g_i v_i \), yields the results.
+        \item Suppose \( g,g' \in G \), \( w_i = g_i v_i \in W_i \), we need to check:
+          \[
+            g'(gw_i) = (g'g)w_i
+          \]
+
+          Let \( j,h \) as before: \( gg_i = g_j h \) and \( gw_i = g_j(hv_i) \), let \( k \), s.t. \( g'g_j \in g_k H \implies g'g_j = g_kh', \; h'\in H \). Thus:
+          \[
+            \begin{aligned}
+              g'(gw_i) &= g'(gg_i v_i) \\ 
+              &= g'(g_j (hv_i)) \\ 
+              &= g_k(\underbrace{h'(hv_i)}_{H-\text{repr}}) \\ 
+              &= g_k((h'h)v_i) \\ 
+              (g'g)g_i &= g'(gg_i) \\ 
+                       &= g'(g_j h) \\ 
+                       &=(g_k h')h \\ 
+                       &= g_k(h'h) \\ 
+                      \implies (g'g)w_i &= g_k((h'h)v_i) 
+                      \iff (g'g)w_i &= g'(gw_i)
+            \end{aligned}
+          \] 
+
+          So it is indeed an action on \( \mb{\bm{\bigcup_{i=1}^r} W_i} \). To further see it is also a \( G \)-action on \( V \), we need to check \textbf{linearity}, too.
+      \end{itemize}
+    \item For all \( g\in G \), to see \( V \to V, \; x \mapsto gx \) is linear, it is enough to check its restriction on each \( W_i \) is linear, i.e. \( \bm{\bigcup_{i=1}^r W_i} \).
+
+      On \( W_i \): if \( gg_i = g_j h \; h \in H \), the map is given by:
+      \[
+        \begin{tikzcd}
+        W_i & W \arrow[l, "\sim"'] \arrow[d, "h \text{ linear}"] \\
+        W_j & W \arrow[l, "\sim"']
+        \end{tikzcd}
+      \]
+      
+      thus the induced map \( W_i \to W_j \) is also linear, which yields the result.
+
+      Note here we have a map \textbf{canonically}:
+      \[
+        \begin{aligned}
+          W & \xrightarrow[g_i]{\sim} W_i \subseteq V \\ 
+        \end{aligned}
+      \] 
+
+      where \( g_i \) as we defined before. 
+
+      Also note:
+      \begin{equation}
+        \label{eq:canonical}
+        \begin{aligned}
+         f_W: W &\xrightarrow{\sim} W_1 \subseteq V \\ 
+          w &\rsa e_w \quad \text{ (since $g_1 = e$)}
+        \end{aligned}
+      \end{equation}
+
+      such map is linear and \textbf{morphisms of \( \mb H \)-repr}.
+      \begin{remark}
+        If we have an element in \( W_i \) of the form \( g_i v \), this is actually \( g_i(ev) \).
+      \end{remark}
+  \end{enumerate}
+
+  \begin{eg}
+    Suppose \( W \) is the trivial \( 1 \)-dimensional representation of \( H \), then what is \( V = \Ind_{H}^{G}(W)\)? 
+
+    Note that \( V \) has a basis indexed by \( \bace{\qo{G}{H}}_l \), it will be the permutation representation of \( G \) to the action of \( G \) acting on \( \bace{\qo{G}{H}}_l \) be left multiplication.
+  \end{eg}
+
+  \begin{proof}[\textbf{Proof of Universal Property}]
+    We want to show that any \textbf{morphisms} of \( G \)-repr that makes the diagram in the definition commutative should acting on the same on those ``generators" \( W_i \), in particular: if \( g|_{W_i} \) maps \( g_i v_i \) to \( g_if'(v_i) \) will yeilds the \textbf{uniqueness}.
+    \begin{itemize}
+      \item \textbf{Existence}: Define \( g: V\to V' \) by define it on each \( W_i \): \( g(g_iv)  = g_i f'(v) \; v \in W \). This is clearly linear and clear that \( g\circ f = f' \). 
+      \item Left to check by our definition it is a \textbf{morphism} of \( G \)-repr: which is to check:
+        \[
+          g(a(g_i v)) = ag(g_i v)  \qquad \forall \; a \in G 
+        \] 
+
+        See that:
+        \[
+          \begin{aligned}
+            g(a(g_i v)) &= g(g_j(hv)) = g_j(f'(hv)) \\ 
+                        &= g_j(hf'(v)) \quad \text{since $f'$ is morphism of $H$-repr.} \\ 
+                        &= g_j(hf'(v)) \\ 
+                        &= (g_jh)f'(v) \\ 
+                        &= (ag_i)f'(v) \\ 
+                        &= a(g_if'(v)) = ag(g_i(v))
+          \end{aligned}
+        \] 
+    \end{itemize}
+  \end{proof}
+
+  \begin{note}
+    \leavevmode 
+    \begin{itemize}
+      \item The universal properties implies that the construction is independent of the choice of \( g_1, \ldots, g_r \) up to a canonical isomorphism. (Only depends on the objects in the set of the left cosets of \( H \)).
+      \item Another consequenc of the universal property is that we can extend \( \Ind_{H}^G(-) \) to a functor from the catgeory of \( H \)-repr to category of \( G \)-repr.
+
+        Suppose \( \vp: W \to W' \) be morphism of \( H \)-repr, then the following diagram is commutative:
+        \[
+        \begin{tikzcd}[row sep=large, column sep=huge]
+          W \arrow[r, "f_W"] \arrow[d, "\varphi"'] & \text{Ind}_H^G(W) \arrow[d, dashed, "\Ind_{H}^G (\vp)"] \\
+          W' \arrow[r, "f_{W'}"']                   & \text{Ind}_H^G(W')
+        \end{tikzcd}
+        \] 
+
+        where \( f_W \) and \( f_W' \) is defined as the canonical map as in \textbf{Def} \ref{eq:canonical}. By the universal property, \( \Ind_{H}^G(\vp) \) is the unique morphism of \( G \)-repr that makes the diagram commutative, and leads to the functorial property of \( \Ind_{H}^G(-) \).
+    \end{itemize}
+  \end{note}
+
+  \begin{notation}
+    Notation for \( V \) will be \( \Ind_{H}^{G}(W) \).
+  \end{notation}
+\end{section}
