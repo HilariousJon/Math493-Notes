@@ -71,6 +71,7 @@
 
     Thus we obtain the following proposition.
     \begin{proposition}
+      \label{prop:reg}
       If \( W \) is an irred. repr. of \( G \), then the \# of times this appears in a decomposition of \( V^{\reg} \) in irred. repr. is \( \dim W \). 
 
       In particular, if \( V_1, \ldots, V_r \) are the irred. \( G \)-repr, then:
@@ -85,5 +86,43 @@
         This is extremely useful for \textbf{determining all the irred. repr.} of a specific \textbf{finite} group.
       \end{note}
     \end{proposition}
+
+    \begin{eg}
+      \( G = S_3 \), it will have the following irred. repr.:
+      \begin{itemize}
+        \item the trivial \( 1 \)-dim repr.
+        \item the repr on \( \{(a_1, a_2, a_3)\; | \; \sum a_i = 0 \} \), which is \( 2 \)-dim. 
+        \item the \( 1 \)-dim sign repr. 
+      \end{itemize}
+
+      Since \( 1^2 + 1^2 + 2^2 = 6 = \abs{S_3} \), by the proposition, these are \textbf{all} the irreducible repr of \( S_3 \).
+    \end{eg}
+
+    \begin{eg}
+      \( G = S_4 \), we have known it will have the following repr:
+      \begin{itemize}
+        \item the trivial \( 1 \)-dim repr. 
+        \item the \( 1 \)-dim sign repr.
+        \item seen in homework that there are no other \( 1 \)-dim irred. repr. 
+      \end{itemize}
+
+      By the \textbf{Proposition} \ref{prop:reg}, there will be remain one \( 2 \)-dim and two \( 3 \)-dim irred. repr. 
+    \end{eg}
+
+    \begin{proposition}
+      For every \textbf{abelian group} \( G \), all irreducible \( G \)-repr are \( 1 \)-dimensional.
+
+    \begin{fact}
+      Given a finite set of endomorphisms \( V \to V \) which are commute and diagonalizable, then there exists a basis of \( V \), s.t. they're all given by diagonal matrices.
+
+      Such statement can be conclude by induction on the size of such sets, and analyzing on the mapping of eigenvectors.
+    \end{fact}
+    \end{proposition}
+
+
+    \begin{proof}
+      Suppose \( \rho: G \to \GL(V) \) be \( G \)-repr, we've seen \( \rho(g) \) is diagonalizable for all \( g\in G \). One can apply the fact above for \( \{\rho(g) \; | \; g\in G\} \) to get a basis \( e_1, \ldots, e_n \), s.t. each \( \rho(g) \) is given by a diagonal matrix, then each \( \CC e_i \) is a \( G \)-subrepr of \( V \). In particular, if \( V \) is irreducible, it means \( \dim V = 1 \). And by \textbf{Proposition} \ref{prop:reg}, we will have \( \abs{G} \) number of irreducible \( G \)-repr.
+    \end{proof}
+
   \end{subsection}
 \end{section}
