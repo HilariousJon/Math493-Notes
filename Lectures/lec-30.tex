@@ -230,15 +230,106 @@ We basically construct tensor product in this section, the construction of symme
     \begin{proposition}
       If \( e_1, \ldots, e_n \) is a basis for \( V_1 \) and \( f_1, \ldots, f_m \) is a basis for \( V_2 \), then:
       \[
-        \{e_i \otimes f_j \; | \; i \in br{1,n}, j \in \br{1,m}\}
+        \cB\coloneqq \{e_i \otimes f_j \; | \; i \in br{1,n}, j \in \br{1,m}\}
       \] 
 
-      is a basis for \( V_1 \otimes V_2 \).
-
-      In particular, \( \dim(V_1 \otimes V_2)  = \dim V_1 \cdot \dim V_2 \).
+      is a basis for \( V_1 \otimes V_2 \). In particular, \( \dim(V_1 \otimes V_2)  = \dim V_1 \cdot \dim V_2 \).
     \end{proposition}
 
     \begin{proof}
-      
+      Recall that every element \( u\in V_1 \otimes V_2 \) can be written as \( u = \sum_{i=1}^{n}x_i \otimes y_i, x_i \in V_1, y_i \in V_2\).
+
+      Given any \( x\in V_1, y\in V_2 \), see:
+      \[
+        \begin{aligned}
+          x = \sum_{j=1}^n a_j e_j & \qquad y = \sum_{k=1}^m b_k f_k \\ 
+          \implies x\otimes y &= \bace{\sum_{j=1}^n a_j e_j} \otimes \bace{\sum_{k=1}^m b_k f_k} \\ 
+                              &= \sum_{j,k} a_j b_k \bace{e_j \otimes b_k} \\ 
+          \implies \cB \text{ generates } & V_1 \otimes V_2 
+        \end{aligned}
+      \] 
+
+      Let's then show that the elements of \( \cB \) are linearly independent. Suppose that 
+      \begin{equation}
+        \label{eq:matrix} 
+        \sum_{i,j}a_{ij}(e_i\otimes f_j) = 0  \qquad a_{ij} \in \KK 
+      \end{equation}
+
+      we want to see \( a_{ij} = 0 \; \forall \; i,j  \).
+
+      Consider the dual basis:
+      \[
+        \begin{aligned}
+          e_1^*,\ldots, e_n^* &\text{ of } V_1^* = \Hom_\KK(V_1, \KK) \\ 
+          f_1^*,\ldots, f_m^* & \text{ of } V_2^* = \Hom_\KK(V_2, \KK) \\ 
+          e_i^* (e_j) &= \delta_{ij} \\ 
+          f_i^*(f_j) &= \delta_{ij}
+        \end{aligned}
+      \] 
+
+      Suppose \( p\leq n, q\leq m \), and consider 
+      \[
+        \begin{aligned}
+          f: V_1 \times V_2 \to \KK \\ 
+          f(v_1, v_2) &= e^*_p(v_1)f^*_1(v_2)
+        \end{aligned}
+      \] 
+
+      is a bilinear map. The universal property of tensor product \( V_1 \otimes V_2 \) implies there exists unique linear map \( g_{p,q}: V_1\otimes V_2 \to \KK \). Thus:
+      \[
+        \begin{aligned}
+          g_{p,q}(v_1\otimes v_2) &= f(v_1, v_2) \\ 
+          \implies g_{p,q}(e_i\otimes f_j) &= f_{p,q}(e_i,f_j) \\ 
+                                           &= e^*_p(e_i) f_q^*(f_j) \\ 
+                                           &= 
+                                           \begin{cases}
+                                             1, \text{ if } i=p, j=q \\ 
+                                             0, \text{ otherwise.}
+                                           \end{cases}
+        \end{aligned}
+      \] 
+
+      Apply \( g_{p,q} \) to \textbf{Equation} \ref{eq:matrix} and obtain: \( a_{p,q} = 0 \), such holds for all \( p,q \), yields the result.
+    \end{proof}
+    
+    \subsection{Tensor Product of \( n \) Vector Spaces}
+    Suppose \( V_1, \ldots, V_n \) vector spaces over \( \KK \). Define: \( V_1\otimes V_2 \otimes \cdots \otimes V_n \) by induction on \( n \geq 1 \):
+    \begin{enumerate}
+      \item \( n=1 \): this is \( V_1 \).
+      \item \( n=2 \): our previous construction. 
+      \item \( n\geq 3 \): \( V_1 \otimes \cdots \otimes V_n = (V_1 \otimes \cdots \otimes V_{n-1}) \otimes V_n\).
+    \end{enumerate}
+
+    We define inductively:
+    \[
+      \begin{aligned}
+      \vp_n: V_1 \times \cdots \times V_n &\to V_1 \otimes \cdots \otimes V_n \\ 
+      \vp_n(v_1, \ldots, v_n) &= \vp_{n-1}(v_1, \ldots, v_{n-1}) \otimes v_n 
+      \end{aligned}
+    \] 
+
+    By induction on \( n \): \( \vp_n \) is multi-linear. 
+    \begin{notation}
+      \( v_1 \otimes \cdots \otimes := \vp_n(v_1, \ldots, v_n) \).
+    \end{notation}
+
+    The universal property of \( V_1 \otimes \cdots \otimes V_n \): If \( f: V_1 \times \cdots \times V_n \to W \) multi-linear, then there exists a unique linear map:
+    \[
+      \begin{aligned}
+        g: V_1 \otimes \cdots \otimes V_n &\to W \\ 
+        \text{s.t. } g\circ \vp_n &= f 
+      \end{aligned}
+    \] 
+
+    \begin{proof}[\textbf{Sketch of Proof}]
+      Reduce to the case \( n=2 \), use induction on \( n\geq 2 \). When \( n=2 \) we already know. Given \( w\in V_n \), consider the map: \( f(-, \ldots, -, w): V_1\times \cdots \times V_{n-1} \to W \) is multi-linear. By induction there exists a unique linear map \( h_w: V_1 \otimes \cdots \otimes V_{n-1} \to W \), s.t. \( f(v_1, \ldots, v_{n-1}, w) = h_w(v_1 \otimes \cdots \otimes v_{n-1}) \), thus
+      \[
+        \begin{aligned}
+          (V_1 \otimes \cdots \otimes V_{n-1}) \times V_n &\to W \\ 
+          (u,w) &\mapsto h_w(u) \\ 
+        \end{aligned}
+      \] 
+
+      This is bilinear, thus exists unique \( g: V_1 \otimes \cdots \otimes V_n \to W \), s.t. \( g(v_1 \otimes \cdots \otimes v_n) = h_{v_n}(v_1 \otimes \cdots \otimes v_{n-1}) \).
     \end{proof}
 \end{section}
