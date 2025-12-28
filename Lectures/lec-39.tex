@@ -1,3 +1,106 @@
 \begin{section}{Representations on \( D_{2n} \)}
-  
+  In this section we give the irred. repr. of \( D_{2n} \), basically it will be a comprehensive application on what we have learnt so far.
+
+  For \( D_{2n} \), the case is different for whether \( n \) is even or odd, so we consider those two cases separately.
+  \begin{enumerate}
+    \item When \( n \) is \textbf{even}: Given that \( G\coloneqq  D_{2n} = \angl{\sigma, \tau} \), with \( \sigma^n = e, \tau^2 = e, \tau \sigma = \sigma^{n-1}\tau \). Notice that \( H = \angl{\sigma} \unlhd G \). By \textbf{Proposition} \ref{prop:double}, all irreducible representation of \( D_{2n} \) repr will have dimension \( \leq 2 \), since \( H \) is cyclic and thus abelian.
+
+      \begin{itemize}
+        \item  \textbf{1-dim irred. repr.}: Those \( 1 \)-dimensional representation is in bijection to \( G^{ab} = \qo{G}{[G,G]} \to \CC^\times \), by the fact that \( \CC^\times \) is abelian group and the universal property of quotient:
+          \begin{equation}
+            (G \to \CC^\times) \xlongleftrightarrow{\text{bij}} \bace{\qo{G}{[G,G]} \to \CC^\times}
+            \label{eq:bij}
+          \end{equation}
+
+          First note that:
+          \[
+            \begin{aligned}
+            [\sigma ,\tau ] &= \sigma \tau \sigma ^{n-1} \tau  \\ 
+            &= \sigma (\sigma ^{n-1})^{n-1} \tau ^2 \\ 
+            &= \sigma ^{1+n^2-2n+1} = \sigma ^2 \implies \angl{\sigma ^2} \subseteq [G,G] 
+            \end{aligned}
+          \] 
+
+          Then note that \( K = \angl{\sigma^2} \) is normal since:
+          \[
+            \begin{aligned}
+              \sigma K \sigma ^{-1} &= K \\ 
+              \tau \sigma ^2 \tau &= (\sigma ^{n-1})^2 \tau ^2 = (\sigma ^2)^{-1} \in K 
+            \end{aligned}
+          \] 
+
+          See that \( \abs{\angl{\sigma}} = n \implies \abs{\angl{\sigma^2}} = \frac{n}{2} \implies \abs{\qo{G}{K}} = 4 = 2^2\). Thus \( \qo{G}{K} \) is abelian, thus \( [G,G] \subseteq \angl{\sigma^2} \), and thus they are equal. In particular by \textbf{Equation} \ref{eq:bij}, there are \( 4 \) such \( 1 \)-dim repr, determined by the images of \( \sigma, \tau \), which can be \( \pm1 \).
+        \item \textbf{2-dim irred. repr.}: if \( r = \# \) non-isomorphic such repr, see that \( 4r+4 = 2n \implies r = \frac{n}{2} - 1 \). Suppose \( V \) be irred. \( 2 \)-dim repr. of \( D_{2n} \), consider its restriction on \( \angl{\sigma} = H \), thus \( V\cong \; W \oplus W' \) as \( H \)-repr, with \( W \) and \( W' \) be \( 1 \)-dim \( H \)-repr. The universal property of \( \Ind_{H}^{D_{2n}}(W)\) applied to \( W \hookrightarrow V \) as inclusion map, then there exists unique morphism of \( G \)-repr, denoted as \( f \), such that the following diagram is commutative:
+          \[
+          \begin{tikzcd}
+            \text{Ind}_H^{D_{2n}}(W) \arrow[r, "f"] & V \\
+            W \arrow[u, hook] \arrow[ru, hook] & 
+          \end{tikzcd}
+          \] 
+
+          Since \( \dim V = \dim \bace{\Ind(W)} = 2 \), see that \( \Im(f) = V \) meaning \( f \) is \textbf{isomorphism}.
+
+          So we can conclude that every \( 2 \)-dim irred. \( D_{2n} \)-repr is \textbf{isomorphic} to \( \Ind_{H}^{D_{2n}}(W) \) for some \( 1 \)-dim repr. \( W \) of \( H \). 
+
+          We now consider the \( 1 \)-dim repr of \( H \): since \( H \cong\; \qo{\ZZ}{n\ZZ} \), the \( 1 \)-dim repr of \( H \) will isomorphic to \( \qo{\ZZ}{n\ZZ} \to \CC^\times \), just the unit root. Denote \( w^i = \exp\bace{\frac{2\pi i}{n}} \), then the repr of \( H \) \( \rho_j \) is given by:
+          \[
+            \rho_j : 1 + n \ZZ \to w^j  \qquad  j\in \br{0,n-1}
+          \] 
+          
+        Thus \( \tilde{\rho_j} = \Ind_{H}^{D_{2n}} (\rho_j): \CC \oplus \underbrace{\CC}_{\tau \CC} \), where \( \bace{\qo{G}{H}}_l = \{H, \tau H\} \). Then:
+          \[
+            \begin{aligned}
+              \tilde{\rho_j} (\tau) &= \begin{pmatrix}
+                0 & 1 \\ 
+                1 & 0 
+              \end{pmatrix} \\ 
+                \tilde{\rho_j}(\sigma) &= \begin{pmatrix}
+                  w^j & 0 \\ 
+                  0 & w^j 
+                \end{pmatrix}
+            \end{aligned}
+          \] 
+          
+          \begin{remark}
+            \leavevmode
+            \begin{enumerate}
+              \item \( (x,y) \mapsto (y,x) \) gives an isomorphism of \( D_{2n} \)-repr \( \tilde{\rho_j} \cong \tilde{\rho_{n-j}} \), thus they are the same. 
+              \item \( \tilde{\rho_0} \) is not irreducible, since \( \CC(e_1 + e_2) \) is a subrepr, similarly for \( \tilde{\rho_{\frac{n}{2}}} \), write and see the common eigenvalue.
+            \end{enumerate}
+          \end{remark}
+
+          \textbf{Conclusion}: We have \( \leq \frac{n}{2} - 1 \) non-isomorphic such repr that are irreducible, by what we know on the number of irreducible \( 2 \)-repr of \( D_{2n} \), \( \tilde{\rho_1}, \ldots, \tilde{\rho_{\frac{n}{2}-1}} \) are \textbf{all} the irreducible repr of \( D_{2n} \).
+      \end{itemize}
+    \item When \( n \) is \textbf{odd}: Similarly, see that all irreducible representation of \( D_{2n} \) repr. will have dimension \( \leq 2 \).
+      \begin{itemize}
+        \item \textbf{1-dim irred. repr.}: Similarly:
+          \[
+            (G \to \CC^\times) \xlongleftrightarrow{\text{bij}} \bace{\qo{G}{[G,G]} \to \CC^\times}
+          \] 
+
+          Then:
+          \[
+            \begin{aligned}
+              [\sigma ,\tau ] &= \sigma \tau \sigma ^{n-1}\tau \\ 
+                              &= \sigma (\sigma ^{n-1})^{n-1} \tau ^2 \\ 
+                              &= \sigma ^{1+n^2-2n+1} = \sigma^2 = \angl{\sigma^2} \subseteq [G,G]
+            \end{aligned}
+          \] 
+          
+          And its normality follows from same procedure.
+
+          When \( n \) is odd, see that \( \angl{\sigma} = \angl{\sigma^2} \implies \abs{\angl{\sigma}} = \abs{\angl{\sigma^2}} = n \implies \abs{\qo{G}{\angl{\sigma ^2}}} = 2 \), thus abelian, thus \( [G,G] = \angl{\sigma^2} \). There are only \( 2 \) such \( 1 \)-dim repr. determined by the images of \( \tau \) and \( \sigma \), where \( \sigma \mapsto 1\) and \( \tau \mapsto \pm 1 \).
+
+        \item \textbf{2-dim irred. repr.}: Let \( r = \#\) non-isomorphic such repr, see that \( r = \frac{n-1}{2} \). Follow exactly the same procedure, but slightly modify the remark:
+          \begin{remark}
+            \leavevmode
+            \begin{enumerate}
+              \item \( (x,y) \mapsto (y,x)\) gives an isomoprhism of \( D_{2n} \)-repr \( \tilde{\rho_j} \cong \; \tilde{\rho_{n-j}}\), thus they are the same.
+              \item \( \tilde{\rho_0} \) is not irreducible. This time we have no \( \tilde{\rho_{\frac{n}{2}}} \) as \( n \) is odd number.
+            \end{enumerate}
+          \end{remark}
+
+          \textbf{Conclusion:} We have \( \leq \frac{n-1}{2} \) non-isomorphic such repr that are irreducible, by what we know on the number of irreducible \( 2 \)-repr of \( D_{2n} \), \( \tilde{\rho_1}, \ldots, \tilde{\rho_{\frac{n-1}{2}}} \) are \textbf{all} the irreducible repr of \( D_{2n} \).
+      \end{itemize}
+  \end{enumerate}
 \end{section}
