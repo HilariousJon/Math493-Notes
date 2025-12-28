@@ -1,1 +1,310 @@
 % This lecture tells about category theory, will be crafted later.
+\part{Bonus Lectures}
+
+\chapter{Category Theory}
+
+The goal of Catgeory theory is to formalize mathematical objects in a unified way for those notion, constructions, results that appear in different areas.
+
+\begin{section}{Category}
+  \begin{definition}[\textbf{Category}]
+    A \underline{catgeory} consists of:
+    \begin{itemize}
+      \item a class \( \ob(\cC) \) of \underline{objects}.
+      \item For every two objects \( X, Y \in \ob(\cC) \), we have a set \( \Hom_{\cC}(X,Y) \), which is the \underline{morphisms} in \( \cC \) from \( X \) to \( Y \).
+      \item For all \( X, Y, Z \in \ob(\cC) \), a map:
+        \[
+          \begin{aligned}
+            \Hom_{\cC}(X,Y) \times \Hom_{\cC}(Y,Z)& \to \Hom_{\cC}(X,Z) \\ 
+            (f,g) &\mapsto g \circ f \quad \text{ ``composition of morphisms"}
+          \end{aligned}
+        \] 
+
+        s.t.:
+
+        \begin{enumerate}
+          \item For all \( X,Y,Z,W \in \ob(\cC) \), we have \( \forall f \in \Hom_{\cC}(X,Y), g\in\Hom_\cC(Y,Z), h\in\Hom_\cC(Z,W) \):
+            \[
+              X\xrightarrow{f} Y \xrightarrow{g} Z \xrightarrow{h} W 
+            \] 
+
+            with associativity:
+            \[
+              h\circ (g\circ f) = (h\circ g)\circ f 
+            \] 
+
+          \item \( \forall X \in \ob(\cC) \), there is \( 1_X \in \Hom_\cC(X,X) \), s.t.
+            \[
+              \begin{aligned}
+                f\circ 1_X &= f \qquad \forall \; f \in \Hom_\cC(X,Y) \\ 
+                1_X \circ g &= g \qquad \forall \; g \in \Hom_\cC(Z,X)
+              \end{aligned}
+            \] 
+        \end{enumerate}
+    \end{itemize}
+  \end{definition}
+
+  \begin{eg}
+    \leavevmode 
+    \begin{enumerate}
+      \item the category of \underline{Sets}:
+        \begin{itemize}
+          \item objects: all sets.
+          \item \( \Hom_{\underline{\sets}}(X,Y) = \{f: X \to Y\} \).
+          \item composition: the usual composition of functions.
+        \end{itemize}
+      \item the category of \underline{Groups}:
+        \begin{itemize}
+          \item objects: all groups.
+          \item morphisms: group homomorphisms.
+          \item composition: usual comp. of functions.
+        \end{itemize}
+      \item the category of \underline{Abelian Groups}:
+        \begin{itemize}
+          \item objects: all abelian groups.
+          \item morphisms: group homomorphisms.
+          \item composition: usual comp. of func.
+        \end{itemize}
+      \item the category of topological spaces \underline{Top}:
+        \begin{itemize}
+          \item objects: all topological spaces.
+          \item morphisms: continuous maps.
+          \item composition: usual comp. 
+        \end{itemize}
+      \item the category of vector spaces over \( \RR \) or \( \CC \), \underline{\( \vect_\RR \)} or \( \underline{\vect_\CC} \):
+        \begin{itemize}
+          \item objects: all vector spaces over \( \RR \) or \( \CC \).
+          \item morphisms: linear maps.
+          \item composition: usual comp.
+        \end{itemize}
+      \item Let \( X \) be given fixed set, the category \( \qo{\underline{\sets}}{X} \):
+        \begin{itemize}
+          \item objects: \( f: Y \to X \) maps.
+          \item morphisms: \( \Hom(Y\xrightarrow{f}X, Y' \xrightarrow{f'} X) = \{g: Y \to Y' \; | \; f'\circ g = f\}\).
+            \[
+              \begin{tikzcd}
+                Y \arrow[rr, dashed] \arrow[rd, "f"] &                               & Y' \arrow[ld, "f'"'] \arrow[ldd, dashed] \\
+                                                  & X                             &                      \\
+                                                  & Y'' \arrow[u, "f''"] &                     
+              \end{tikzcd}
+            \] 
+          \item composition: usual comp.
+        \end{itemize}
+      \item Suppose \( (A, \leq) \) be a poset, define a catgeory:
+        \begin{itemize}
+          \item objects: elements of \( A \).
+          \item morphisms:
+            \[
+              \Hom(x,y) = 
+              \begin{cases}
+                \{\star\}, \text{ if } x\leq y \\ 
+                \emptyset, \text{ otherwise.}
+              \end{cases}
+            \] 
+          \item composition: \( \Hom(x,y) \times \Hom(y,z) \to \Hom(x,z) \) have unique such maps, since \( \leq \) is transitive, also have \( 1_X \; \forall \; x\in A \) since \( \leq \) is reflexive.
+        \end{itemize}
+    \end{enumerate}
+  \end{eg}
+
+  \begin{remark}
+    If \( \cC \) is a category, then \( \forall x \in \ob(\cC) \), \( 1_X \) is unique.
+  \end{remark}
+
+  \begin{definition}[\textbf{Isomorphism}]
+    If \( \cC \) is a category and \( f \in \Hom_\cC(X,Y) \), then \( f \) is an isomorphism if \( \exists \; g \in \Hom_\cC(Y,X) \), s.t.
+    \[
+      \begin{cases}
+        g\circ f = 1_X \\ 
+        f\circ g = 1_Y
+      \end{cases}
+    \] 
+  \end{definition}
+
+  \begin{eg}
+    \leavevmode 
+    \begin{enumerate}
+      \item If \( \cC = \underline{\sets} \), then isomorphism is bijection.
+      \item If \( \cC = \underline{\text{Gps}} \), then is group isomorphisms.
+      \item If \( \cC = \underline{\text{Top}} \), then is homeomorphism.
+      \item If \( \cC =\) category associated to \( (A, \leq) \), then isomorphism is:
+        \[
+          \begin{cases}
+            x \leq y \\ 
+            y \leq x 
+          \end{cases}
+        \] 
+
+        which induced a correspondence between the singletons.
+    \end{enumerate}
+  \end{eg}
+\end{section}
+
+\begin{section}{Functors}
+  \begin{definition}[\textbf{Functor}]
+    If \( \cC \) and \( \cD \) are categories, then a functor:
+    \[
+      F: \cC \to \cD 
+    \] 
+
+    is given by:
+    \begin{enumerate}
+      \item For every \( X \in \ob(\cC) \), we have \( F(X) \in \ob(\cD) \).
+      \item For all \( X, Y \in \ob(\cC) \), we have a map 
+        \[
+          \Hom_\cC(X,Y) \to \Hom_\cD(F(X), F(Y))
+        \] 
+
+        s.t.
+        \begin{enumerate}
+          \item \( F(1_X) = 1_{F(X)} \quad \forall \; X \in \ob(\cC)\).
+          \item \( \forall \; u \in \Hom_\cC(X,Y), v \in \Hom_\cC(Y,Z) \), preserving the composition structures of the morphisms.
+            \[
+              F(u\circ v) = F(v) \circ F(u)
+            \] 
+        \end{enumerate}
+    \end{enumerate}
+  \end{definition}
+  
+  Functors defines a proper way of jumping between different categories, it behaves well w.r.t. objects, morphisms, and the way of compositions.
+
+  \begin{eg}
+    \leavevmode
+    \begin{enumerate}
+      \item \( F: \underline{\text{Gps}} \to \underline{\sets}\), which is the ``forgetful functors", namely, it is to forget some mathematical structures.
+        \begin{itemize}
+          \item \( F(G) = G \) where we view \( G \) as sets afterwards.
+          \item \( F(f) = f \) where we directly cast of the operation of group.
+        \end{itemize}
+      \item \( F: \underline{\text{Ab}} \to \underline{\text{Gps}} \)
+        \begin{itemize}
+          \item \( F(G) = G\).
+          \item \( F(f) = f \).
+          \item This is more or less like inclusion map, basically do nothing.
+        \end{itemize}
+      \item \( F: \underline{\Gps} \to \underline{\text{Ab}} \)
+        \begin{itemize}
+          \item \( F(G) = G^{ab} = \qo{G}{[G,G]} \) with 
+            \[
+              [G,G] = \angl{\underbrace{[g,h]}_{=ghg^{-1}h^{-1}} \; | \; g,h \in G} 
+            \] 
+
+            If \( f: G \to H \) be group homomorphisms, then:
+            \[
+            \begin{tikzcd}
+            G \arrow[r, "f"] \arrow[d, "\pi_G"']           & H \arrow[d, "\pi_H"] \\
+            G/[G,G] \arrow[r, dashed, "f^{ab}"] & H/[H,H]
+            \end{tikzcd}
+            \] 
+
+            Since \( f(ghg^{-1}h^{-1}) = f(g)f(h)f(g)^{-1}f(h)^{-1} \implies f([G,G]) \subseteq [H,H] \). By the universal property of quotient groups, there exists a unique \( f^{ab}: G^{ab} \to H^{ab} \), s.t. \( \pi \circ f = f^{ab} \circ \pi_G \). Explicitly:
+            \[
+              f^{ab}(g[G,G]) = f(g)[H,H]
+            \] 
+
+          \item This satisfy the required condition:
+            \begin{itemize}
+              \item \( F(1_G) = 1_{G^{ab}} \) is clear.
+              \item If:
+                \[
+                  \begin{tikzcd}
+                    G \arrow[r, "f"] \arrow[d] & H \arrow[r, "g"] \arrow[d] & K \arrow[d] \\
+                    G^{ab} \arrow[r, "f^{ab}"]  & H^{ab} \arrow[r, "g^{ab}"]  & K^{ab}
+                  \end{tikzcd}
+                \] 
+
+                By universal property, have \( (g\circ f)^{ab} = g^{ab} \circ f^{ab} \), since we see \( g^{ab} \circ f^{ab} \) also makes the rectangle commutative.
+            \end{itemize}
+        \end{itemize}
+    \end{enumerate}
+  \end{eg}
+
+  \begin{proposition}
+    If \( F: \cC \to \cD \) is a functor, and \( f\in \Hom_\cC(X,Y) \) which is an isomorphism, then \( F(f) \) is also an isomorphism.
+  \end{proposition}
+
+  \begin{eg}
+    There is no functor from \( \underline{\Gps} \to \underline{\text{Ab}} \), s.t. it takes \( G \) to \( Z(G) \).
+  \end{eg}
+
+  \begin{proof}
+    Suppose we have a functor \( F: \underline{\Gps} \to \underline{\text{Ab}}, F(G) = Z(G) \).
+
+    May consider:
+    \[
+      \angl{(12)} \xhookrightarrow{\alpha} S_3 \xrightarrow{\beta} \qo{S_3}{\angl{(123)}}
+    \] 
+
+    the composition is an isomorphism, then:
+    \[
+      \begin{array}{ccccc}
+        F(\langle (12) \rangle) & \xrightarrow{F(\alpha)} & F(S_3) & \xrightarrow{F(\beta)} & F(\qo{S_3}{\langle (123) \rangle}) \\
+        \parallel & & \parallel & & \parallel \\
+        \langle (12) \rangle & & Z(S_3) = \{e\} & & \qo{S_3}{\langle (123) \rangle}
+      \end{array}
+    \] 
+
+    on the otherhand, since since the middle group is \( \{e\} \), then the images will be \( \{e\} \), leads to contradiction \( \lightning \).
+  \end{proof}
+
+  \begin{eg}
+    Let \( \cC \) be arbitrary category, fix \( X \in \ob(\cC) \), define a functor:
+    \[
+      \begin{aligned}
+        \Hom_\cC(X,-): \cC &\to \underline{\sets} \\ 
+        Y \in \ob(\cC) & \rsa \Hom_\cC(X,Y) \\ 
+        f\in \Hom_\cC(Y,Z) &\rsa \Hom_\cC(X,f) \\
+      \end{aligned}
+    \] 
+
+    where:
+    \[
+      \begin{aligned}
+        \Hom_\cC(X,f): \Hom_\cC(X,Y) &\to \Hom_\cC(X,Z) \\ 
+        g& \mapsto f\circ g 
+      \end{aligned}
+    \] 
+  \end{eg}
+
+  Category theory study the objects by \textbf{How it maps to other objects}.
+\end{section}
+
+\begin{section}{Dual of a Category}
+  \begin{definition}[\textbf{Dual of a Category}]
+    Suppose \( \cC \) is any category, the \underline{dual of \( \cC \)} is the category \( \cC^\circ \) defined by:
+    \begin{itemize}
+      \item $\ob(\cC^\circ) = \ob(\cC)$.
+      \item \( \Hom_{\cC^\circ}(X,Y) = \Hom_\cC(Y,X) \).
+      \item composition is the same.
+    \end{itemize}
+  \end{definition}
+
+  The property of morphisms that compatible to composition is easy to check. Basically the dual is just reversing the morphisms.
+
+  \begin{definition}[\textbf{Monomorphisms}]
+    If \( \cC \) is a category and \( f\in \Hom_\cC(X,Y) \), then \( f \) is a \underline{monomorphism} if:
+    \[
+       \begin{tikzcd}
+          Z \arrow[r, "u", shift left=0.5ex] \arrow[r, "v"', shift right=0.5ex] & X \arrow[r, "f"] & Y
+       \end{tikzcd}
+    \] 
+      \( \forall \; u,v \in \Hom_\cC(Z,X) \), s.t. \( f\circ u = f\circ v \implies u=v \).
+  \end{definition}
+
+  The \textbf{dual} notion is that of \textbf{epimorphism}.
+  \begin{definition}[\textbf{Epimorphism}]
+    \( f \in \Hom_\cC(X,Y) \) is \underline{epimorphism} in \( \cC \) if it is a \textbf{monomorphism in \( \mb \cC^\circ \)}. This means:
+    \[
+        \begin{tikzcd}[column sep=huge, row sep=large]
+          X \arrow[r, "f"] & 
+          Y \arrow[r, bend left=28, "u"] \arrow[r, bend right=28, "v"'] 
+            \arrow[l, dashed, bend left=20]
+          & Z 
+          \arrow[l, dashed, shift left=0.5ex]
+          \arrow[l, dashed, shift right=0.5ex]
+        \end{tikzcd}
+    \] 
+
+    \( \forall \; u,v \in \Hom_\cC(Y,Z) \), s.t. \( u\circ f = v \circ f \implies u = v \).
+  \end{definition}
+  
+  Usually, Monomorphisms and Epimorphisms corresponds to \textbf{Injective and Surjective} map respectively.
+\end{section}
